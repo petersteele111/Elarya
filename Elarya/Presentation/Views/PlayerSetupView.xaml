@@ -27,7 +27,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            </Grid.RowDefinitions> 
 
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Welcome to Elarya" Grid.ColumnSpan="7" Grid.RowSpan="2" FontSize="48px" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DarkRed" />
 
