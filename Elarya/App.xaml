@@ -4,6 +4,41 @@
              xmlns:local="clr-namespace:Elarya"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <!--<Style x:Key="playerSetupInput" TargetType="{x:Type TextBox}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Width" Value="200" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Text">
+                        <Setter.Value>
+                            <Image Source="Presentation/Resources/Assets/Images/input.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Text">
+                        <Setter.Value>
+                            <Image Source="Presentation/Resources/Assets/Images/imput.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+
     </Application.Resources>
 </Application>

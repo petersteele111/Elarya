@@ -109,8 +109,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Presentation\Resources\Assets\Images\" />
     <Folder Include="Presentation\Resources\Assets\Sounds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Presentation\Resources\Assets\Images\playerSetupBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Presentation\Resources\Assets\Images\input.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Presentation\Views\input.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
