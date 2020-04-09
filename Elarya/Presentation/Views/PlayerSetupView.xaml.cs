@@ -26,10 +26,10 @@ namespace Elarya.Presentation.Views
         {
             _player = player;
             InitializeComponent();
-            setupWindow();
+            SetupWindow();
         }
 
-        private void setupWindow()
+        private void SetupWindow()
         {
             List<string> races = Enum.GetNames(typeof(Player.RaceType)).ToList();
             List<string> gender = Enum.GetNames(typeof(Player.GenderType)).ToList();
@@ -39,11 +39,44 @@ namespace Elarya.Presentation.Views
             GenderTypeComboBox.ItemsSource = gender;
             JobTitleTypeComboBox.ItemsSource = jobTitle;
 
+            ErrorMessageTextBlock.Visibility = Visibility.Hidden;
+
+        }
+
+        private bool IsValidInput(out string errorMessage)
+        {
+            errorMessage = "";
+            if (Name.Text == "")
+            {
+                errorMessage += "Player Name is required!";
+            }
+            else
+            {
+                _player.Name = Name.Text;
+            }
+            return errorMessage == "" ? true : false;
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            string errorMessage;
+            if (IsValidInput(out errorMessage))
+            {
+                Enum.TryParse(JobTitleTypeComboBox.SelectionBoxItem.ToString(), out Player.JobTitleName jobTitle);
+                Enum.TryParse(RaceTypeComboBox.SelectionBoxItem.ToString(), out Character.RaceType race);
+                Enum.TryParse(GenderTypeComboBox.SelectionBoxItem.ToString(), out Character.GenderType gender);
 
+                _player.JobTitle = jobTitle;
+                _player.Race = race;
+                _player.Gender = gender;
+
+                Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                ErrorMessageTextBlock.Visibility = Visibility.Visible;
+                ErrorMessageTextBlock.Text = errorMessage;
+            }
         }
     }
 }
