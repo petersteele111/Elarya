@@ -36,6 +36,7 @@ namespace Elarya.Business
             ElaryaGameView elaryaGameView = new ElaryaGameView(_elaryaGameViewModel);
             elaryaGameView.DataContext = _elaryaGameViewModel;
             elaryaGameView.Show();
+            _playerSetupView.Close();
         }
 
         private void SetupPlayer()
