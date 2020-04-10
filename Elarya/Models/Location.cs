@@ -19,6 +19,9 @@ namespace Elarya.Models
 
 		#region Properties
 
+		/// <summary>
+		/// Location ID
+		/// </summary>
 		public int ID
 		{
 			get => _id;
@@ -28,7 +31,9 @@ namespace Elarya.Models
 			}
 		}
 
-		
+		/// <summary>
+		/// Location Name
+		/// </summary>
 		public string Name
 		{
 			get => _name;
@@ -38,6 +43,9 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Location Description
+		/// </summary>
 		public string Description
 		{
 			get => _description;
@@ -47,6 +55,9 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Is Location Accessible?
+		/// </summary>
 		public bool Accessible
 		{
 			get => _accessible;

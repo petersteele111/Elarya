@@ -8,6 +8,13 @@ namespace Elarya.Models
 {
     class Map
     {
+		private string[,] _location;
 
-    }
+		public string[,] Location
+		{
+			get { return _location; }
+			set { _location = value; }
+		}
+
+	}
 }
