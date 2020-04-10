@@ -66,6 +66,7 @@
     <Compile Include="Business\GameBusiness.cs" />
     <Compile Include="Data\GameData.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Presentation\ViewModels\ElaryaGameViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RegisterPlayerGameViewModel.cs" />
