@@ -21,6 +21,9 @@ namespace Elarya.Models
 
 		#region Properties
 
+		/// <summary>
+		/// ID of Character
+		/// </summary>
 		public int Id
 		{
 			get => _id;
@@ -30,6 +33,9 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Name of Character
+		/// </summary>
 		public string Name
 		{
 			get => _name;
@@ -39,6 +45,9 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Location ID of Character
+		/// </summary>
 		public int LocationId
 		{
 			get => _locationId;
@@ -48,6 +57,9 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Age of Character
+		/// </summary>
 		public int Age
 		{
 			get => _age;
@@ -57,13 +69,18 @@ namespace Elarya.Models
 			}
 		}
 
+		/// <summary>
+		/// Race of Character
+		/// </summary>
 		public RaceType Race
 		{
 			get { return _race; }
 			set { _race = value; }
 		}
 
-
+		/// <summary>
+		/// Gender of Character
+		/// </summary>
 		public GenderType Gender
 		{
 			get { return _gender; }
@@ -74,6 +91,9 @@ namespace Elarya.Models
 
 		#region Enums
 
+		/// <summary>
+		/// Race Enum
+		/// </summary>
 		public enum RaceType
 		{
 			Nungari,
@@ -82,6 +102,9 @@ namespace Elarya.Models
 			Plenskolt
 		}
 
+		/// <summary>
+		/// Gender Enum
+		/// </summary>
 		public enum GenderType
 		{
 			Male,
@@ -93,11 +116,23 @@ namespace Elarya.Models
 
 		#region Constructor
 
+		/// <summary>
+		/// Public Constructor for Character Class
+		/// </summary>
 		public Character()
 		{
 
 		}
 
+		/// <summary>
+		/// Public Constructor for Character Class (Overload)
+		/// </summary>
+		/// <param name="id">ID of Character</param>
+		/// <param name="locationId">Location ID of Character</param>
+		/// <param name="name">Name of Character</param>
+		/// <param name="age">Age of Character</param>
+		/// <param name="race">Race of Character</param>
+		/// <param name="gender">Gender of Character</param>
 		public Character(int id, int locationId, string name, int age, RaceType race, GenderType gender)
 		{
 			_id = id;
@@ -112,11 +147,19 @@ namespace Elarya.Models
 
 		#region Methods
 
+		/// <summary>
+		/// Default Greeting for Character
+		/// </summary>
+		/// <returns>Returns Default Greeting for Character</returns>
 		public virtual string Greeting()
 		{
 			return $"Hello, I am {_name} and I am {_age} years old. I am a {_race}.";
 		}
 
+		/// <summary>
+		/// Abstract Method for if a Character has a quest
+		/// </summary>
+		/// <returns>Returns True or False if the Character has a quest</returns>
 		public abstract bool HasQuest();
 
 		#endregion
