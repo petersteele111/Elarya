@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
-    class MapCoordinates
+    public class MapCoordinates
     {
         public int Row { get; set; }
         public int Column { get; set; }

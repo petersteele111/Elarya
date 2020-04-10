@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
-    class Location
+    public class Location
     {
         #region Fields
 
