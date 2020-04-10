@@ -9,6 +9,10 @@ namespace Elarya.Data
 {
     public static class GameData
     {
+        /// <summary>
+        /// Method to create the Player Data
+        /// </summary>
+        /// <returns>Returns a default player</returns>
         public static Player PlayerData()
         {
             return new Player()
@@ -36,6 +40,10 @@ namespace Elarya.Data
             };
         }
 
+        /// <summary>
+        /// Method to create the defaul greeting and messages upon game start
+        /// </summary>
+        /// <returns>Returns the default game greeting and information</returns>
         public static List<string> InitialMessages()
         {
             return new List<string>()

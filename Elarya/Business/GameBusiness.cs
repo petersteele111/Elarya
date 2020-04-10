@@ -18,6 +18,9 @@ namespace Elarya.Business
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
 
+        /// <summary>
+        /// Public Constructor for GameBusiness Class
+        /// </summary>
         public GameBusiness()
         {
             SetupPlayer();
@@ -25,11 +28,17 @@ namespace Elarya.Business
             InstantiateandShowView();
         }
 
+        /// <summary>
+        /// Method to initialize Default Intro Text
+        /// </summary>
         private void InitializeDataSet()
         {
             _messages = GameData.InitialMessages();
         }
 
+        /// <summary>
+        /// Instantiates and Shows the Main Game View
+        /// </summary>
         private void InstantiateandShowView()
         {
             _elaryaGameViewModel = new ElaryaGameViewModel(_player, _messages);
@@ -39,6 +48,9 @@ namespace Elarya.Business
             _playerSetupView.Close();
         }
 
+        /// <summary>
+        /// Method to create the new Player with default values
+        /// </summary>
         private void SetupPlayer()
         {
             if (_newPlayer)

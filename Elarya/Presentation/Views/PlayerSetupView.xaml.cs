@@ -20,7 +20,13 @@ namespace Elarya.Presentation.Views
     /// </summary>
     public partial class PlayerSetupView : Window
     {
+        #region Fields
+
         private Player _player;
+
+        #endregion
+
+        #region Properties
 
         public PlayerSetupView(Player player)
         {
@@ -29,6 +35,11 @@ namespace Elarya.Presentation.Views
             SetupWindow();
         }
 
+        #endregion
+
+        /// <summary>
+        /// Method to setup the Window for Player Character Creation
+        /// </summary>
         private void SetupWindow()
         {
             List<string> races = Enum.GetNames(typeof(Player.RaceType)).ToList();
@@ -43,6 +54,11 @@ namespace Elarya.Presentation.Views
 
         }
 
+        /// <summary>
+        /// Method to Validate Player Character Name has been entered
+        /// </summary>
+        /// <param name="errorMessage">Error message if Player Character name has not been input</param>
+        /// <returns></returns>
         private bool IsValidInput(out string errorMessage)
         {
             errorMessage = "";
@@ -57,6 +73,11 @@ namespace Elarya.Presentation.Views
             return errorMessage == "" ? true : false;
         }
 
+        /// <summary>
+        /// Method to process Ok button click for Player Character creation view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             string errorMessage;
