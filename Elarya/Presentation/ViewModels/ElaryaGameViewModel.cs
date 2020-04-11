@@ -111,7 +111,6 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-
         #endregion
 
         #region Constructor
@@ -170,7 +169,6 @@ namespace Elarya.Presentation.ViewModels
                 Location nextWestLocation = _gameMap.WestLocation();
             }
         }
-
 
         public string MessageDisplay
         {

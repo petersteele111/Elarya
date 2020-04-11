@@ -90,6 +90,7 @@ namespace Elarya.Presentation.Views
                 _player.JobTitle = jobTitle;
                 _player.Race = race;
                 _player.Gender = gender;
+                _player.LocationId = 0;
 
                 Visibility = Visibility.Hidden;
             }

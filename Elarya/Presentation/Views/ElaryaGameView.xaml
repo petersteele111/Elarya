@@ -80,34 +80,34 @@
         <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="8" Grid.RowSpan="12">
 
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center">
             <TextBlock Text="Current Location: " FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 0 0 0"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NothLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontSize="20px"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
             <Button Content="North" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NothLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
             <Button Content="East" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NothLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
             <Button Content="South" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NothLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
             <Button Content="West" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NothLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" />
         </StackPanel>
 
 
@@ -144,13 +144,18 @@
         <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
 
 
+        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+
         <!-- User Actions-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="7" Grid.RowSpan="5">
-            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2">
-                <TextBlock Text="User Actions" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
-                <!-- Space to place user action buttons -->
-            </StackPanel>
+
         </Border>
+
+        <StackPanel Orientation="Vertical" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2">
+            <TextBlock Text="User Actions" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <!-- Space to place user action buttons -->
+        </StackPanel>
 
         <!-- Spells/Fight-->
         <StackPanel Orientation="Vertical" Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">
