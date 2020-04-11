@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
-    public abstract class Character
+    public abstract class Character : ObservableObject
     {
 		#region Fields
 

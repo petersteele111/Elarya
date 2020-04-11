@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Elarya.Models;
 
 namespace Elarya.Presentation.ViewModels
@@ -13,8 +14,11 @@ namespace Elarya.Presentation.ViewModels
 
         private Player _player;
         private List<string> _messages;
-        private Map _gamemap;
-        private Location _location, _currentLocation, _northLocation, _eastLocation, _saouthLocation, _westLocation;
+        private Map _gameMap;
+        private Location _currentLocation, _northLocation, _eastLocation, _southLocation, _westLocation;
+        private TimeSpan _gameTime;
+        private DateTime _gameStartTime;
+        private string _gameTimeDisplay;
 
         #endregion
 
@@ -31,10 +35,10 @@ namespace Elarya.Presentation.ViewModels
 
         public Map GameMap
         {
-            get => _gamemap;
+            get => _gameMap;
             set
             {
-                _gamemap = value;
+                _gameMap = value;
             }
         }
 
@@ -61,10 +65,10 @@ namespace Elarya.Presentation.ViewModels
 
         public Location EastLocation
         {
-            get => _northLocation;
+            get => _eastLocation;
             set
             {
-                _northLocation = value;
+                _eastLocation = value;
                 OnPropertyChanged(nameof(EastLocation));
                 OnPropertyChanged(nameof(hasEastLocation));
             }
@@ -72,10 +76,10 @@ namespace Elarya.Presentation.ViewModels
 
         public Location SouthLocation
         {
-            get => _northLocation;
+            get => _southLocation;
             set
             {
-                _northLocation = value;
+                _southLocation = value;
                 OnPropertyChanged(nameof(SouthLocation));
                 OnPropertyChanged(nameof(hasSouthLocation));
             }
@@ -83,10 +87,10 @@ namespace Elarya.Presentation.ViewModels
 
         public Location WestLocation
         {
-            get => _northLocation;
+            get => _westLocation;
             set
             {
-                _northLocation = value;
+                _westLocation = value;
                 OnPropertyChanged(nameof(WestLocation));
                 OnPropertyChanged(nameof(hasWestLocation));
             }
@@ -96,6 +100,16 @@ namespace Elarya.Presentation.ViewModels
         public bool hasEastLocation { get { return EastLocation != null; } }
         public bool hasSouthLocation { get { return SouthLocation != null; } }
         public bool hasWestLocation { get { return WestLocation != null; } }
+
+        public string GameTimeDisplay
+        {
+            get { return _gameTimeDisplay; }
+            set
+            {
+                _gameTimeDisplay = value;
+                OnPropertyChanged(nameof(GameTimeDisplay));
+            }
+        }
 
 
         #endregion
@@ -107,21 +121,111 @@ namespace Elarya.Presentation.ViewModels
 
         }
 
-        public ElaryaGameViewModel(Player player, List<string> initialMessages)
+        public ElaryaGameViewModel(Player player, List<string> initialMessages, Map gameMap, MapCoordinates mapCoordinates)
         {
             _player = player;
             _messages = initialMessages;
+            _gameMap = gameMap;
+            _gameMap.CurrentLocationCoords = mapCoordinates;
+            _currentLocation = _gameMap.CurrentLocation;
+            InitializeView();
+            GameTimer();
         }
 
         #endregion
 
         #region Methods
 
+        private void InitializeView()
+        {
+            _gameStartTime = DateTime.Now;
+            UpdateAvailableTravelPoints();
+        }
+
+        private void UpdateAvailableTravelPoints()
+        {
+
+            NorthLocation = null;
+            EastLocation = null;
+            SouthLocation = null;
+            WestLocation = null;
+
+            if (_gameMap.NorthLocation() != null)
+            {
+                Location nextNorthLocation = _gameMap.NorthLocation();
+            }
+
+            if (_gameMap.EastLocation() != null)
+            {
+                Location nextEastLocation = _gameMap.EastLocation();
+            }
+
+            if (_gameMap.SouthLocation() != null)
+            {
+                Location nextSouthLocation = _gameMap.SouthLocation();
+            }
+
+            if (_gameMap.WestLocation() != null)
+            {
+                Location nextWestLocation = _gameMap.WestLocation();
+            }
+        }
+
+
         public string MessageDisplay
         {
             get => string.Join("\n\n", _messages);
         }
 
+        public void MoveNorth()
+        {
+            if (hasNorthLocation)
+            {
+                CurrentLocation = _gameMap.CurrentLocation;
+                UpdateAvailableTravelPoints();
+            }
+        }
+
+        public void MoveEast()
+        {
+            if (hasEastLocation)
+            {
+                CurrentLocation = _gameMap.CurrentLocation;
+                UpdateAvailableTravelPoints();
+            }
+        }
+
+        public void MoveSouth()
+        {
+            if (hasSouthLocation)
+            {
+                CurrentLocation = _gameMap.CurrentLocation;
+                UpdateAvailableTravelPoints();
+            }
+        }
+
+        public void MoveWest()
+        {
+            if (hasWestLocation)
+            {
+                CurrentLocation = _gameMap.CurrentLocation;
+                UpdateAvailableTravelPoints();
+            }
+        }
+
+        public void GameTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += OnGameTimerTick;
+            timer.Start();
+        }
+
+        void OnGameTimerTick(object sender, EventArgs e)
+        {
+            _gameTime = DateTime.Now - _gameStartTime;
+            GameTimeDisplay = _gameTime.ToString(@"hh\:mm\:ss");
+        }
 
         #endregion
     }

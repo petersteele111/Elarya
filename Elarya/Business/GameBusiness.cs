@@ -14,6 +14,8 @@ namespace Elarya.Business
     {
         ElaryaGameViewModel _elaryaGameViewModel;
         Player _player = new Player();
+        Map _gameMap;
+        MapCoordinates _initilizeMapCoordinates;
         List<string> _messages;
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
@@ -34,6 +36,8 @@ namespace Elarya.Business
         private void InitializeDataSet()
         {
             _messages = GameData.InitialMessages();
+            _gameMap = GameData.GameMap();
+            _initilizeMapCoordinates = GameData.InitializeGameMapLocation();
         }
 
         /// <summary>
@@ -41,7 +45,7 @@ namespace Elarya.Business
         /// </summary>
         private void InstantiateandShowView()
         {
-            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _messages);
+            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _messages, _gameMap, _initilizeMapCoordinates);
             ElaryaGameView elaryaGameView = new ElaryaGameView(_elaryaGameViewModel);
             elaryaGameView.DataContext = _elaryaGameViewModel;
             elaryaGameView.Show();

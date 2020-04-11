@@ -36,6 +36,10 @@ namespace Elarya.Models
 		public MapCoordinates CurrentLocationCoords
 		{
 			get => _currentLocationCoords;
+			set 
+			{ 
+				_currentLocationCoords = value;
+			}
 		}
 
 		public Location CurrentLocation

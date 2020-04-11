@@ -13,6 +13,7 @@ namespace Elarya.Models
         private int _id;
 		private string _name;
 		private string _description;
+		private string _messages;
 		private bool _accessible;
 
 		#endregion
@@ -52,6 +53,14 @@ namespace Elarya.Models
 			set
 			{
 				_description = value;
+			}
+		}
+
+		public string Messages 
+		{ get => _messages;
+			set 
+			{
+				_messages = value;
 			}
 		}
 
