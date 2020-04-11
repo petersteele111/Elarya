@@ -87,27 +87,27 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="North" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
+            <Button Content="North" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="NorthButton_Click"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="East" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
+            <Button Content="East" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="EastButton_Click"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="South" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
+            <Button Content="South" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="SouthButton_Click"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="West" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10"/>
+            <Button Content="West" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="WestButton_Click"/>
             <!-- Space to place main window content -->
-            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" />
+            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
 

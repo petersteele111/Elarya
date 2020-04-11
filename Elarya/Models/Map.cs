@@ -95,7 +95,7 @@ namespace Elarya.Models
 		{
 			if (_currentLocationCoords.Row < _maxRows - 1 )
 			{
-				_currentLocationCoords.Column -= 1;
+				_currentLocationCoords.Row += 1;
 			}
 		}
 

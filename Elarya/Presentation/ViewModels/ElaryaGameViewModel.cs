@@ -152,21 +152,37 @@ namespace Elarya.Presentation.ViewModels
             if (_gameMap.NorthLocation() != null)
             {
                 Location nextNorthLocation = _gameMap.NorthLocation();
+                if (nextNorthLocation.Accessible == true)
+                {
+                    NorthLocation = nextNorthLocation;
+                }
             }
 
             if (_gameMap.EastLocation() != null)
             {
                 Location nextEastLocation = _gameMap.EastLocation();
+                if (nextEastLocation.Accessible == true)
+                {
+                    EastLocation = nextEastLocation;
+                }
             }
 
             if (_gameMap.SouthLocation() != null)
             {
                 Location nextSouthLocation = _gameMap.SouthLocation();
+                if (nextSouthLocation.Accessible == true)
+                {
+                    SouthLocation = nextSouthLocation;
+                }
             }
 
             if (_gameMap.WestLocation() != null)
             {
                 Location nextWestLocation = _gameMap.WestLocation();
+                if (nextWestLocation.Accessible == true)
+                {
+                    WestLocation = nextWestLocation;
+                }
             }
         }
 
@@ -179,6 +195,7 @@ namespace Elarya.Presentation.ViewModels
         {
             if (hasNorthLocation)
             {
+                _gameMap.canMoveNorth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
             }
@@ -188,6 +205,7 @@ namespace Elarya.Presentation.ViewModels
         {
             if (hasEastLocation)
             {
+                _gameMap.canMoveEast();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
             }
@@ -197,6 +215,7 @@ namespace Elarya.Presentation.ViewModels
         {
             if (hasSouthLocation)
             {
+                _gameMap.canMoveSouth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
             }
@@ -206,6 +225,7 @@ namespace Elarya.Presentation.ViewModels
         {
             if (hasWestLocation)
             {
+                _gameMap.canMoveWest();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
             }

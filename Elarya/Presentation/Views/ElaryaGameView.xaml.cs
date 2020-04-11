@@ -28,5 +28,25 @@ namespace Elarya
             _elaryaGameViewModel = elaryaGameViewModel;
             InitializeComponent();
         }
+
+        private void NorthButton_Click(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.MoveNorth();
+        }
+
+        private void EastButton_Click(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.MoveEast();
+        }
+
+        private void SouthButton_Click(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.MoveSouth();
+        }
+
+        private void WestButton_Click(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.MoveWest();
+        }
     }
 }
