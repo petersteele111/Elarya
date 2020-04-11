@@ -57,80 +57,487 @@ namespace Elarya.Data
 
         public static MapCoordinates InitializeGameMapLocation()
         {
-            return new MapCoordinates() { Row = 0, Column = 0 };
+            return new MapCoordinates() { Row = 4, Column = 6 };
         }
 
         public static Map GameMap()
         {
-            int rows = 3;
-            int columns = 4;
+            int rows = 15;
+            int columns = 15;
 
             Map gameMap = new Map(rows, columns);
 
-            gameMap.Locations[0, 0] = new Location()
+            gameMap.Locations[4, 6] = new Location()
             {
                 ID = 1,
-                Name = "Norlon Corporate Headquarters",
-                Description = "The Norlon Corporation Headquarters is located in just outside of Detroit " +
-               "Michigan.Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company with " +
-               "huge holdings in defense and space research and development.",
-                Messages = "\tYou have been hired by the Norlon Corporation to participate in its latest endeavor, the " +
-               "Aion Project. Your mission is to  test the limits of the new Aion Engine and report back to the Norlon " +
-               "Corporation. You will begin by choosing a new location and using Aion Engine to travel to that point in the " +
-               "Galaxy.\n\tThe Aion Engine, design by Dr. Tormeld, is limited to four slipstreams, denoted by the cardinal points on a compass, from any given locations.",
+
+                Name = "Home (Nocti)",
+
+                Description = "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
+                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed." + 
+                "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth." +
+                "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the forseeable future.",
+
+                Messages = "You arouse from sleep, the day had finally come! You are about to set off for an epic journey " +
+               "You are 3 months from the age of 21, and must go on an epic quest to discover your true identity " +
+               "and what skill you will provide to society. You will need some provisions to begin this journey. " +
+               "When you are ready to begin, please head to the market square and gather the items you think you'll need to begin.",
+                
                 Accessible = true
+
             };
-            gameMap.Locations[0, 1] = new Location()
+
+            gameMap.Locations[3, 6] = new Location()
             {
                 ID = 2,
-                Name = "Aion Base Lab",
-                Description = "The Norlon Corporation research facility located in the city of Heraklion on " +
-                "the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, " + "" +
-                "well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
+
+                Name = "Market Square (Nocti)",
+
+                Description = "The market is in full swing! Breakfast is over, and people are hustling and bustling about. " +
+                "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
+                "wafts over you, inundating your senses.",
+
+                Messages = "To your left is the Blacksmiths Forge. A great place to acquire weapons and armor (If you have the coin) " +
+                "To your right is the Stables, filled with glorious horses of all breeds. You will need a saddle if you wish " +
+                "to have a horse for your journey. ",
+
                 Accessible = true
             };
 
-            //
-            // row 2
-            //
-            gameMap.Locations[1, 1] = new Location()
+            gameMap.Locations[3, 5] = new Location()
             {
                 ID = 3,
-                Name = "Felandrian Plains",
-                Description = "The Felandrian Plains are a common destination for tourist. Located just north of the " +
-                "equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
-                Accessible = true
-            };
-            gameMap.Locations[1, 2] = new Location()
-            {
-                ID = 4,
-                Name = "Epitoria's Reading Room",
-                Description = "Queen Epitoria, the Torian Monarh of the 5th Dynasty, was know for her passion for " +
-                "galactic history. The room has a tall vaulted ceiling, open in the middle  with four floors of wrapping " +
-                "balconies filled with scrolls, texts, and infocrystals. As you enter the room a red fog desends from the ceiling " +
-                "and you begin feeling your life energy slip away slowly until you are dead.",
+
+                Name = "BlackSmith (Nocti)",
+
+                Description = "The Blacksmith is pounding away at his forge. As you enter the shop, he looks up at you " +
+                "and welcomes you to the shop! The smell of coal and fire fills your nostrils, as sparks fly " +
+                "across the shop. You see lots of Heavy Armor and Weapons hanging on the wall behind the counter",
+
+                Messages = "On your quest, you may encounter dangerous beasts or have need for armor if attacked while traveling. " +
+                "You have limited coin however, and there are many other shops to visit before leaving on your epic quest!" +
+                "Choose wisely, or you may regret your decisions later.",
+
                 Accessible = true
             };
 
-            //
-            // row 3
-            //
-            gameMap.Locations[2, 0] = new Location()
+            gameMap.Locations[3, 7] = new Location()
             {
-                ID = 5,
-                Name = "Xantoria Market",
-                Description = "The Xantoria market, once controlled by the Thorian elite, is now an open market managed " +
-                "by the Xantorian Commerce Coop. It is a place where many races from various systems trade goods." +
-                "You purchase a blue potion in a thin, clear flask, drink it and receive 50 points of health.",
+                ID = 4,
+
+                Name = "Stables (Nocti)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+                "I hear the Saddle shop is now open and you can purchase one from them.",
+
                 Accessible = true
             };
-            gameMap.Locations[2, 1] = new Location()
+
+            gameMap.Locations[4, 7] = new Location()
+            {
+                ID = 5,
+
+                Name = "Front Gate (Nocti)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 5] = new Location()
             {
                 ID = 6,
-                Name = "The Tamfasia Galactic Academy",
-                Description = "The Tamfasia Galactic Academy was founded in the early 4th galactic metachron. " +
-                "You are currently in the library, standing next to the protoplasmic encabulator that stores all " +
-                "recorded information of the galactic history.",
+
+                Name = "Food Shop (Nocti)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 6] = new Location()
+            {
+                ID = 7,
+
+                Name = "Tailor (Nocti)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 7] = new Location()
+            {
+                ID = 8,
+
+                Name = "Saddle Shop (Nocti)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 7] = new Location()
+            {
+                ID = 9,
+
+                Name = "Southern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[6, 7] = new Location()
+            {
+                ID = 10,
+
+                Name = "Southern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[7, 7] = new Location()
+            {
+                ID = 11,
+
+                Name = "Sra'Lik Sea",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[7, 8] = new Location()
+            {
+                ID = 12,
+
+                Name = "Fishing Shop",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[7, 6] = new Location()
+            {
+                ID = 13,
+
+                Name = "Tornul (Fishing Master)",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 8] = new Location()
+            {
+                ID = 14,
+
+                Name = "Eastern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 9] = new Location()
+            {
+                ID = 15,
+
+                Name = "Eastern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 10] = new Location()
+            {
+                ID = 16,
+
+                Name = "Juit Bluffs",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 11] = new Location()
+            {
+                ID = 17,
+
+                Name = "Dragon Clutch",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[6, 10] = new Location()
+            {
+                ID = 18,
+
+                Name = "Campfire",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[4, 10] = new Location()
+            {
+                ID = 19,
+
+                Name = "Northern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[3, 10] = new Location()
+            {
+                ID = 20,
+
+                Name = "Northern Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 10] = new Location()
+            {
+                ID = 21,
+
+                Name = "Yerfurd Forest",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[1, 10] = new Location()
+            {
+                ID = 22,
+
+                Name = "Yerfurd Forest",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[0, 10] = new Location()
+            {
+                ID = 23,
+
+                Name = "Yerfurd Forest",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 11] = new Location()
+            {
+                ID = 24,
+
+                Name = "Mages Hut",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[2, 9] = new Location()
+            {
+                ID = 25,
+
+                Name = "Rebel Encampment",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[0, 9] = new Location()
+            {
+                ID = 26,
+
+                Name = "Hunting Grounds",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 6] = new Location()
+            {
+                ID = 27,
+
+                Name = "Western Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 5] = new Location()
+            {
+                ID = 28,
+
+                Name = "Western Road",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[5, 4] = new Location()
+            {
+                ID = 29,
+
+                Name = "Pledg'ui Caverns",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[4, 4] = new Location()
+            {
+                ID = 30,
+
+                Name = "Dragon Mother",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[4, 3] = new Location()
+            {
+                ID = 31,
+
+                Name = "Whispering Caverns",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[6, 4] = new Location()
+            {
+                ID = 32,
+
+                Name = "Rebel Camp",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
+                Accessible = true
+            };
+
+            gameMap.Locations[6, 5] = new Location()
+            {
+                ID = 33,
+
+                Name = "Rebel Leader",
+
+                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+
+                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
+    "I hear the Saddle shop is now open and you can purchase one from them.",
+
                 Accessible = true
             };
 
