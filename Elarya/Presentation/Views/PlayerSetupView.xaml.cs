@@ -28,6 +28,10 @@ namespace Elarya.Presentation.Views
 
         #region Properties
 
+        /// <summary>
+        /// Public Constructor for PlayerSetup
+        /// </summary>
+        /// <param name="player"></param>
         public PlayerSetupView(Player player)
         {
             _player = player;

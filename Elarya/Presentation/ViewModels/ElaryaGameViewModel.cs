@@ -23,6 +23,9 @@ namespace Elarya.Presentation.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Gets and sets the player
+        /// </summary>
         public Player Player
         {
             get => _player;
@@ -32,6 +35,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the gamemap
+        /// </summary>
         public Map GameMap
         {
             get => _gameMap;
@@ -41,6 +47,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the current location
+        /// </summary>
         public Location CurrentLocation
         {
             get => _currentLocation;
@@ -51,6 +60,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the north location (relative)
+        /// </summary>
         public Location NorthLocation
         {
             get => _northLocation;
@@ -62,6 +74,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the east location (relative)
+        /// </summary>
         public Location EastLocation
         {
             get => _eastLocation;
@@ -73,6 +88,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the south location (relative)
+        /// </summary>
         public Location SouthLocation
         {
             get => _southLocation;
@@ -84,6 +102,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and sets the west location (relative)
+        /// </summary>
         public Location WestLocation
         {
             get => _westLocation;
@@ -95,11 +116,29 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks if a north location exists
+        /// </summary>
         public bool HasNorthLocation { get { return NorthLocation != null; } }
+
+        /// <summary>
+        /// Checks if an east location exists
+        /// </summary>
         public bool HasEastLocation { get { return EastLocation != null; } }
+
+        /// <summary>
+        /// Checks if a south location exists
+        /// </summary>
         public bool HasSouthLocation { get { return SouthLocation != null; } }
+
+        /// <summary>
+        /// Checks if a west location exists
+        /// </summary>
         public bool HasWestLocation { get { return WestLocation != null; } }
 
+        /// <summary>
+        /// Gets and sets the GameTime Display ticker
+        /// </summary>
         public string GameTimeDisplay
         {
             get { return _gameTimeDisplay; }
@@ -114,11 +153,20 @@ namespace Elarya.Presentation.ViewModels
 
         #region Constructor
 
+        /// <summary>
+        /// Default public constructor
+        /// </summary>
         public ElaryaGameViewModel()
         {
 
         }
 
+        /// <summary>
+        /// Constructor for the game
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="gameMap"></param>
+        /// <param name="mapCoordinates"></param>
         public ElaryaGameViewModel(Player player, Map gameMap, MapCoordinates mapCoordinates)
         {
             _player = player;
@@ -133,12 +181,18 @@ namespace Elarya.Presentation.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Initializes the timer and locations available
+        /// </summary>
         private void InitializeView()
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
         }
 
+        /// <summary>
+        /// Updates the available travel points for a given area on the map
+        /// </summary>
         private void UpdateAvailableTravelPoints()
         {
 
@@ -184,7 +238,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// If a north location exists, the player can move north
+        /// </summary>
         public void MoveNorth()
         {
             if (HasNorthLocation)
@@ -195,6 +251,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// If an east location exists, the player can move east
+        /// </summary>
         public void MoveEast()
         {
             if (HasEastLocation)
@@ -205,6 +264,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// If a south location exists, the player can move south
+        /// </summary>
         public void MoveSouth()
         {
             if (HasSouthLocation)
@@ -215,6 +277,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// If a west location exists, the player can move west
+        /// </summary>
         public void MoveWest()
         {
             if (HasWestLocation)
@@ -225,6 +290,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Initializes the Game Timer
+        /// </summary>
         public void GameTimer()
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -233,6 +301,11 @@ namespace Elarya.Presentation.ViewModels
             timer.Start();
         }
 
+        /// <summary>
+        /// Initializes the Game Timer Tick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnGameTimerTick(object sender, EventArgs e)
         {
             _gameTime = DateTime.Now - _gameStartTime;

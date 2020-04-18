@@ -35,12 +35,19 @@ namespace Elarya.Data
             };
         }
 
-
+        /// <summary>
+        /// Initializes the Game Map
+        /// </summary>
+        /// <returns>Returns the Game Map with specified Rows and Columns</returns>
         public static MapCoordinates InitializeGameMapLocation()
         {
             return new MapCoordinates() { Row = 4, Column = 6 };
         }
 
+        /// <summary>
+        /// Creates the data for the Game Map
+        /// </summary>
+        /// <returns>Returns the populated Game Map</returns>
         public static Map GameMap()
         {
             int rows = 15;

@@ -193,6 +193,5 @@ namespace Elarya.Models
 		}
 
 		#endregion
-
-	}
+    }
 }
