@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Elarya.Models;
+﻿using Elarya.Models;
 
 namespace Elarya.Data
 {
@@ -127,10 +122,7 @@ namespace Elarya.Data
 
                 Name = "Front Gate (Nocti)",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "The iron wrought gate looms over the town of Nocti, the only entrance and exit from the city!",
 
                 Accessible = true
             };
@@ -141,10 +133,11 @@ namespace Elarya.Data
 
                 Name = "Food Shop (Nocti)",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "The aroma of food fills the air. Breads, meats, berries, oh my! The chef stands in the corner stirring " +
+                "a large pot of porridge. He's a rather portly man who clearly has a great taste in food. ",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "If you plan on travelling a fair distance from Nocti, you might want to invest in some rations to take with you. " + 
+                           "I'm sure the chef would be more than happy to help you out if you asked nicely!",
 
                 Accessible = true
             };
@@ -155,10 +148,12 @@ namespace Elarya.Data
 
                 Name = "Tailor (Nocti)",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "The tailor shop is overflowing with leather and cloth goods. Robes with magical affinities, cloaks with defense " +
+                "and satchels for holding copious amount of items. Wading through the rows upon rows of items, the store owner finally comes into view. " +
+                "She is a the Great Mage Tulmerian!",
+                
+                Messages = "With a Great Mage making these fine clothing items, surely something here can be of use on your journey! " +
+                "Items of this quality though are not cheap. Make sure to budget wisely.",
 
                 Accessible = true
             };
@@ -169,10 +164,9 @@ namespace Elarya.Data
 
                 Name = "Saddle Shop (Nocti)",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "The Saddle Shop is now open",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "In order to purchase a horse, you must have a saddle to ride on! The horse can hold more items than trekking it solo.",
 
                 Accessible = true
             };
@@ -220,10 +214,11 @@ namespace Elarya.Data
 
                 Name = "Fishing Shop",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "The fishing shop seems old and run down. A haggered old fisherman stands behind the counter. The shop is lined " +
+                              "wall to wall with lures and oddities. ",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "This old man may have just the gear you need to learn to fish! " +
+                "You wonder if any of this gear would hold up though, as it looks 1000 years old!",
 
                 Accessible = true
             };
@@ -249,10 +244,7 @@ namespace Elarya.Data
 
                 Name = "Eastern Road",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
                 Accessible = true
             };
@@ -263,10 +255,7 @@ namespace Elarya.Data
 
                 Name = "Eastern Road",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
                 Accessible = true
             };
@@ -277,10 +266,10 @@ namespace Elarya.Data
 
                 Name = "Juit Bluffs",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
+                "Perhaps you can learn some of this magic or even tame a dragon!",
 
                 Accessible = true
             };
@@ -291,10 +280,10 @@ namespace Elarya.Data
 
                 Name = "Dragon Clutch",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . .",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "You are determined to capture and tame a dragon! Only problem is, their clutch is a solid 300 feet down the bluff " +
+                "Good thing you bought some rope back in Nocti, right?!?",
 
                 Accessible = true
             };
@@ -305,220 +294,10 @@ namespace Elarya.Data
 
                 Name = "Campfire",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[4, 10] = new Location()
-            {
-                ID = 19,
-
-                Name = "Northern Road",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[3, 10] = new Location()
-            {
-                ID = 20,
-
-                Name = "Northern Road",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[2, 10] = new Location()
-            {
-                ID = 21,
-
-                Name = "Yerfurd Forest",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[1, 10] = new Location()
-            {
-                ID = 22,
-
-                Name = "Yerfurd Forest",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[0, 10] = new Location()
-            {
-                ID = 23,
-
-                Name = "Yerfurd Forest",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[2, 11] = new Location()
-            {
-                ID = 24,
-
-                Name = "Mages Hut",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[2, 9] = new Location()
-            {
-                ID = 25,
-
-                Name = "Rebel Encampment",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[0, 9] = new Location()
-            {
-                ID = 26,
-
-                Name = "Hunting Grounds",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[5, 6] = new Location()
-            {
-                ID = 27,
-
-                Name = "Western Road",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[5, 5] = new Location()
-            {
-                ID = 28,
-
-                Name = "Western Road",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[5, 4] = new Location()
-            {
-                ID = 29,
-
-                Name = "Pledg'ui Caverns",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[4, 4] = new Location()
-            {
-                ID = 30,
-
-                Name = "Dragon Mother",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[4, 3] = new Location()
-            {
-                ID = 31,
-
-                Name = "Whispering Caverns",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[6, 4] = new Location()
-            {
-                ID = 32,
-
-                Name = "Rebel Camp",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
-
-                Accessible = true
-            };
-
-            gameMap.Locations[6, 5] = new Location()
-            {
-                ID = 33,
-
-                Name = "Rebel Leader",
-
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? " +
+                "I'm sure some of those magic affinity potions would come in great help in this instance!",
 
                 Accessible = true
             };
