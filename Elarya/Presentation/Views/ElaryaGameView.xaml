@@ -8,6 +8,9 @@
         Title="Elarya" Height="800" Width="1400"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/Assets/Images/playerSetupBackground.png" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />

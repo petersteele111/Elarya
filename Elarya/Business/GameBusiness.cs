@@ -16,7 +16,6 @@ namespace Elarya.Business
         Player _player = new Player();
         Map _gameMap;
         MapCoordinates _initilizeMapCoordinates;
-        List<string> _messages;
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
 
@@ -35,7 +34,6 @@ namespace Elarya.Business
         /// </summary>
         private void InitializeDataSet()
         {
-            _messages = GameData.InitialMessages();
             _gameMap = GameData.GameMap();
             _initilizeMapCoordinates = GameData.InitializeGameMapLocation();
         }
@@ -45,7 +43,7 @@ namespace Elarya.Business
         /// </summary>
         private void InstantiateandShowView()
         {
-            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _messages, _gameMap, _initilizeMapCoordinates);
+            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _gameMap, _initilizeMapCoordinates);
             ElaryaGameView elaryaGameView = new ElaryaGameView(_elaryaGameViewModel);
             elaryaGameView.DataContext = _elaryaGameViewModel;
             elaryaGameView.Show();
@@ -62,7 +60,6 @@ namespace Elarya.Business
                 _playerSetupView = new PlayerSetupView(_player);
                 _playerSetupView.ShowDialog();
 
-                _player.Age = 20;
                 _player.Health = 100;
                 _player.Mana = 100;
                 _player.AttackPower = 10;

@@ -13,7 +13,6 @@ namespace Elarya.Presentation.ViewModels
         #region Fields
 
         private Player _player;
-        private List<string> _messages;
         private Map _gameMap;
         private Location _currentLocation, _northLocation, _eastLocation, _southLocation, _westLocation;
         private TimeSpan _gameTime;
@@ -59,7 +58,7 @@ namespace Elarya.Presentation.ViewModels
             {
                 _northLocation = value;
                 OnPropertyChanged(nameof(NorthLocation));
-                OnPropertyChanged(nameof(hasNorthLocation));
+                OnPropertyChanged(nameof(HasNorthLocation));
             }
         }
 
@@ -70,7 +69,7 @@ namespace Elarya.Presentation.ViewModels
             {
                 _eastLocation = value;
                 OnPropertyChanged(nameof(EastLocation));
-                OnPropertyChanged(nameof(hasEastLocation));
+                OnPropertyChanged(nameof(HasEastLocation));
             }
         }
 
@@ -81,7 +80,7 @@ namespace Elarya.Presentation.ViewModels
             {
                 _southLocation = value;
                 OnPropertyChanged(nameof(SouthLocation));
-                OnPropertyChanged(nameof(hasSouthLocation));
+                OnPropertyChanged(nameof(HasSouthLocation));
             }
         }
 
@@ -92,14 +91,14 @@ namespace Elarya.Presentation.ViewModels
             {
                 _westLocation = value;
                 OnPropertyChanged(nameof(WestLocation));
-                OnPropertyChanged(nameof(hasWestLocation));
+                OnPropertyChanged(nameof(HasWestLocation));
             }
         }
 
-        public bool hasNorthLocation { get { return NorthLocation != null; } }
-        public bool hasEastLocation { get { return EastLocation != null; } }
-        public bool hasSouthLocation { get { return SouthLocation != null; } }
-        public bool hasWestLocation { get { return WestLocation != null; } }
+        public bool HasNorthLocation { get { return NorthLocation != null; } }
+        public bool HasEastLocation { get { return EastLocation != null; } }
+        public bool HasSouthLocation { get { return SouthLocation != null; } }
+        public bool HasWestLocation { get { return WestLocation != null; } }
 
         public string GameTimeDisplay
         {
@@ -120,10 +119,9 @@ namespace Elarya.Presentation.ViewModels
 
         }
 
-        public ElaryaGameViewModel(Player player, List<string> initialMessages, Map gameMap, MapCoordinates mapCoordinates)
+        public ElaryaGameViewModel(Player player, Map gameMap, MapCoordinates mapCoordinates)
         {
             _player = player;
-            _messages = initialMessages;
             _gameMap = gameMap;
             _gameMap.CurrentLocationCoords = mapCoordinates;
             _currentLocation = _gameMap.CurrentLocation;
@@ -186,14 +184,10 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-        public string MessageDisplay
-        {
-            get => string.Join("\n\n", _messages);
-        }
 
         public void MoveNorth()
         {
-            if (hasNorthLocation)
+            if (HasNorthLocation)
             {
                 _gameMap.canMoveNorth();
                 CurrentLocation = _gameMap.CurrentLocation;
@@ -203,7 +197,7 @@ namespace Elarya.Presentation.ViewModels
 
         public void MoveEast()
         {
-            if (hasEastLocation)
+            if (HasEastLocation)
             {
                 _gameMap.canMoveEast();
                 CurrentLocation = _gameMap.CurrentLocation;
@@ -213,7 +207,7 @@ namespace Elarya.Presentation.ViewModels
 
         public void MoveSouth()
         {
-            if (hasSouthLocation)
+            if (HasSouthLocation)
             {
                 _gameMap.canMoveSouth();
                 CurrentLocation = _gameMap.CurrentLocation;
@@ -223,7 +217,7 @@ namespace Elarya.Presentation.ViewModels
 
         public void MoveWest()
         {
-            if (hasWestLocation)
+            if (HasWestLocation)
             {
                 _gameMap.canMoveWest();
                 CurrentLocation = _gameMap.CurrentLocation;

@@ -18,7 +18,7 @@ namespace Elarya.Data
             return new Player()
             {
                 Id = 1,
-                LocationId = 0,
+                LocationId = 1,
                 Name = "Arya\'e",
                 Age = 20,
                 Race = Character.RaceType.Nungari,
@@ -40,20 +40,6 @@ namespace Elarya.Data
             };
         }
 
-        /// <summary>
-        /// Method to create the defaul greeting and messages upon game start
-        /// </summary>
-        /// <returns>Returns the default game greeting and information</returns>
-        public static List<string> InitialMessages()
-        {
-            return new List<string>()
-            {
-                "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to beneift society.",
-                "Will you be a fearsome Dragon Rider? Or maybe a noble Warrior. A competent Hunter, or even a powerful Mage!",
-                "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
-                "Good luck on your quest, and remember, every choice you make, every quest you complete, will determine you role in society! "
-            };
-        }
 
         public static MapCoordinates InitializeGameMapLocation()
         {
@@ -78,10 +64,10 @@ namespace Elarya.Data
                 "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth." +
                 "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the forseeable future.",
 
-                Messages = "You arouse from sleep, the day had finally come! You are about to set off for an epic journey " +
-               "You are 3 months from the age of 21, and must go on an epic quest to discover your true identity " +
-               "and what skill you will provide to society. You will need some provisions to begin this journey. " +
-               "When you are ready to begin, please head to the market square and gather the items you think you'll need to begin.",
+                Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society." +
+                "Will you be a fearsome Dragon Rider? Or maybe a noble Warrior. A competent Hunter, or even a powerful Mage!" +
+                "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra." +
+                "Good luck on your quest, and remember, every choice you make, every quest you complete, will determine you role in society! ",
                 
                 Accessible = true
 
@@ -197,10 +183,8 @@ namespace Elarya.Data
 
                 Name = "Southern Road",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
+                "from the North.",
 
                 Accessible = true
             };
@@ -211,10 +195,7 @@ namespace Elarya.Data
 
                 Name = "Southern Road",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
                 Accessible = true
             };
@@ -225,10 +206,10 @@ namespace Elarya.Data
 
                 Name = "Sra'Lik Sea",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
-
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Description = "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
+                "To the east is a fishing shop and to the west is a man sitting on a dock.",
+                Messages = "After such a long journey, the thought of a fresh fish sounds tantilizing to your taste buds. " +
+                "Alas, you do not have a fishing pole however. Maybe that fishing shop to the east you've heard about can help?",
 
                 Accessible = true
             };
@@ -253,10 +234,11 @@ namespace Elarya.Data
 
                 Name = "Tornul (Fishing Master)",
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                Description = "You see an old man, sitting on the dock, feet hanging off in the Water. This must be Tornul " +
+                "the Fishing Master everyone talks about.",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-    "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "So you want a fish but haven't fished in years. Maybe Tornul can teach you (for a price of course)!" +
+                "",
 
                 Accessible = true
             };
