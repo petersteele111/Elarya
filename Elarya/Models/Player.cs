@@ -13,15 +13,9 @@ namespace Elarya.Models
         protected JobTitleName _jobTitle;
         private int _health;
         private int _mana;
-        private int _attackPower;
-        private int _defensePower;
-        private int _healthRegenRate;
-        private int _manaRegenRate;
         private int _life;
-        private int _warriorSkill;
-        private int _dragonRiderSkill;
-        private int _hunterSkill;
         private int _mageSkill;
+        private int _healerSkill;
         private string _spell;
         private string _inventoryItem;
 
@@ -57,42 +51,6 @@ namespace Elarya.Models
         }
 
         /// <summary>
-        /// Sets and Gets the Attack Power of the Player
-        /// </summary>
-        public int AttackPower
-        {
-            get { return _attackPower; }
-            set { _attackPower = value; }
-        }
-
-        /// <summary>
-        /// Sets and Gets the Defense Power of the Player
-        /// </summary>
-        public int DefensePower
-        {
-            get { return _defensePower; }
-            set { _defensePower = value; }
-        }
-
-        /// <summary>
-        /// Sets and Gets the Health Regen Rate for the Player
-        /// </summary>
-        public int HealthRegenRate
-        {
-            get { return _healthRegenRate; }
-            set { _healthRegenRate = value; }
-        }
-
-        /// <summary>
-        /// Sets and Gets the Mana Regen Rate for the Player
-        /// </summary>
-        public int ManaRegenRate
-        {
-            get { return _manaRegenRate; }
-            set { _manaRegenRate = value; }
-        }
-
-        /// <summary>
         /// Sets and Gets the lives remaining for the Player
         /// </summary>
         public int Life
@@ -102,39 +60,21 @@ namespace Elarya.Models
         }
 
         /// <summary>
-        /// Sets and Gets the Warrior Skill for the Player
-        /// </summary>
-        public int WarriorSkill
-        {
-            get { return _warriorSkill; }
-            set { _warriorSkill = value; }
-        }
-
-        /// <summary>
-        /// Sets and Gets the DragonRider Skill for the Player
-        /// </summary>
-        public int DragonRiderSkill
-        {
-            get { return _dragonRiderSkill; }
-            set { _dragonRiderSkill = value; }
-        }
-
-        /// <summary>
-        /// Sets and Gets the Hunter Skill for the Player
-        /// </summary>
-        public int HunterSkill
-        {
-            get { return _hunterSkill; }
-            set { _hunterSkill = value; }
-        }
-
-        /// <summary>
         /// Sets and Gets the Mage Skill for the Player
         /// </summary>
         public int MageSkill
         {
             get { return _mageSkill; }
             set { _mageSkill = value; }
+        }
+
+        /// <summary>
+        /// Sets and Gets the Mage Skill for the Player
+        /// </summary>
+        public int HealerSkill
+        {
+            get { return _healerSkill; }
+            set { _healerSkill = value; }
         }
 
         /// <summary>
@@ -164,10 +104,8 @@ namespace Elarya.Models
         /// </summary>
         public enum JobTitleName
         {
-            Warrior,
-            DragonRider,
-            Hunter,
-            Mage
+            Mage,
+            Healer
         }
 
         #endregion
@@ -193,30 +131,18 @@ namespace Elarya.Models
         /// <param name="gender">Gender of the Player Character</param>
         /// <param name="health">Health of the Player Character</param>
         /// <param name="mana">Mana of the Player Character</param>
-        /// <param name="attackPower">Attack Power of the Player Character</param>
-        /// <param name="defensePower">Defense Power of the Player Character</param>
-        /// <param name="healthRegenRate">Health Regen Rate of the Player Character</param>
-        /// <param name="manaRegenRate">Mana Regen Rate of the Player Character</param>
         /// <param name="life">Life Remaining of the Player Character</param>
-        /// <param name="warriorSkill">Warrior Skill Points of the Player Character</param>
-        /// <param name="dragonRiderSkill">Dragon Rider Skill Points of the Player Character</param>
-        /// <param name="hunterSkill">Hunter Skill Points of the Player Character</param>
         /// <param name="mageSkill">Mage Skill Points of the Player Character</param>
+        /// <param name="healerSkill">Healer Skill Points for the Player Character</param>
         /// <param name="spell">Spell for the Player Character</param>
         /// <param name="inventoryItem">Inventory Item of the Player Character</param>
-        public Player(int id, int locationId, string name, int age, RaceType race, GenderType gender, int health, int mana, int attackPower, int defensePower, int healthRegenRate, int manaRegenRate, int life, int warriorSkill, int dragonRiderSkill, int hunterSkill, int mageSkill, string spell, string inventoryItem) : base(id, locationId, name, age, race, gender)
+        public Player(int id, int locationId, string name, int age, RaceType race, GenderType gender, int health, int mana,  int life, int mageSkill, int healerSkill, string spell, string inventoryItem) : base(id, locationId, name, age, race, gender)
         {
             _health = health;
             _mana = mana;
-            _attackPower = attackPower;
-            _defensePower = defensePower;
-            _healthRegenRate = healthRegenRate;
-            _manaRegenRate = manaRegenRate;
             _life = life;
-            _warriorSkill = warriorSkill;
-            _dragonRiderSkill = dragonRiderSkill;
-            _hunterSkill = hunterSkill;
             _mageSkill = mageSkill;
+            _healerSkill = healerSkill;
             _spell = spell;
             _inventoryItem = inventoryItem;
         }

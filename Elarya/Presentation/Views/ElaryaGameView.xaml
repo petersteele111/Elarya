@@ -117,6 +117,16 @@
             <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock Text="Mage Skill: " FontSize="20px" FontWeight="Bold" />
+            <TextBlock Text="{Binding Player.MageSkill}" FontSize="20px" FontWeight="Bold"  />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock Text="Healer Skill: " FontSize="20px" FontWeight="Bold" />
+            <TextBlock Text="{Binding Player.HealerSkill}" FontSize="20px" FontWeight="Bold"  />
+        </StackPanel>
+
 
         <!-- Inventory Panel-->
         <Border BorderBrush="Black" BorderThickness="0 0 0 1" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12">
@@ -159,9 +169,9 @@
 
         </Border>
 
-            <TextBlock Text="Messages" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Messages" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" VerticalAlignment="Top" FontSize="30px" FontWeight="Bold" HorizontalAlignment="Center"/>
             <!-- Space to place user action buttons -->
-        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="3" Grid.Row="15" Grid.ColumnSpan="6" Grid.RowSpan="3" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True"/>
+        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True"/>
 
             <!-- Spells/Fight-->
         <StackPanel Orientation="Vertical" Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">

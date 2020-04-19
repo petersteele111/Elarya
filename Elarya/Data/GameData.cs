@@ -18,22 +18,18 @@ namespace Elarya.Data
                 Age = 20,
                 Race = Character.RaceType.Nungari,
                 Gender = Character.GenderType.Female,
-                JobTitle = Player.JobTitleName.DragonRider,
+                JobTitle = Player.JobTitleName.Mage,
                 Health = 100,
                 Mana = 100,
-                AttackPower = 10,
-                DefensePower = 5,
-                HealthRegenRate = 5,
-                ManaRegenRate = 5,
                 Life = 3,
-                WarriorSkill = 0,
-                DragonRiderSkill = 0,
-                HunterSkill = 0,
-                MageSkill = 0,
+                MageSkill = 5,
+                HealerSkill = 0,
                 Spell = null,
                 InventoryItem = null
             };
         }
+
+        #region GameMap
 
         /// <summary>
         /// Initializes the Game Map
@@ -62,15 +58,14 @@ namespace Elarya.Data
                 Name = "Home (Nocti)",
 
                 Description = "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
-                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed." + 
+                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed." +
                 "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth." +
                 "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the forseeable future.",
 
                 Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society." +
-                "Will you be a fearsome Dragon Rider? Or maybe a noble Warrior. A competent Hunter, or even a powerful Mage!" +
-                "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra." +
-                "Good luck on your quest, and remember, every choice you make, every quest you complete, will determine you role in society! ",
-                
+                "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage?" +
+                "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
+
                 Accessible = true
 
             };
@@ -85,9 +80,8 @@ namespace Elarya.Data
                 "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
                 "wafts over you, inundating your senses.",
 
-                Messages = "To your left is the Blacksmiths Forge. A great place to acquire weapons and armor (If you have the coin) " +
-                "To your right is the Stables, filled with glorious horses of all breeds. You will need a saddle if you wish " +
-                "to have a horse for your journey. ",
+                Messages = "To your left is the Herbalist Shop. A great place to herbs for healing and potions (If you have the coin) " +
+                "To your right is the Stables, filled with glorious horses of all breeds. ",
 
                 Accessible = true
             };
@@ -96,13 +90,13 @@ namespace Elarya.Data
             {
                 ID = 3,
 
-                Name = "BlackSmith (Nocti)",
+                Name = "Herbalist (Nocti)",
 
-                Description = "The Blacksmith is pounding away at his forge. As you enter the shop, he looks up at you " +
-                "and welcomes you to the shop! The smell of coal and fire fills your nostrils, as sparks fly " +
-                "across the shop. You see lots of Heavy Armor and Weapons hanging on the wall behind the counter",
+                Description = "The Herbalist is pounding away in her mortar. As you enter the shop, she looks up at you " +
+                "and welcomes you to the shop! The smell of dried herbs fills your nostrils " +
+                "You glance around the shop. You see lots of different herbs for healing.",
 
-                Messages = "On your quest, you may encounter dangerous beasts or have need for armor if attacked while traveling. " +
+                Messages = "On your quest, you may have need of some herbs. " +
                 "You have limited coin however, and there are many other shops to visit before leaving on your epic quest!" +
                 "Choose wisely, or you may regret your decisions later.",
 
@@ -117,8 +111,7 @@ namespace Elarya.Data
 
                 Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
 
-                Messages = "The Stables are where you can purchase a horse. Make sure you have a saddle though! " +
-                "I hear the Saddle shop is now open and you can purchase one from them.",
+                Messages = "The Stables are quite lively this morning aren't they?",
 
                 Accessible = true
             };
@@ -143,7 +136,7 @@ namespace Elarya.Data
                 Description = "The aroma of food fills the air. Breads, meats, berries, oh my! The chef stands in the corner stirring " +
                 "a large pot of porridge. He's a rather portly man who clearly has a great taste in food. ",
 
-                Messages = "If you plan on travelling a fair distance from Nocti, you might want to invest in some rations to take with you. " + 
+                Messages = "If you plan on traveling a fair distance from Nocti, you might want to invest in some rations to take with you. " +
                            "I'm sure the chef would be more than happy to help you out if you asked nicely!",
 
                 Accessible = true
@@ -155,10 +148,10 @@ namespace Elarya.Data
 
                 Name = "Tailor (Nocti)",
 
-                Description = "The tailor shop is overflowing with leather and cloth goods. Robes with magical affinities, cloaks with defense " +
+                Description = "The tailor shop is overflowing with leather and cloth goods. Robes with magical affinities " +
                 "and satchels for holding copious amount of items. Wading through the rows upon rows of items, the store owner finally comes into view. " +
                 "She is a the Great Mage Tulmerian!",
-                
+
                 Messages = "With a Great Mage making these fine clothing items, surely something here can be of use on your journey! " +
                 "Items of this quality though are not cheap. Make sure to budget wisely.",
 
@@ -169,11 +162,11 @@ namespace Elarya.Data
             {
                 ID = 8,
 
-                Name = "Saddle Shop (Nocti)",
+                Name = "Potions Shop (Nocti)",
 
-                Description = "The Saddle Shop is now open",
+                Description = "The Potions Shop is now open!",
 
-                Messages = "In order to purchase a horse, you must have a saddle to ride on! The horse can hold more items than trekking it solo.",
+                Messages = "Potions of all kind exist here. Everything from gaining life, mana, and even skill points as a Healer or Mage!",
 
                 Accessible = true
             };
@@ -190,7 +183,24 @@ namespace Elarya.Data
                 Accessible = true
             };
 
-            gameMap.Locations[6, 7] = new Location()
+            gameMap.Locations[5, 6] = new Location()
+            {
+                ID = 20,
+
+                Name = "Ferlion Fields",
+
+                Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!" ,
+
+                Messages = "Too bad they are deadly! You died!",
+
+                Accessible = true,
+
+                ModifyHealth = 100,
+
+                ModifyLives = 1
+            };
+
+                gameMap.Locations[6, 7] = new Location()
             {
                 ID = 10,
 
@@ -199,6 +209,23 @@ namespace Elarya.Data
                 Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
                 Accessible = true
+            };
+
+            gameMap.Locations[6, 6] = new Location()
+            {
+                ID = 19,
+
+                Name = "Magic Swamp",
+
+                Description = "The Swamp teems with Magic! Fairies and sprites abound. You can feel the magic flow into you!",
+
+                Messages = "You stand in a swamp of great magic! You gain +10 Mage Skill and +10 Healer Skill!",
+
+                Accessible = true,
+
+                RequiredMageSkill = 10,
+
+                RequiredHealerSkill = 10
             };
 
             gameMap.Locations[7, 7] = new Location()
@@ -221,13 +248,13 @@ namespace Elarya.Data
 
                 Name = "Fishing Shop",
 
-                Description = "The fishing shop seems old and run down. A haggered old fisherman stands behind the counter. The shop is lined " +
-                              "wall to wall with lures and oddities. ",
+                Description = "The fishing shop seems old and run down. A haggered old fisherman stands behind the counter. He doesn't look well. ",
 
-                Messages = "This old man may have just the gear you need to learn to fish! " +
-                "You wonder if any of this gear would hold up though, as it looks 1000 years old!",
+                Messages = "This old man may be in some serious need of a healer and stat! " ,
 
-                Accessible = true
+                Accessible = true,
+
+                RequiredHealerSkill = 5
             };
 
             gameMap.Locations[7, 6] = new Location()
@@ -239,10 +266,12 @@ namespace Elarya.Data
                 Description = "You see an old man, sitting on the dock, feet hanging off in the Water. This must be Tornul " +
                 "the Fishing Master everyone talks about.",
 
-                Messages = "So you want a fish but haven't fished in years. Maybe Tornul can teach you (for a price of course)!" +
-                "",
+                Messages = "Tornul is one of the greatest fishermen of all time! He uses his advanced knowledge of magic to call th fish to his lures. " +
+                "Maybe he can teach you a thing or two about his magic?",
 
-                Accessible = true
+                Accessible = true,
+
+                RequiredMageSkill = 5
             };
 
             gameMap.Locations[5, 8] = new Location()
@@ -276,9 +305,11 @@ namespace Elarya.Data
                 Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
 
                 Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
-                "Perhaps you can learn some of this magic or even tame a dragon!",
+                "Perhaps you can learn some of this magic or even gather some dragon scale! Too bad that hike has left you starving though. 25 health lost",
 
-                Accessible = true
+                Accessible = true,
+
+                ModifyHealth = 25
             };
 
             gameMap.Locations[5, 11] = new Location()
@@ -289,10 +320,12 @@ namespace Elarya.Data
 
                 Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . .",
 
-                Messages = "You are determined to capture and tame a dragon! Only problem is, their clutch is a solid 300 feet down the bluff " +
+                Messages = "You are determined to gather loose dragon scales! Only problem is, their clutch is a solid 300 feet down the bluff " +
                 "Good thing you bought some rope back in Nocti, right?!?",
 
-                Accessible = true
+                Accessible = true,
+
+                RequiredHealerSkill = 25
             };
 
             gameMap.Locations[6, 10] = new Location()
@@ -304,12 +337,16 @@ namespace Elarya.Data
                 Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
 
                 Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? " +
-                "I'm sure some of those magic affinity potions would come in great help in this instance!",
+                "I'm sure some of those mage affinity potions would come in great help in this instance!",
 
-                Accessible = true
+                Accessible = true,
+
+                RequiredMageSkill = 25
             };
 
             return gameMap;
         }
+
+        #endregion
     }
 }

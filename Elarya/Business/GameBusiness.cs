@@ -62,15 +62,45 @@ namespace Elarya.Business
 
                 _player.Health = 100;
                 _player.Mana = 100;
-                _player.AttackPower = 10;
-                _player.DefensePower = 5;
                 _player.Life = 3;
-                _player.HealthRegenRate = 5;
-                _player.ManaRegenRate = 5;
-                _player.WarriorSkill = 0;
-                _player.DragonRiderSkill = 0;
-                _player.HunterSkill = 0;
-                _player.MageSkill = 0;
+                if (_player.JobTitle == Player.JobTitleName.Mage)
+                {
+                    _player.MageSkill = 5;
+                }
+                else
+                {
+                    _player.HealerSkill = 5;
+                }
+
+                if (_player.Race == Character.RaceType.Nungari)
+                {
+                    _player.MageSkill += 5;
+                } 
+                else if (_player.Race == Character.RaceType.Diolecian)
+                {
+                    _player.MageSkill += 10;
+                } 
+                else if (_player.Race == Character.RaceType.Draggaru)
+                {
+                    _player.HealerSkill += 5;
+                }
+                else
+                {
+                    _player.HealerSkill += 10;
+                }
+
+                if (_player.Gender == Character.GenderType.Male)
+                {
+                    _player.MageSkill += 5;
+                } else if (_player.Gender == Character.GenderType.Female)
+                {
+                    _player.HealerSkill += 5;
+                }
+                else
+                {
+                    _player.MageSkill += 5;
+                    _player.HealerSkill += 5;
+                }
                 _player.Spell = null;
                 _player.InventoryItem = null;
             } 

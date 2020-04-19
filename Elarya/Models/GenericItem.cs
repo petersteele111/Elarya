@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Elarya.Presentation.ViewModels
+namespace Elarya.Models
 {
-    class RegisterPlayerGameViewModel
+    class GenericItem : GameItem
     {
+        
     }
 }
