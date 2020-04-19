@@ -5,8 +5,168 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Elarya"
         mc:Ignorable="d"
-        Title="Elarya" Height="450" Width="800">
+        Title="Elarya" Height="800" Width="1400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/Assets/Images/playerSetupBackground.png" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
+        <!-- Information Bar-->
+        <Border BorderBrush="black" BorderThickness="1px" Grid.ColumnSpan="12">
+            <StackPanel Orientation="Horizontal" Margin="20px 0 0 0">
+                <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" />
+                <!-- Place holder for generated value-->
+                <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" />
+
+                <TextBlock Text="Health: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="180px 0 0 0"/>
+                <!-- Place holder for generated value-->
+                <TextBlock Text="{Binding Player.Health}" FontSize="20px" VerticalAlignment="Center" />
+
+                <TextBlock Text="Mana: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="180px 0 0 0"/>
+                <!-- Place holder for generated value-->
+                <TextBlock Text="{Binding Player.Mana}" FontSize="20px" VerticalAlignment="Center" />
+
+                <TextBlock Text="Lives: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="180px 0 0 0"/>
+                <!-- Place holder for generated value-->
+                <TextBlock Text="{Binding Player.Life}" FontSize="20px" VerticalAlignment="Center" />
+
+                <TextBlock Text="Time: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="180px 0 0 0"/>
+                <!-- Place holder for generated value-->
+                <TextBlock Text="{Binding GameTimeDisplay}" FontSize="20px" VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+        <!-- Quest Log -->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Quest Log" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <!-- Space to place quest log items -->
+            </StackPanel>
+        </Border>
+        
+        <!-- Main Window-->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="8" Grid.RowSpan="12">
+
+        </Border>
+
+        <TextBox Text="{Binding CurrentLocation.Description, Mode=OneWay}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True"/>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center">
+            <TextBlock Text="Current Location: " FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 0 0 0"/>
+            <!-- Space to place main window content -->
+            <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontSize="20px"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
+            <Button Content="North" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="NorthButton_Click"/>
+            <!-- Space to place main window content -->
+            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
+            <Button Content="East" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="EastButton_Click"/>
+            <!-- Space to place main window content -->
+            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
+            <Button Content="South" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="SouthButton_Click"/>
+            <!-- Space to place main window content -->
+            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
+            <Button Content="West" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="WestButton_Click"/>
+            <!-- Space to place main window content -->
+            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
+        </StackPanel>
+
+
+        <!-- Inventory Panel-->
+        <Border BorderBrush="Black" BorderThickness="0 0 0 1" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+                <!-- Space to place inventory items -->
+            </StackPanel>
+        </Border>
+
+        <!-- Player Info Panel Border-->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">
+            
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock Text="Player Info" FontSize="28px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <!-- Space to list messages -->
+        </StackPanel>
+
+
+        <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+
+
+
+        <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center" />
+
+
+
+        <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+
+
+        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+
+        <!-- User Actions-->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="7" Grid.RowSpan="5">
+
+        </Border>
+
+            <TextBlock Text="Messages" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <!-- Space to place user action buttons -->
+        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="3" Grid.Row="15" Grid.ColumnSpan="6" Grid.RowSpan="3" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True"/>
+
+            <!-- Spells/Fight-->
+        <StackPanel Orientation="Vertical" Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">
+            <TextBlock Text="Spells/Fight" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <!-- Space to place spells/fight abilities-->
+        </StackPanel>
     </Grid>
 </Window>

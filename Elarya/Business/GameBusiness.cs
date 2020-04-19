@@ -14,10 +14,14 @@ namespace Elarya.Business
     {
         ElaryaGameViewModel _elaryaGameViewModel;
         Player _player = new Player();
-        List<string> _messages;
+        Map _gameMap;
+        MapCoordinates _initilizeMapCoordinates;
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
 
+        /// <summary>
+        /// Public Constructor for GameBusiness Class
+        /// </summary>
         public GameBusiness()
         {
             SetupPlayer();
@@ -25,19 +29,30 @@ namespace Elarya.Business
             InstantiateandShowView();
         }
 
+        /// <summary>
+        /// Method to initialize Default Intro Text
+        /// </summary>
         private void InitializeDataSet()
         {
-            _messages = GameData.InitialMessages();
+            _gameMap = GameData.GameMap();
+            _initilizeMapCoordinates = GameData.InitializeGameMapLocation();
         }
 
+        /// <summary>
+        /// Instantiates and Shows the Main Game View
+        /// </summary>
         private void InstantiateandShowView()
         {
-            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _messages);
+            _elaryaGameViewModel = new ElaryaGameViewModel(_player, _gameMap, _initilizeMapCoordinates);
             ElaryaGameView elaryaGameView = new ElaryaGameView(_elaryaGameViewModel);
             elaryaGameView.DataContext = _elaryaGameViewModel;
             elaryaGameView.Show();
+            _playerSetupView.Close();
         }
 
+        /// <summary>
+        /// Method to create the new Player with default values
+        /// </summary>
         private void SetupPlayer()
         {
             if (_newPlayer)
@@ -45,7 +60,6 @@ namespace Elarya.Business
                 _playerSetupView = new PlayerSetupView(_player);
                 _playerSetupView.ShowDialog();
 
-                _player.Age = 20;
                 _player.Health = 100;
                 _player.Mana = 100;
                 _player.AttackPower = 10;
