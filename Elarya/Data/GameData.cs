@@ -28,6 +28,7 @@ namespace Elarya.Data
                 MageSkill = 5,
                 HealerSkill = 0,
                 Spell = null,
+                Experience = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(131), 500)
@@ -101,7 +102,9 @@ namespace Elarya.Data
                 Messages = "To your left is the Herbalist Shop. A great place to herbs for healing and potions (If you have the coin) " +
                 "To your right is the Stables, filled with glorious horses of all breeds. ",
 
-                Accessible = true
+                Accessible = true,
+
+                ExperienceGain = 10
             };
 
             gameMap.Locations[3, 5] = new Location()
@@ -118,7 +121,16 @@ namespace Elarya.Data
                 "You have limited coin however, and there are many other shops to visit before leaving on your epic quest!" +
                 "Choose wisely, or you may regret your decisions later.",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 0,
+
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[3, 7] = new Location()
@@ -131,7 +143,11 @@ namespace Elarya.Data
 
                 Messages = "The Stables are quite lively this morning aren't they?",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 40,
+
+                ExperienceGain = 10
             };
 
             gameMap.Locations[4, 7] = new Location()
@@ -142,7 +158,14 @@ namespace Elarya.Data
 
                 Description = "The iron wrought gate looms over the town of Nocti, the only entrance and exit from the city!",
 
-                Accessible = true
+                Messages = "You must have at least 100 experience to leave the city!",
+
+                Accessible = true,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[2, 5] = new Location()
@@ -157,7 +180,16 @@ namespace Elarya.Data
                 Messages = "If you plan on traveling a fair distance from Nocti, you might want to invest in some rations to take with you. " +
                            "I'm sure the chef would be more than happy to help you out if you asked nicely!",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 10,
+
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[2, 6] = new Location()
@@ -173,7 +205,16 @@ namespace Elarya.Data
                 Messages = "With a Great Mage making these fine clothing items, surely something here can be of use on your journey! " +
                 "Items of this quality though are not cheap. Make sure to budget wisely.",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 20,
+
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[2, 7] = new Location()
@@ -186,7 +227,16 @@ namespace Elarya.Data
 
                 Messages = "Potions of all kind exist here. Everything from gaining life, mana, and even skill points as a Healer or Mage!",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 30,
+
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[5, 7] = new Location()
@@ -198,7 +248,9 @@ namespace Elarya.Data
                 Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
                 "from the North.",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 100
             };
 
             gameMap.Locations[5, 6] = new Location()
@@ -211,11 +263,13 @@ namespace Elarya.Data
 
                 Messages = "Too bad they are deadly! You died!",
 
-                Accessible = true,
+                Accessible = false,
 
-                ModifyHealth = 100,
+                RequiredExperience = 110,
 
-                ModifyLives = 1
+                ModifyHealth = -75,
+
+                ModifyLives = -1
             };
 
                 gameMap.Locations[6, 7] = new Location()
@@ -243,7 +297,12 @@ namespace Elarya.Data
 
                 MageSkill = 10,
 
-                HealerSkill = 10
+                HealerSkill = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[7, 7] = new Location()
@@ -254,7 +313,7 @@ namespace Elarya.Data
 
                 Description = "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
                 "To the east is a fishing shop and to the west is a man sitting on a dock.",
-                Messages = "After such a long journey, the thought of a fresh fish sounds tantilizing to your taste buds. " +
+                Messages = "After such a long journey, the thought of a fresh fish sounds tantalizing to your taste buds. " +
                 "Alas, you do not have a fishing pole however. Maybe that fishing shop to the east you've heard about can help?",
 
                 Accessible = true
@@ -266,13 +325,18 @@ namespace Elarya.Data
 
                 Name = "Fishing Shop",
 
-                Description = "The fishing shop seems old and run down. A haggered old fisherman stands behind the counter. He doesn't look well. ",
+                Description = "The fishing shop seems old and run down. A haggard old fisherman stands behind the counter. He doesn't look well. ",
 
                 Messages = "This old man may be in some serious need of a healer and stat! " ,
 
                 Accessible = true,
 
-                HealerSkill = 5
+                HealerSkill = 5,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[7, 6] = new Location()
@@ -289,7 +353,12 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                MageSkill = 5
+                MageSkill = 5,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[5, 8] = new Location()
@@ -327,7 +396,12 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                ModifyHealth = 25
+                ModifyHealth = 25,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[5, 11] = new Location()
@@ -343,7 +417,12 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                HealerSkill = 25
+                HealerSkill = 25,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             gameMap.Locations[6, 10] = new Location()
@@ -359,7 +438,12 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                MageSkill = 25
+                MageSkill = 25,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 2)
+                }
             };
 
             return gameMap;
@@ -371,30 +455,30 @@ namespace Elarya.Data
         {
             return new List<GameItem>()
             {
-                new Potion(101, "Lesser Health Potion", 10, 25, 0, 0, 0, 0, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
-                new Potion(102, "Greater Health Potion", 25, 75, 0, 0, 0, 0, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
-                new Potion(103, "Lesser Mage Potion", 100, 0, 0, 0, 10, 0, "Lesser Mage Potion grants 10 Mage Skill Points", "You gained 10 Mage Skill Points"),
-                new Potion(104, "Greater Mage Potion", 250, 0, 0, 0, 25, 0, "Greater Mage Potion grants 25 Mage Skill Points", "You gained 25 Mage Skill Points"),
-                new Potion(105, "Lesser Healer Potion", 100, 0, 0, 0, 0, 10, "Lesser Healer Potion grants 10 Healer Skill Points", "You gained 10 Healer Skill Points"),
-                new Potion(106, "Greater Healer Potion", 250, 0, 0, 0, 0, 25, "Greater Healer Potion grants 25 Healer Skill Points", "You gained 25 Healer Skill Points"),
-                new Potion(107, "Mana Potion", 10, 0, 0, 25, 0, 0, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
-                new Potion(108, "Life Potion", 500, 100, 1, 100, 0, 0, "Life Potions grant 1 life, Full Health, and Full Mana", "You gained 1 life, Full Health, and Full Mana"),
+                new Potion(101, "Lesser Health Potion", 10, 25, 0, 0, 0, 0, 10, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
+                new Potion(102, "Greater Health Potion", 25, 75, 0, 0, 0, 0, 10, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
+                new Potion(103, "Lesser Mage Potion", 100, 0, 0, 0, 10, 0, 10, "Lesser Mage Potion grants 10 Mage Skill Points", "You gained 10 Mage Skill Points"),
+                new Potion(104, "Greater Mage Potion", 250, 0, 0, 0, 25, 0, 10, "Greater Mage Potion grants 25 Mage Skill Points", "You gained 25 Mage Skill Points"),
+                new Potion(105, "Lesser Healer Potion", 100, 0, 0, 0, 0, 10, 10, "Lesser Healer Potion grants 10 Healer Skill Points", "You gained 10 Healer Skill Points"),
+                new Potion(106, "Greater Healer Potion", 250, 0, 0, 0, 0, 25, 10, "Greater Healer Potion grants 25 Healer Skill Points", "You gained 25 Healer Skill Points"),
+                new Potion(107, "Mana Potion", 10, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
+                new Potion(108, "Life Potion", 500, 100, 1, 100, 0, 0, 10, "Life Potions grant 1 life, Full Health, and Full Mana", "You gained 1 life, Full Health, and Full Mana"),
 
-                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, "This hat pulses with the power of many mages!"),
-                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, "This robe has decades of mages secrets woven into it's fibers"),
-                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, "This clock glows with the power of the Quin'lai mages"),
-                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, "The hat glows with the golden light of Aqua'l"),
-                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, "This robe seems to be imbued with healing powers"),
-                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, "This cloak casts a warm healing light"),
+                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 10, "This hat pulses with the power of many mages!"),
+                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 10, "This robe has decades of mages secrets woven into it's fibers"),
+                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 10,"This clock glows with the power of the Quin'lai mages"),
+                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 10, "The hat glows with the golden light of Aqua'l"),
+                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 10, "This robe seems to be imbued with healing powers"),
+                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 10, "This cloak casts a warm healing light"),
 
-                new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, "These delicious berries can be used to restore health", "Restored 10HP"),
-                new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
-                new Food(123, "Quil'ash Stout", 10, Food.FoodType.Drink, 25, 25, "These stout is briming with medicinal herbs and roots. Great for Health and Mana", "Restored 25HP and 25 Mana"),
-                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, "Ncoti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
-                new Food(125, "Starl'ai Boar", 40, Food.FoodType.Meat, 40, 0, "Some of the finest meat around!", "Restored 40 HP"),
-                new Food(126, "Yerlund Venison", 60, Food.FoodType.Meat, 60, 0, "Venision from the finest magical forest", "Restored 60HP"),
-                new Food(127, "Nocti Bakers Special", 25, Food.FoodType.Bread, 30, 30, "Nocti's cheapest bread. Restores health and mana", "Restored 30 HP and 30 Mana"),
-                new Food(128, "Mystic bread", 600, Food.FoodType.Bread, 100, 100, "Magical bread that fully restores a user", "Restored 100HP and 100 Mana"),
+                new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, 10, "These delicious berries can be used to restore health", "Restored 10HP"),
+                new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, 10, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
+                new Food(123, "Quil'ash Stout", 10, Food.FoodType.Drink, 25, 25, 10, "These stout is briming with medicinal herbs and roots. Great for Health and Mana", "Restored 25HP and 25 Mana"),
+                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, 10, "Ncoti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
+                new Food(125, "Starl'ai Boar", 40, Food.FoodType.Meat, 40, 0, 10, "Some of the finest meat around!", "Restored 40 HP"),
+                new Food(126, "Yerlund Venison", 60, Food.FoodType.Meat, 60, 0, 10, "Venision from the finest magical forest", "Restored 60HP"),
+                new Food(127, "Nocti Bakers Special", 25, Food.FoodType.Bread, 30, 30, 10, "Nocti's cheapest bread. Restores health and mana", "Restored 30 HP and 30 Mana"),
+                new Food(128, "Mystic bread", 600, Food.FoodType.Bread, 100, 100, 10, "Magical bread that fully restores a user", "Restored 100HP and 100 Mana"),
 
                 new Treasure(131, "Nocti Quarks", 1, Treasure.TreasureType.Coin, "Nocti Quarks are the official currency in Nocti"),
                 new Treasure(132, "Gem of Odal", 100, Treasure.TreasureType.Gem, "A rather sizeable gem, might be worth something"),

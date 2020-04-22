@@ -13,6 +13,7 @@ namespace Elarya.Models
         public int ManaChange { get; set; }
         public int MageSkillChange { get; set; }
         public int HealerSkillChange { get; set; }
+        public int ExperienceGain { get; set; }
 
         /// <summary>
         /// Public Constructor for Potion Model
@@ -27,7 +28,7 @@ namespace Elarya.Models
         /// <param name="healerSkillChange">Healer Skill effect of Potion</param>
         /// <param name="description">Description of Potion</param>
         /// <param name="useMessage">Message displayed on use</param>
-        public Potion(int id, string name, int value, int healthChange, int livesChange, int manaChange, int mageSkillChange, int healerSkillChange,
+        public Potion(int id, string name, int value, int healthChange, int livesChange, int manaChange, int mageSkillChange, int healerSkillChange, int experienceGain,
             string description, string useMessage) : base(id, name, value, description, useMessage)
         {
             HealthChange = healthChange;
@@ -35,6 +36,7 @@ namespace Elarya.Models
             ManaChange = manaChange;
             MageSkillChange = mageSkillChange;
             HealerSkillChange = healerSkillChange;
+            ExperienceGain = experienceGain;
 
         }
 

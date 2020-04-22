@@ -22,13 +22,16 @@ namespace Elarya.Models
         public int HealthChange { get; set; }
         public int ManaChange { get; set; }
 
+        public int ExperienceGain { get; set; }
 
-        public Food(int id, string name, int value, FoodType type, int healthChange, int manaChange, string description, string useMessage)
+
+        public Food(int id, string name, int value, FoodType type, int healthChange, int manaChange, int experienceGain, string description, string useMessage)
             : base(id, name, value, description, useMessage)
         {
             Type = type;
             HealthChange = healthChange;
             ManaChange = manaChange;
+            ExperienceGain = experienceGain;
         }
 
         public override string InformationString()

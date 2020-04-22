@@ -20,6 +20,8 @@ namespace Elarya.Models
         private int _HealerSkill;
         private int _modifyLives;
         private int _modifyHealth;
+        private int _requiredExperience;
+        private int _experienceGain;
         private string _message;
         private ObservableCollection<GameItemQuantity> _gameItems;
 
@@ -138,6 +140,25 @@ namespace Elarya.Models
             }
         }
 
+        public int RequiredExperience
+        {
+            get => _requiredExperience;
+            set
+            {
+                _requiredExperience = value;
+            }
+        }
+
+        public int ExperienceGain
+        {
+            get => _experienceGain;
+            set
+            {
+                _experienceGain = value;
+            }
+        }
+
+
 		#endregion
 
         #region Constructors
@@ -150,6 +171,11 @@ namespace Elarya.Models
         #endregion
 
         #region Methods
+
+        public bool IsAccessibleByExperience(int experience)
+        {
+            return experience >= _requiredExperience ? true : false;
+        }
 
         public void UpdateLocationGameItems()
         {

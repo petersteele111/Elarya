@@ -32,6 +32,7 @@ namespace Elarya.Models
         private int _mageSkill;
         private int _healerSkill;
         private string _spell;
+        private int _experience;
         private List<Location> _locationsVisited;
         private int _wealth;
         private ObservableCollection<GameItemQuantity> _inventory;
@@ -141,6 +142,16 @@ namespace Elarya.Models
             {
                 _spell = value;
                 OnPropertyChanged(nameof(Spell));
+            }
+        }
+
+        public int Experience
+        {
+            get => _experience;
+            set
+            {
+                _experience = value;
+                OnPropertyChanged(nameof(Experience));
             }
         }
 

@@ -204,6 +204,8 @@ namespace Elarya.Presentation.ViewModels
             _player.CalcWealth();
         }
 
+        #region Move Methods
+
         /// <summary>
         /// Updates the available travel points for a given area on the map
         /// </summary>
@@ -218,7 +220,7 @@ namespace Elarya.Presentation.ViewModels
             if (_gameMap.NorthLocation() != null)
             {
                 Location nextNorthLocation = _gameMap.NorthLocation();
-                if (nextNorthLocation.Accessible == true)
+                if (nextNorthLocation.Accessible == true || PlayerCanAccessLocation(nextNorthLocation))
                 {
                     NorthLocation = nextNorthLocation;
                 }
@@ -227,7 +229,7 @@ namespace Elarya.Presentation.ViewModels
             if (_gameMap.EastLocation() != null)
             {
                 Location nextEastLocation = _gameMap.EastLocation();
-                if (nextEastLocation.Accessible == true)
+                if (nextEastLocation.Accessible == true || PlayerCanAccessLocation(nextEastLocation))
                 {
                     EastLocation = nextEastLocation;
                 }
@@ -236,7 +238,7 @@ namespace Elarya.Presentation.ViewModels
             if (_gameMap.SouthLocation() != null)
             {
                 Location nextSouthLocation = _gameMap.SouthLocation();
-                if (nextSouthLocation.Accessible == true)
+                if (nextSouthLocation.Accessible == true || PlayerCanAccessLocation(nextSouthLocation))
                 {
                     SouthLocation = nextSouthLocation;
                 }
@@ -245,7 +247,7 @@ namespace Elarya.Presentation.ViewModels
             if (_gameMap.WestLocation() != null)
             {
                 Location nextWestLocation = _gameMap.WestLocation();
-                if (nextWestLocation.Accessible == true)
+                if (nextWestLocation.Accessible == true || PlayerCanAccessLocation(nextWestLocation))
                 {
                     WestLocation = nextWestLocation;
                 }
@@ -308,6 +310,18 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        private bool PlayerCanAccessLocation(Location nextLocation)
+        {
+            if (nextLocation.IsAccessibleByExperience(_player.Experience))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void PlayerMove()
         {
             //
@@ -318,10 +332,16 @@ namespace Elarya.Presentation.ViewModels
                 _player.LocationsVisited.Add(_currentLocation);
                 _player.Health += _currentLocation.ModifyHealth;
                 _player.Life += _currentLocation.ModifyLives;
+                _player.MageSkill += _currentLocation.MageSkill;
+                _player.HealerSkill += _currentLocation.HealerSkill;
+                _player.Experience += _currentLocation.ExperienceGain;
                 OnPropertyChanged(nameof(MessageDisplay));
             }
         }
 
+        #endregion
+
+        #region Game Timer
         /// <summary>
         /// Initializes the Game Timer
         /// </summary>
@@ -343,6 +363,10 @@ namespace Elarya.Presentation.ViewModels
             _gameTime = DateTime.Now - _gameStartTime;
             GameTimeDisplay = _gameTime.ToString(@"hh\:mm\:ss");
         }
+
+        #endregion
+
+        #region Inventory Methods
 
         /// <summary>
         /// add a new item to the players inventory
@@ -425,9 +449,6 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-        #endregion
-
-
         /// <summary>
         /// process the effects of using the potion
         /// </summary>
@@ -436,8 +457,13 @@ namespace Elarya.Presentation.ViewModels
         {
             _player.Health += potion.HealthChange;
             _player.Life += potion.LivesChange;
+            _player.Experience += potion.ExperienceGain;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
         }
+
+        #endregion
+
+        #endregion
 
         ///// <summary>
         ///// process player dies with option to reset and play again
@@ -467,14 +493,6 @@ namespace Elarya.Presentation.ViewModels
         /// player chooses to exit game
         /// </summary>
         public void QuitApplication()
-        {
-            Environment.Exit(0);
-        }
-
-        /// <summary>
-        /// player chooses to reset game
-        /// </summary>
-        private void ResetPlayer()
         {
             Environment.Exit(0);
         }

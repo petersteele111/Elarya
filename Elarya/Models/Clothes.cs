@@ -21,15 +21,17 @@ namespace Elarya.Models
         public int ManaChange { get; set; }
         public int MageSkillChange { get; set; }
         public int HealerSkillChange { get; set; }
+        public int ExperienceGain { get; set; }
 
         public Clothes(int id, string name, int value, ClothesType type, int healthChange, int manaChange, int mageSkillChange,
-            int healerSkillChange, string description) : base(id, name, value, description)
+            int healerSkillChange, int experienceGain, string description) : base(id, name, value, description)
         {
             Type = type;
             HealthChange = healthChange;
             ManaChange = manaChange;
             MageSkillChange = mageSkillChange;
             HealerSkillChange = healerSkillChange;
+            ExperienceGain = experienceGain;
         }
 
         public override string InformationString()
