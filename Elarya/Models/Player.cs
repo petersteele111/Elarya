@@ -9,6 +9,20 @@ namespace Elarya.Models
 {
     public class Player : Character
     {
+
+        #region Enums
+
+        /// <summary>
+        /// Job Title Enumerator
+        /// </summary>
+        public enum JobTitleName
+        {
+            Mage,
+            Healer
+        }
+
+        #endregion
+
         #region Fields
 
         protected JobTitleName _jobTitle;
@@ -51,6 +65,17 @@ namespace Elarya.Models
             set
             {
                 _health = value;
+
+                if (_health > 100)
+                {
+                    _health = 100;
+                }
+                else if (_health <= 0)
+                {
+                    _health = 100;
+                    _life--;
+                }
+                OnPropertyChanged(nameof(Health));
             }
         }
 
@@ -63,6 +88,7 @@ namespace Elarya.Models
             set
             {
                 _mana = value;
+                OnPropertyChanged(nameof(Mana));
             }
         }
 
@@ -75,6 +101,7 @@ namespace Elarya.Models
             set
             {
                 _life = value;
+                OnPropertyChanged(nameof(Life));
             }
         }
 
@@ -87,6 +114,7 @@ namespace Elarya.Models
             set
             {
                 _mageSkill = value;
+                OnPropertyChanged(nameof(MageSkill));
             }
         }
 
@@ -99,6 +127,7 @@ namespace Elarya.Models
             set
             {
                 _healerSkill = value;
+                OnPropertyChanged(nameof(HealerSkill));
             }
         }
 
@@ -111,6 +140,7 @@ namespace Elarya.Models
             set
             {
                 _spell = value;
+                OnPropertyChanged(nameof(Spell));
             }
         }
 
@@ -120,6 +150,7 @@ namespace Elarya.Models
             set
             {
                 _wealth = value;
+                OnPropertyChanged(nameof(Wealth));
             }
         }
 
@@ -177,20 +208,7 @@ namespace Elarya.Models
             }
         }
         #endregion
-
-        #region Enums
-
-        /// <summary>
-        /// Job Title Enumerator
-        /// </summary>
-        public enum JobTitleName
-        {
-            Mage,
-            Healer
-        }
-
-        #endregion
-
+        
         #region Constructor
 
         /// <summary>
@@ -198,39 +216,14 @@ namespace Elarya.Models
         /// </summary>
         public Player()
         {
-
-        }
-
-        /// <summary>
-        /// Public constructor for the Player Class (Overload)
-        /// </summary>
-        /// <param name="id">Player ID</param>
-        /// <param name="locationId">Location ID</param>
-        /// <param name="name">Name of the Player</param>
-        /// <param name="age">Age of of the Player Character</param>
-        /// <param name="race">Race of the Player Character</param>
-        /// <param name="gender">Gender of the Player Character</param>
-        /// <param name="health">Health of the Player Character</param>
-        /// <param name="mana">Mana of the Player Character</param>
-        /// <param name="life">Life Remaining of the Player Character</param>
-        /// <param name="mageSkill">Mage Skill Points of the Player Character</param>
-        /// <param name="healerSkill">Healer Skill Points for the Player Character</param>
-        /// <param name="spell">Spell for the Player Character</param>
-        public Player(int id, int locationId, string name, int age, RaceType race, GenderType gender, int health, int mana,  int life, int mageSkill, int healerSkill, string spell) : base(id, locationId, name, age, race, gender)
-        {
-            _health = health;
-            _mana = mana;
-            _life = life;
-            _mageSkill = mageSkill;
-            _healerSkill = healerSkill;
-            _spell = spell;
             _locationsVisited = new List<Location>();
             _potions = new ObservableCollection<GameItemQuantity>();
             _clothes = new ObservableCollection<GameItemQuantity>();
             _food = new ObservableCollection<GameItemQuantity>();
             _treasure = new ObservableCollection<GameItemQuantity>();
+            _inventory = new ObservableCollection<GameItemQuantity>();
         }
-
+        
         #endregion
 
         #region Methods

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,6 +103,10 @@ namespace Elarya.Business
                     _player.HealerSkill += 5;
                 }
                 _player.Spell = null;
+                _player.Inventory = new ObservableCollection<GameItemQuantity>()
+                {
+                    new GameItemQuantity(GameData.GameItemById(131), 500)
+                };
             } 
             else
             {

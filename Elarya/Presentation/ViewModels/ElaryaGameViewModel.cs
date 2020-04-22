@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace Elarya.Presentation.ViewModels
         private DateTime _gameStartTime;
         private string _gameTimeDisplay;
 
+        private GameItemQuantity _currentGameItem;
+
         #endregion
 
         #region Properties
@@ -29,10 +32,7 @@ namespace Elarya.Presentation.ViewModels
         public Player Player
         {
             get => _player;
-            set
-            {
-                _player = value;
-            }
+            set { _player = value; }
         }
 
         /// <summary>
@@ -41,10 +41,7 @@ namespace Elarya.Presentation.ViewModels
         public Map GameMap
         {
             get => _gameMap;
-            set
-            {
-                _gameMap = value;
-            }
+            set { _gameMap = value; }
         }
 
         /// <summary>
@@ -124,22 +121,34 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Checks if a north location exists
         /// </summary>
-        public bool HasNorthLocation { get { return NorthLocation != null; } }
+        public bool HasNorthLocation
+        {
+            get { return NorthLocation != null; }
+        }
 
         /// <summary>
         /// Checks if an east location exists
         /// </summary>
-        public bool HasEastLocation { get { return EastLocation != null; } }
+        public bool HasEastLocation
+        {
+            get { return EastLocation != null; }
+        }
 
         /// <summary>
         /// Checks if a south location exists
         /// </summary>
-        public bool HasSouthLocation { get { return SouthLocation != null; } }
+        public bool HasSouthLocation
+        {
+            get { return SouthLocation != null; }
+        }
 
         /// <summary>
         /// Checks if a west location exists
         /// </summary>
-        public bool HasWestLocation { get { return WestLocation != null; } }
+        public bool HasWestLocation
+        {
+            get { return WestLocation != null; }
+        }
 
         /// <summary>
         /// Gets and sets the GameTime Display ticker
@@ -154,17 +163,15 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        public GameItemQuantity CurrentGameItem
+        {
+            get => _currentGameItem;
+            set { _currentGameItem = value; }
+        }
+
         #endregion
 
         #region Constructor
-
-        /// <summary>
-        /// Default public constructor
-        /// </summary>
-        public ElaryaGameViewModel()
-        {
-
-        }
 
         /// <summary>
         /// Constructor for the game
@@ -337,6 +344,140 @@ namespace Elarya.Presentation.ViewModels
             GameTimeDisplay = _gameTime.ToString(@"hh\:mm\:ss");
         }
 
+        /// <summary>
+        /// add a new item to the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        public void AddItemToInventory()
+        {
+            //
+            // confirm a game item selected and is in current location
+            // subtract from location and add to inventory
+            //
+            if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
+            {
+                //
+                // cast selected game item 
+                //
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
+
+                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity);
+                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
+
+                OnPlayerPickUp(selectedGameItemQuantity);
+            }
+        }
+
+        /// <summary>
+        /// remove item from the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        public void RemoveItemFromInventory()
+        {
+            //
+            // confirm a game item selected and is in inventory
+            // subtract from inventory and add to location
+            //
+            if (_currentGameItem != null)
+            {
+                //
+                // cast selected game item 
+                //
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
+
+                _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
+                _player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
+
+                OnPlayerPutDown(selectedGameItemQuantity);
+            }
+        }
+
+        /// <summary>
+        /// process events when a player picks up a new game item
+        /// </summary>
+        /// <param name="gameItemQuantity">new game item</param>
+        private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
+        {
+            _player.Wealth += gameItemQuantity.GameItem.Value;
+        }
+
+        /// <summary>
+        /// process events when a player puts down a new game item
+        /// </summary>
+        /// <param name="gameItemQuantity">new game item</param>
+        private void OnPlayerPutDown(GameItemQuantity gameItemQuantity)
+        {
+            _player.Wealth -= gameItemQuantity.GameItem.Value;
+        }
+
+        /// <summary>
+        /// process using an item in the player's inventory
+        /// </summary>
+        public void OnUseGameItem()
+        {
+            switch (_currentGameItem.GameItem)
+            {
+                case Potion potion:
+                    ProcessPotionUse(potion);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         #endregion
+
+
+        /// <summary>
+        /// process the effects of using the potion
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessPotionUse(Potion potion)
+        {
+            _player.Health += potion.HealthChange;
+            _player.Life += potion.LivesChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+        }
+
+        ///// <summary>
+        ///// process player dies with option to reset and play again
+        ///// </summary>
+        ///// <param name="message">message regarding player death</param>
+        //private void OnPlayerDies(string message)
+        //{
+        //    string messagetext = message +
+        //                         "\n\nWould you like to play again?";
+
+        //    string titleText = "Death";
+        //    MessageBoxButton button = MessageBoxButton.YesNo;
+        //    MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+
+        //    switch (result)
+        //    {
+        //        case MessageBoxResult.Yes:
+        //            ResetPlayer();
+        //            break;
+        //        case MessageBoxResult.No:
+        //            QuiteApplication();
+        //            break;
+        //    }
+        //}
+
+        /// <summary>
+        /// player chooses to exit game
+        /// </summary>
+        public void QuitApplication()
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// player chooses to reset game
+        /// </summary>
+        private void ResetPlayer()
+        {
+            Environment.Exit(0);
+        }
+
     }
 }

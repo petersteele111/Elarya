@@ -28,7 +28,7 @@ namespace Elarya.Data
                 MageSkill = 5,
                 HealerSkill = 0,
                 Spell = null,
-                Inventory = new ObservableCollection<GameItemQuantity>
+                Inventory = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(131), 500)
                 }
@@ -46,7 +46,7 @@ namespace Elarya.Data
             return new MapCoordinates() { Row = 4, Column = 6 };
         }
 
-        private static GameItem GameItemById(int id)
+        public static GameItem GameItemById(int id)
         {
             return StandardGameItems().FirstOrDefault(i => i.Id == id);
         }
@@ -73,7 +73,7 @@ namespace Elarya.Data
                 Description = "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
                 "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed." +
                 "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth." +
-                "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the forseeable future.",
+                "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the foreseeable future.",
 
                 Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society." +
                 "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage?" +

@@ -97,11 +97,6 @@ namespace Elarya.Models
 
         #region Constructor
 
-        public GameItem()
-        {
-
-        }
-
         public GameItem(int id, string name, int value, string description, string useMessage = ".")
         {
             Id = id;
