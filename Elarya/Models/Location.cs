@@ -16,11 +16,12 @@ namespace Elarya.Models
 		private string _description;
 		private string _messages;
 		private bool _accessible;
-        private int _requiredMageSkill;
-        private int _requiredHealerSkill;
+        private int _MageSkill;
+        private int _HealerSkill;
         private int _modifyLives;
         private int _modifyHealth;
-        private ObservableCollection<GameItem> _gameItems;
+        private string _message;
+        private ObservableCollection<GameItemQuantity> _gameItems;
 
 
 		#endregion
@@ -83,21 +84,21 @@ namespace Elarya.Models
 			}
 		}
 
-        public int RequiredMageSkill
+        public int MageSkill
         {
-            get => _requiredMageSkill;
+            get => _MageSkill;
             set
             {
-                _requiredMageSkill = value;
+                _MageSkill = value;
             }
         }
 
-        public int RequiredHealerSkill
+        public int HealerSkill
         {
-            get => _requiredHealerSkill;
+            get => _HealerSkill;
             set
             {
-                _requiredHealerSkill = value;
+                _HealerSkill = value;
             }
         }
 
@@ -119,12 +120,21 @@ namespace Elarya.Models
             }
         }
 
-        public ObservableCollection<GameItem> GameItems
+        public ObservableCollection<GameItemQuantity> GameItems
         {
             get => _gameItems;
             set
             {
                 _gameItems = value;
+            }
+        }
+
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                _message = value;
             }
         }
 
@@ -134,15 +144,75 @@ namespace Elarya.Models
 
         public Location()
         {
-			_gameItems = new ObservableCollection<GameItem>();
+			_gameItems = new ObservableCollection<GameItemQuantity>();
         }
 
-		#endregion
+        #endregion
 
         #region Methods
 
-        
+        public void UpdateLocationGameItems()
+        {
+            ObservableCollection<GameItemQuantity> updatedLocationGameItems = new ObservableCollection<GameItemQuantity>();
+
+            foreach (GameItemQuantity gameItemQuantity in _gameItems)
+            {
+                updatedLocationGameItems.Add(gameItemQuantity);
+            }
+
+            GameItems.Clear();
+
+            foreach (GameItemQuantity gameItemQuantity in updatedLocationGameItems)
+            {
+                GameItems.Add(gameItemQuantity);
+            }
+        }
+
+        public void AddGameItemQuantityToLocation(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in location
+            //
+            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = 1;
+
+                _gameItems.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity++;
+            }
+
+            UpdateLocationGameItems();
+        }
+
+        public void RemoveGameItemQuantityFromLocation(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in location
+            //
+            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity != null)
+            {
+                if (selectedGameItemQuantity.Quantity == 1)
+                {
+                    _gameItems.Remove(gameItemQuantity);
+                }
+                else
+                {
+                    gameItemQuantity.Quantity--;
+                }
+            }
+
+            UpdateLocationGameItems();
+        }
 
         #endregion
-	}
+    }
 }

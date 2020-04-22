@@ -102,7 +102,6 @@ namespace Elarya.Business
                     _player.HealerSkill += 5;
                 }
                 _player.Spell = null;
-                _player.InventoryItem = null;
             } 
             else
             {

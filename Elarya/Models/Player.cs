@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,13 @@ namespace Elarya.Models
         private int _mageSkill;
         private int _healerSkill;
         private string _spell;
-        private string _inventoryItem;
+        private List<Location> _locationsVisited;
+        private int _wealth;
+        private ObservableCollection<GameItemQuantity> _inventory;
+        private ObservableCollection<GameItemQuantity> _potions;
+        private ObservableCollection<GameItemQuantity> _clothes;
+        private ObservableCollection<GameItemQuantity> _food;
+        private ObservableCollection<GameItemQuantity> _treasure;
 
         #endregion
 
@@ -28,8 +35,11 @@ namespace Elarya.Models
         /// </summary>
         public JobTitleName JobTitle
         {
-            get { return _jobTitle; }
-            set { _jobTitle = value; }
+            get => _jobTitle;
+            set
+            {
+                _jobTitle = value;
+            }
         }
 
         /// <summary>
@@ -37,8 +47,11 @@ namespace Elarya.Models
         /// </summary>
         public int Health
         {
-            get { return _health; }
-            set { _health = value; }
+            get => _health;
+            set
+            {
+                _health = value;
+            }
         }
 
         /// <summary>
@@ -46,8 +59,11 @@ namespace Elarya.Models
         /// </summary>
         public int Mana
         {
-            get { return _mana; }
-            set { _mana = value; }
+            get => _mana;
+            set
+            {
+                _mana = value;
+            }
         }
 
         /// <summary>
@@ -55,8 +71,11 @@ namespace Elarya.Models
         /// </summary>
         public int Life
         {
-            get { return _life; }
-            set { _life = value; }
+            get => _life;
+            set
+            {
+                _life = value;
+            }
         }
 
         /// <summary>
@@ -64,8 +83,11 @@ namespace Elarya.Models
         /// </summary>
         public int MageSkill
         {
-            get { return _mageSkill; }
-            set { _mageSkill = value; }
+            get => _mageSkill;
+            set
+            {
+                _mageSkill = value;
+            }
         }
 
         /// <summary>
@@ -73,8 +95,11 @@ namespace Elarya.Models
         /// </summary>
         public int HealerSkill
         {
-            get { return _healerSkill; }
-            set { _healerSkill = value; }
+            get => _healerSkill;
+            set
+            {
+                _healerSkill = value;
+            }
         }
 
         /// <summary>
@@ -82,19 +107,75 @@ namespace Elarya.Models
         /// </summary>
         public string  Spell
         {
-            get { return _spell; }
-            set { _spell = value; }
+            get => _spell;
+            set
+            {
+                _spell = value;
+            }
         }
 
-        /// <summary>
-        /// Sets and Gets the Inventory Item for the Player
-        /// </summary>
-        public string  InventoryItem
+        public int Wealth
         {
-            get { return _inventoryItem; }
-            set { _inventoryItem = value; }
+            get => _wealth;
+            set
+            {
+                _wealth = value;
+            }
         }
 
+        public List<Location> LocationsVisited
+        {
+            get => _locationsVisited;
+            set
+            {
+                _locationsVisited = value;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Inventory
+        {
+            get => _inventory;
+            set
+            {
+                _inventory = value;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Potions
+        {
+            get => _potions;
+            set
+            {
+                _potions = value;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Clothes
+        {
+            get => _clothes;
+            set
+            {
+                _clothes = value;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Food
+        {
+            get => _food;
+            set
+            {
+                _food = value;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Treasure
+        {
+            get => _treasure;
+            set
+            {
+                _treasure = value;
+            }
+        }
         #endregion
 
         #region Enums
@@ -135,8 +216,7 @@ namespace Elarya.Models
         /// <param name="mageSkill">Mage Skill Points of the Player Character</param>
         /// <param name="healerSkill">Healer Skill Points for the Player Character</param>
         /// <param name="spell">Spell for the Player Character</param>
-        /// <param name="inventoryItem">Inventory Item of the Player Character</param>
-        public Player(int id, int locationId, string name, int age, RaceType race, GenderType gender, int health, int mana,  int life, int mageSkill, int healerSkill, string spell, string inventoryItem) : base(id, locationId, name, age, race, gender)
+        public Player(int id, int locationId, string name, int age, RaceType race, GenderType gender, int health, int mana,  int life, int mageSkill, int healerSkill, string spell) : base(id, locationId, name, age, race, gender)
         {
             _health = health;
             _mana = mana;
@@ -144,12 +224,108 @@ namespace Elarya.Models
             _mageSkill = mageSkill;
             _healerSkill = healerSkill;
             _spell = spell;
-            _inventoryItem = inventoryItem;
+            _locationsVisited = new List<Location>();
+            _potions = new ObservableCollection<GameItemQuantity>();
+            _clothes = new ObservableCollection<GameItemQuantity>();
+            _food = new ObservableCollection<GameItemQuantity>();
+            _treasure = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
 
         #region Methods
+
+        public void CalcWealth()
+        {
+            Wealth = _inventory.Sum(i => i.GameItem.Value * i.Quantity);
+        }
+
+        public void UpdateInventory()
+        {
+            Potions.Clear();
+            Clothes.Clear();
+            Food.Clear();
+            Treasure.Clear();
+
+            foreach (var gameItemQuantity in _inventory)
+            {
+                if (gameItemQuantity.GameItem is Potion)
+                {
+                    Potions.Add(gameItemQuantity);
+                }
+
+                if (gameItemQuantity.GameItem is Clothes)
+                {
+                    Clothes.Add(gameItemQuantity);
+                }
+
+                if (gameItemQuantity.GameItem is Food)
+                {
+                    Food.Add(gameItemQuantity);
+                }
+
+                if (gameItemQuantity.GameItem is Treasure)
+                {
+                    Treasure.Add(gameItemQuantity);
+                }
+            }
+        }
+
+        public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in inventory
+            //
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = 1;
+
+                _inventory.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity++;
+            }
+
+            UpdateInventory();
+        }
+
+        /// <summary>
+        /// remove selected item from inventory
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">selected item</param>
+        public void RemoveGameItemQuantityFromInventory(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in inventory
+            //
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity != null)
+            {
+                if (selectedGameItemQuantity.Quantity == 1)
+                {
+                    _inventory.Remove(gameItemQuantity);
+                }
+                else
+                {
+                    gameItemQuantity.Quantity--;
+                }
+            }
+
+            UpdateInventory();
+        }
+
+        public bool HasVisited(Location location)
+        {
+            return _locationsVisited.Contains(location);
+        }
+
+
 
         /// <summary>
         /// Default Greeting for the Player

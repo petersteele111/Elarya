@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,12 @@ namespace Elarya.Models
         public int ManaChange { get; set; }
 
 
-        public Food(int id, string name, int value, int healthChange, int livesChange, string description)
-            : base(id, name, value, description)
+        public Food(int id, string name, int value, FoodType type, int healthChange, int manaChange, string description, string useMessage)
+            : base(id, name, value, description, useMessage)
         {
+            Type = type;
             HealthChange = healthChange;
-            ManaChange = livesChange;
+            ManaChange = manaChange;
         }
 
         public override string InformationString()

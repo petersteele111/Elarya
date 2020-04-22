@@ -60,6 +60,11 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        public string MessageDisplay
+        {
+            get => _currentLocation.Messages;
+        }
+
         /// <summary>
         /// Gets and sets the north location (relative)
         /// </summary>
@@ -188,6 +193,8 @@ namespace Elarya.Presentation.ViewModels
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
+            _player.UpdateInventory();
+            _player.CalcWealth();
         }
 
         /// <summary>
@@ -245,9 +252,10 @@ namespace Elarya.Presentation.ViewModels
         {
             if (HasNorthLocation)
             {
-                _gameMap.canMoveNorth();
+                _gameMap.CanMoveNorth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
+                PlayerMove();
             }
         }
 
@@ -258,9 +266,10 @@ namespace Elarya.Presentation.ViewModels
         {
             if (HasEastLocation)
             {
-                _gameMap.canMoveEast();
+                _gameMap.CanMoveEast();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
+                PlayerMove();
             }
         }
 
@@ -271,9 +280,10 @@ namespace Elarya.Presentation.ViewModels
         {
             if (HasSouthLocation)
             {
-                _gameMap.canMoveSouth();
+                _gameMap.CanMoveSouth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
+                PlayerMove();
             }
         }
 
@@ -284,9 +294,24 @@ namespace Elarya.Presentation.ViewModels
         {
             if (HasWestLocation)
             {
-                _gameMap.canMoveWest();
+                _gameMap.CanMoveWest();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
+                PlayerMove();
+            }
+        }
+
+        private void PlayerMove()
+        {
+            //
+            // Update Player Stats in location
+            //
+            if (!_player.HasVisited(_currentLocation))
+            {
+                _player.LocationsVisited.Add(_currentLocation);
+                _player.Health += _currentLocation.ModifyHealth;
+                _player.Life += _currentLocation.ModifyLives;
+                OnPropertyChanged(nameof(MessageDisplay));
             }
         }
 

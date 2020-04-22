@@ -11,23 +11,31 @@ namespace Elarya.Models
         public int HealthChange { get; set; }
         public int LivesChange { get; set; }
         public int ManaChange { get; set; }
-        public int AttackPowerChange { get; set; }
-        public int DefensePowerChange { get; set; }
+        public int MageSkillChange { get; set; }
+        public int HealerSkillChange { get; set; }
 
-
-        public Potion()
-        {
-
-        }
-
-        public Potion(int id, string name, int value, int healthChange, int livesChange, int manaChange, int attackPowerChange, int defensePowerChange,
-            string description) : base(id, name, value, description)
+        /// <summary>
+        /// Public Constructor for Potion Model
+        /// </summary>
+        /// <param name="id">ID of Potion</param>
+        /// <param name="name">Name of Potion</param>
+        /// <param name="value">Value of Potion</param>
+        /// <param name="healthChange">Health Change effect of Potion</param>
+        /// <param name="livesChange">Life Change effect of Potion</param>
+        /// <param name="manaChange">Mana Change effect of Potion</param>
+        /// <param name="mageSkillChange">Mage Skill effect of Potion</param>
+        /// <param name="healerSkillChange">Healer Skill effect of Potion</param>
+        /// <param name="description">Description of Potion</param>
+        /// <param name="useMessage">Message displayed on use</param>
+        public Potion(int id, string name, int value, int healthChange, int livesChange, int manaChange, int mageSkillChange, int healerSkillChange,
+            string description, string useMessage) : base(id, name, value, description, useMessage)
         {
             HealthChange = healthChange;
             LivesChange = livesChange;
             ManaChange = manaChange;
-            AttackPowerChange = attackPowerChange;
-            DefensePowerChange = defensePowerChange;
+            MageSkillChange = mageSkillChange;
+            HealerSkillChange = healerSkillChange;
+
         }
 
         public override string InformationString()
@@ -44,13 +52,13 @@ namespace Elarya.Models
             {
                 return $"{Name}: {Description}/nMana: {ManaChange}";
             }
-            else if (AttackPowerChange != 0)
+            else if (MageSkillChange != 0)
             {
-                return $"{Name}: {Description}/nAttack Power: {AttackPowerChange}";
+                return $"{Name}: {Description}/nMage Skill Change: {MageSkillChange}";
             }
-            else if (DefensePowerChange != 0)
+            else if (HealerSkillChange != 0)
             {
-                return $"{Name}: {Description}/nDefense Power: {DefensePowerChange}";
+                return $"{Name}: {Description}/nHealer Skill Change: {HealerSkillChange}";
             }
             else
             {
