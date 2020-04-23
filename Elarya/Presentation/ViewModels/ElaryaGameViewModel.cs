@@ -339,9 +339,6 @@ namespace Elarya.Presentation.ViewModels
 
         private void PlayerMove()
         {
-            //
-            // Update Player Stats in location
-            //
             if (!_player.HasVisited(_currentLocation))
             {
                 _player.LocationsVisited.Add(_currentLocation);
@@ -384,15 +381,11 @@ namespace Elarya.Presentation.ViewModels
         #region Inventory Methods
 
         /// <summary>
-        /// add a new item to the players inventory
+        /// Add a new item to the players inventory
         /// </summary>
         /// <param name="selectedItem"></param>
         public void AddItemToInventory()
         {
-            //
-            // confirm a game item selected and is in current location
-            // subtract from location and add to inventory
-            //
             if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
             {
                 GameItemQuantity selectedGameItemQuantity = _currentGameItem;
@@ -405,21 +398,14 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// remove item from the players inventory
+        /// Remove item from the players inventory
         /// </summary>
         /// <param name="selectedItem"></param>
         public void RemoveItemFromInventory()
         {
-            //
-            // confirm a game item selected and is in inventory
-            // subtract from inventory and add to location
-            //
             if (_currentGameItem != null)
             {
-                //
-                // cast selected game item 
-                //
-                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem;
 
                 _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
                 _player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
@@ -429,7 +415,7 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// process events when a player picks up a new game item
+        /// Process events when a player picks up a new game item
         /// </summary>
         /// <param name="gameItemQuantity">new game item</param>
         private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
@@ -438,7 +424,7 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// process events when a player puts down a new game item
+        /// Recalculates player wealth after dropping an item
         /// </summary>
         /// <param name="gameItemQuantity">new game item</param>
         private void OnPlayerPutDown(GameItemQuantity gameItemQuantity)
@@ -447,7 +433,7 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// process using an item in the player's inventory
+        /// Try to use an item in the players inventory
         /// </summary>
         public void OnUseGameItem()
         {
@@ -475,7 +461,7 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// process the effects of using the potion
+        /// Process the effects of using the potion
         /// </summary>
         /// <param name="potion">potion</param>
         private void ProcessPotionUse(Potion potion)
@@ -488,58 +474,46 @@ namespace Elarya.Presentation.ViewModels
             _player.HealerSkill += potion.HealerSkillChange;
             _player.Experience += potion.ExperienceGain;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            _player.Wealth -= potion.Value;
         }
 
+        /// <summary>
+        /// Process the use of Treasure
+        /// </summary>
+        /// <param name="treasure">treasure</param>
         private void ProcessTreasure(Treasure treasure)
         {
             if (treasure.Type == Treasure.TreasureType.Coin)
             {
                 CurrentMessage = "You threw a coin to your Witcher!";
                 _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+                _player.Wealth -= treasure.Value;
             }
             else
             {
                 string message = _gameMap.OpenLocationsByItem(treasure.Id);
                 CurrentMessage = message;
                 _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+                _player.Wealth -= treasure.Value;
             }
         }
 
+        /// <summary>
+        /// Process the use of Food
+        /// </summary>
+        /// <param name="food">food</param>
         private void ProcessFood(Food food)
         {
             CurrentMessage = food.UseMessage;
             _player.Health += food.HealthChange;
             _player.Mana += food.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            _player.Wealth -= food.Value;
         }
 
         #endregion
 
         #endregion
-
-        ///// <summary>
-        ///// process player dies with option to reset and play again
-        ///// </summary>
-        ///// <param name="message">message regarding player death</param>
-        //private void OnPlayerDies(string message)
-        //{
-        //    string messagetext = message +
-        //                         "\n\nWould you like to play again?";
-
-        //    string titleText = "Death";
-        //    MessageBoxButton button = MessageBoxButton.YesNo;
-        //    MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
-
-        //    switch (result)
-        //    {
-        //        case MessageBoxResult.Yes:
-        //            ResetPlayer();
-        //            break;
-        //        case MessageBoxResult.No:
-        //            QuiteApplication();
-        //            break;
-        //    }
-        //}
 
         /// <summary>
         /// player chooses to exit game

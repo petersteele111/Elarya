@@ -72,12 +72,12 @@ namespace Elarya.Data
                 Name = "Home (Nocti)",
 
                 Description = "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
-                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed." +
-                "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth." +
+                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed. " +
+                "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth. " +
                 "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the foreseeable future.",
 
-                Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society." +
-                "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage?" +
+                Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society. " +
+                "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage? " +
                 "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
 
                 Accessible = true,
@@ -101,7 +101,7 @@ namespace Elarya.Data
                 "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
                 "wafts over you, inundating your senses.",
 
-                Messages = "To your left is the Merchant Shop. A great place to sell treasures Nocti Quarks " +
+                Messages = "To your left is the Merchant Shop. A great place to sell treasures for Nocti Quarks. " +
                 "To your right is the Stables, filled with glorious horses of all breeds. ",
 
                 Accessible = true,
@@ -110,7 +110,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 10)
+                    new GameItemQuantity(GameItemById(101), 5)
                 }
             };
 
@@ -322,7 +322,8 @@ namespace Elarya.Data
                 {
                     new GameItemQuantity(GameItemById(103), 1),
                     new GameItemQuantity(GameItemById(105), 1),
-                    new GameItemQuantity(GameItemById(131), 50)
+                    new GameItemQuantity(GameItemById(131), 50),
+                    new GameItemQuantity(GameItemById(137), 1)
                 }
             };
 
@@ -334,6 +335,7 @@ namespace Elarya.Data
 
                 Description = "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
                 "To the east is a fishing shop and to the west is a man sitting on a dock.",
+
                 Messages = "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
                 "Maybe that old woman on the path up ahead might know when they open?",
 

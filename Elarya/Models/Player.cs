@@ -89,6 +89,15 @@ namespace Elarya.Models
             set
             {
                 _mana = value;
+
+                if (_mana > 100)
+                {
+                    _mana = 100;
+                }
+                else if (_mana <= 0)
+                {
+                    _mana = 0;
+                }
                 OnPropertyChanged(nameof(Mana));
             }
         }
