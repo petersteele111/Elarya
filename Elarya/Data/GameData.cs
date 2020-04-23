@@ -7,6 +7,9 @@ namespace Elarya.Data
 {
     public static class GameData
     {
+
+        #region Player Data
+
         /// <summary>
         /// Method to create the Player Data
         /// </summary>
@@ -35,6 +38,8 @@ namespace Elarya.Data
                 }
             };
         }
+
+        #endregion
 
         #region GameMap
 
@@ -496,6 +501,12 @@ namespace Elarya.Data
 
         #endregion
 
+        #region Game Items
+
+        /// <summary>
+        /// Creates the Standard Game Items
+        /// </summary>
+        /// <returns>Returns a list of the Game Items</returns>
         public static List<GameItem> StandardGameItems()
         {
             return new List<GameItem>()
@@ -534,5 +545,8 @@ namespace Elarya.Data
                 new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!")
             };
         }
+
+        #endregion
+
     }
 }

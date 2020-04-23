@@ -11,6 +11,7 @@ namespace Elarya.Presentation.ViewModels
 {
     public class ElaryaGameViewModel : ObservableObject
     {
+
         #region Fields
 
         private Player _player;
@@ -45,7 +46,9 @@ namespace Elarya.Presentation.ViewModels
             set { _gameMap = value; }
         }
 
-
+        /// <summary>
+        /// Gets and Sets the Current Message
+        /// </summary>
         public string CurrentMessage
         {
             get => _currentMessage;
@@ -71,6 +74,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the Message to Display
+        /// </summary>
         public string MessageDisplay
         {
             get => _currentLocation.Messages;
@@ -177,6 +183,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and Sets the Current Game Item
+        /// </summary>
         public GameItemQuantity CurrentGameItem
         {
             get => _currentGameItem;
@@ -325,6 +334,11 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks if Player can access a location
+        /// </summary>
+        /// <param name="nextLocation"></param>
+        /// <returns></returns>
         private bool PlayerCanAccessLocation(Location nextLocation)
         {
             if (nextLocation.IsAccessibleByExperience(_player.Experience))
@@ -337,6 +351,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates Player stats based on location
+        /// </summary>
         private void PlayerMove()
         {
             if (!_player.HasVisited(_currentLocation))
@@ -513,8 +530,6 @@ namespace Elarya.Presentation.ViewModels
 
         #endregion
 
-        #endregion
-
         /// <summary>
         /// player chooses to exit game
         /// </summary>
@@ -522,6 +537,8 @@ namespace Elarya.Presentation.ViewModels
         {
             Environment.Exit(0);
         }
+
+        #endregion
 
     }
 }

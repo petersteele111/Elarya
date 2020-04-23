@@ -154,6 +154,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets Player Experience
+        /// </summary>
         public int Experience
         {
             get => _experience;
@@ -164,6 +167,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets Player Wealth
+        /// </summary>
         public int Wealth
         {
             get => _wealth;
@@ -174,6 +180,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a list of locations the player has visited
+        /// </summary>
         public List<Location> LocationsVisited
         {
             get => _locationsVisited;
@@ -183,6 +192,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a new inventory for the player
+        /// </summary>
         public ObservableCollection<GameItemQuantity> Inventory
         {
             get => _inventory;
@@ -192,6 +204,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a new inventory of potions for the player
+        /// </summary>
         public ObservableCollection<GameItemQuantity> Potions
         {
             get => _potions;
@@ -201,6 +216,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a new inventory of Clothes for the player
+        /// </summary>
         public ObservableCollection<GameItemQuantity> Clothes
         {
             get => _clothes;
@@ -210,6 +228,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a new inventory of food for the player
+        /// </summary>
         public ObservableCollection<GameItemQuantity> Food
         {
             get => _food;
@@ -219,6 +240,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets and Sets a new inventory of treasure for the player
+        /// </summary>
         public ObservableCollection<GameItemQuantity> Treasure
         {
             get => _treasure;
@@ -227,6 +251,7 @@ namespace Elarya.Models
                 _treasure = value;
             }
         }
+
         #endregion
         
         #region Constructor
@@ -248,11 +273,17 @@ namespace Elarya.Models
 
         #region Methods
 
+        /// <summary>
+        /// Calculates the players wealth
+        /// </summary>
         public void CalcWealth()
         {
             Wealth = _inventory.Sum(i => i.GameItem.Value * i.Quantity);
         }
 
+        /// <summary>
+        /// Updates the Players Inventory
+        /// </summary>
         public void UpdateInventory()
         {
             Potions.Clear();
@@ -284,11 +315,13 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Add's an item to the players inventory
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">Selected Item</param>
+        /// <param name="quantity">Quantity of Item</param>
         public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity, int quantity)
         {
-            //
-            // locate selected item in inventory
-            //
             GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity == null)
@@ -308,14 +341,11 @@ namespace Elarya.Models
         }
 
         /// <summary>
-        /// remove selected item from inventory
+        /// Remove selected item from inventory
         /// </summary>
         /// <param name="selectedGameItemQuantity">selected item</param>
         public void RemoveGameItemQuantityFromInventory(GameItemQuantity selectedGameItemQuantity)
         {
-            //
-            // locate selected item in inventory
-            //
             GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity != null)
@@ -333,12 +363,15 @@ namespace Elarya.Models
             UpdateInventory();
         }
 
+        /// <summary>
+        /// Checks if Player has visted location or not
+        /// </summary>
+        /// <param name="location">location</param>
+        /// <returns>Returns true or false if player has visted or not</returns>
         public bool HasVisited(Location location)
         {
             return _locationsVisited.Contains(location);
         }
-
-
 
         /// <summary>
         /// Default Greeting for the Player
@@ -359,5 +392,6 @@ namespace Elarya.Models
         }
 
         #endregion
+
     }
 }

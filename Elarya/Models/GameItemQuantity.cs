@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     public class GameItemQuantity
     {
+
         #region Properties
 
         /// <summary>
@@ -24,11 +25,19 @@ namespace Elarya.Models
 
         #region Constructors
 
+        /// <summary>
+        /// Public Constructor for Game Item Quantity
+        /// </summary>
         public GameItemQuantity()
         {
 
         }
 
+        /// <summary>
+        /// Public Constructor for Game Item Quantity
+        /// </summary>
+        /// <param name="gameItem">item</param>
+        /// <param name="quantity">quantity of item</param>
         public GameItemQuantity(GameItem gameItem, int quantity)
         {
             GameItem = gameItem;
@@ -36,5 +45,6 @@ namespace Elarya.Models
         }
 
         #endregion
+
     }
 }

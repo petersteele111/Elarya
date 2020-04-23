@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     public class Map
     {
+
 		#region Fields
 
 		private Location[,] _locations;
@@ -208,10 +209,10 @@ namespace Elarya.Models
 
 
 		/// <summary>
-		/// open the location controlled by a given relic
+		/// Opens a given location based on a given Item
 		/// </summary>
-		/// <param name="treasureId"></param>
-		/// <returns>user message regarding success of attempt</returns>
+		/// <param name="itemId">Item to open location</param>
+		/// <returns>Returns a message of success or not</returns>
 		public string OpenLocationsByItem(int itemId)
 		{
 			string message = "The Item did nothing.";
@@ -234,5 +235,6 @@ namespace Elarya.Models
 		}
 
 		#endregion
+
 	}
 }

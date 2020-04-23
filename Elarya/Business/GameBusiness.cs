@@ -13,12 +13,19 @@ namespace Elarya.Business
 {
     public class GameBusiness
     {
+
+        #region Fields
+
         ElaryaGameViewModel _elaryaGameViewModel;
         Player _player = new Player();
         Map _gameMap;
         MapCoordinates _initilizeMapCoordinates;
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Public Constructor for GameBusiness Class
@@ -29,6 +36,10 @@ namespace Elarya.Business
             InitializeDataSet();
             InstantiateandShowView();
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Method to initialize Default Intro Text
@@ -76,11 +87,11 @@ namespace Elarya.Business
                 if (_player.Race == Character.RaceType.Nungari)
                 {
                     _player.MageSkill += 5;
-                } 
+                }
                 else if (_player.Race == Character.RaceType.Diolecian)
                 {
                     _player.MageSkill += 10;
-                } 
+                }
                 else if (_player.Race == Character.RaceType.Draggaru)
                 {
                     _player.HealerSkill += 5;
@@ -93,7 +104,8 @@ namespace Elarya.Business
                 if (_player.Gender == Character.GenderType.Male)
                 {
                     _player.MageSkill += 5;
-                } else if (_player.Gender == Character.GenderType.Female)
+                }
+                else if (_player.Gender == Character.GenderType.Female)
                 {
                     _player.HealerSkill += 5;
                 }
@@ -107,12 +119,14 @@ namespace Elarya.Business
                 {
                     new GameItemQuantity(GameData.GameItemById(131), 500)
                 };
-            } 
+            }
             else
             {
                 _player = GameData.PlayerData();
             }
         }
+
+        #endregion
 
     }
 }

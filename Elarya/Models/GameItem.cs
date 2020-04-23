@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     public class GameItem
     {
+
         #region Fields
 
         private int _id;
@@ -80,17 +81,12 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Gets overridden information string for items
+        /// </summary>
         public string Information
         {
             get => InformationString();
-        }
-        #endregion
-
-        #region Methods
-
-        public virtual string InformationString()
-        {
-            return $"{Name}: {Description}/nValue: {Value}";
         }
 
         #endregion
@@ -108,8 +104,18 @@ namespace Elarya.Models
 
         #endregion
 
+        #region Methods
 
+        /// <summary>
+        /// Allows for override of information string
+        /// </summary>
+        /// <returns>Returns information on item</returns>
+        public virtual string InformationString()
+        {
+            return $"{Name}: {Description}/nValue: {Value}";
+        }
 
+        #endregion
 
     }
 }
