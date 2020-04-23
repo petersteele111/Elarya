@@ -26,7 +26,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            
+            <RowDefinition Height="1.7*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -45,7 +46,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
+        <DockPanel Grid.ColumnSpan="12">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Close" Click="QuitButton_Click"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+
         <!-- Information Bar-->
         <Border BorderBrush="black" BorderThickness="1px" Grid.ColumnSpan="12">
             <StackPanel Orientation="Horizontal" Margin="20px 0 0 0">
@@ -71,100 +81,326 @@
             </StackPanel>
         </Border>
 
-        <!-- Quest Log -->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Quest Log" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <!-- Space to place quest log items -->
-            </StackPanel>
-        </Border>
-        
-        <!-- Main Window-->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="8" Grid.RowSpan="12">
-
-        </Border>
-
-        <TextBox Text="{Binding CurrentLocation.Description, Mode=OneWay}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True"/>
+        <!-- General Info Panel-->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="12" Height="516" VerticalAlignment="Bottom" />
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center">
-            <TextBlock Text="Current Location: " FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 0 0 0"/>
-            <!-- Space to place main window content -->
-            <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontSize="20px"/>
-        </StackPanel>
+        <TextBlock Text="Current Location" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" Padding="10 20 0 0"/>
+        <!-- Space to place main window content -->
+        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="North" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="NorthButton_Click"/>
+        <TextBlock 
+            Text="Travel"
+            Grid.Row="4"
+            Grid.ColumnSpan="3"
+            FontSize="36"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Center"
+            FontWeight="Bold"></TextBlock>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="3" Margin="10 0 0 0">
+            <Button Content="North" FontSize="20px" FontWeight="Bold" Width="100px" Margin="0 0 0 10" Click="NorthButton_Click"/>
             <!-- Space to place main window content -->
             <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="East" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="EastButton_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="3" Margin="10 0 0 0">
+            <Button Content="East" FontSize="20px" FontWeight="Bold" Width="100px" Margin="0 0 0 10" Click="EastButton_Click"/>
             <!-- Space to place main window content -->
             <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="South" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="SouthButton_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="3" Margin="10 0 0 0">
+            <Button Content="South" FontSize="20px" FontWeight="Bold" Width="100px" Margin="0 0 0 10" Click="SouthButton_Click"/>
             <!-- Space to place main window content -->
             <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="10 0 0 0">
-            <Button Content="West" FontSize="20px" FontWeight="Bold" Padding="10 0" Width="100px" Margin="0 0 0 10" Click="WestButton_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.ColumnSpan="3" Margin="10 0 0 0">
+            <Button Content="West" FontSize="20px" FontWeight="Bold" Width="100px" Margin="0 0 0 10" Click="WestButton_Click"/>
             <!-- Space to place main window content -->
             <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="20px" Padding="10 0"/>
         </StackPanel>
 
+        <TextBlock 
+            Grid.Row="10"
+            Text="Exp: "
+            FontSize="20px"
+            FontWeight="Bold"
+            Margin="10 0 0 0"
+            />
+        <TextBlock 
+            Grid.Column="1"
+            Grid.Row="10"
+            Text="{Binding Player.Experience}"
+            FontSize="20px"
+            FontWeight="Bold"
+            />
+
+        <TextBlock 
+            Grid.Row="11"
+            Text="Wealth: "
+            FontSize="20px"
+            FontWeight="Bold"
+            Margin="10 0 0 0"
+            />
+        <TextBlock 
+            Grid.Column="1"
+            Grid.Row="11"
+            Text="{Binding Player.Wealth}"
+            FontSize="20px"
+            FontWeight="Bold"
+            />
+
+        <!-- Main Window-->
+        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="12">
+
+        </Border>
+        <TextBlock Text="Current Location Information" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20px"></TextBlock>
+        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Mage Skill: " FontSize="20px" FontWeight="Bold" />
+            <TextBlock Text="{Binding Player.MageSkill}" FontSize="20px" FontWeight="Bold"  />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock Text="Healer Skill: " FontSize="20px" FontWeight="Bold" />
+            <TextBlock Text="{Binding Player.HealerSkill}" FontSize="20px" FontWeight="Bold"  />
+        </StackPanel>
+
+        <Button
+            Grid.Row="12"
+            Grid.Column="8"
+            Content="Pick Up All"
+            Click="PickUpButton_Click" 
+            Margin="0 0 10 10"
+            />
 
         <!-- Inventory Panel-->
-        <Border BorderBrush="Black" BorderThickness="0 0 0 1" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
-                <!-- Space to place inventory items -->
-            </StackPanel>
-        </Border>
+        <Border BorderBrush="Black" BorderThickness="0 0 0 1" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="12" />
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" />
+        </StackPanel>
+
+        <TabControl
+            x:Name="LocationInfoTabControl"
+            Grid.Column="3"
+            Grid.Row="7"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="6"
+            Margin="10 0 10 0">
+            <TabItem
+                Header="Items in Location"
+                x:Name="ItemsInfoTab">
+                <DataGrid
+                    x:Name="LocationItemsDataGrid"
+                    Height="150px"
+                    ItemsSource="{Binding CurrentLocation.GameItems}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description}"
+                            Width="*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Width="Auto"
+                            Binding="{Binding Quantity}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        
+        <TabControl
+            x:Name="PlayerInfoTabControl"
+            Grid.Column="9"
+            Grid.Row="2"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="3"
+            Margin="10 0 10 0">
+            <TabItem
+                Header="Potions"
+                x:Name="PlayerPotions">
+                <DataGrid
+                    x:Name="PotionsDataGrid"
+                    ItemsSource="{Binding Player.Potions}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Name"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Name, Mode=OneWay}"
+                            Width="*" />
+                        <DataGridTextColumn
+                            Header="Value"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Value, Mode=OneWay}"
+                            Width="Auto" />
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Binding="{Binding Quantity, Mode=OneWay}"
+                            Width="Auto" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem
+                Header="Clothes"
+                x:Name="PlayerClothes">
+                <DataGrid
+                    x:Name="ClothesDataGrid"
+                    ItemsSource="{Binding Player.Clothes}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Name"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Name, Mode=OneWay}"
+                            Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Value"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Value, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Binding="{Binding Quantity, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem
+                Header="Food"
+                x:Name="PlayerFood">
+                <DataGrid
+                    x:Name="FoodDataGrid"
+                    ItemsSource="{Binding Player.Food}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Name"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Name, Mode=OneWay}"
+                            Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Value"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Value, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Binding="{Binding Quantity, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem
+                Header="Treasure"
+                x:Name="PlayerTreasure">
+                <DataGrid
+                    x:Name="TreasureDataGrid"
+                    ItemsSource="{Binding Player.Treasure}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Name"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Name, Mode=OneWay}"
+                            Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Value"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Value, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Binding="{Binding Quantity, Mode=OneWay}"
+                            Width="Auto"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        
+
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="8"
+            Grid.Column="9"
+            Grid.ColumnSpan="3">
+            <Button 
+                Content="Put Down" 
+                Click="PutDownButton_Click"
+                Width="100"
+                Margin="50 0 50 0"/>
+            <Button 
+                Content="Use" 
+                Click="UseButton_Click"
+                Width="100"/>
+        </StackPanel>
+
 
         <!-- Player Info Panel Border-->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">
+        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="3" Grid.RowSpan="5">
             
         </Border>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="3">
             <TextBlock Text="Player Info" FontSize="28px" FontWeight="Bold" HorizontalAlignment="Center" />
             <!-- Space to list messages -->
         </StackPanel>
 
 
         <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="210" Margin="10 0 0 0" VerticalAlignment="Center"/>
 
 
 
         <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center" />
+        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="210px" Margin="10 0 0 0" VerticalAlignment="Center" />
 
 
 
         <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="210px" Margin="10 0 0 0" VerticalAlignment="Center"/>
 
 
         <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Width="100px" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="210px" Margin="10 0 0 0" VerticalAlignment="Center"/>
 
         <!-- User Actions-->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="7" Grid.RowSpan="5">
+        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="6" Grid.RowSpan="5">
 
         </Border>
 
-            <TextBlock Text="Messages" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Messages" Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" VerticalAlignment="Top" FontSize="30px" FontWeight="Bold" HorizontalAlignment="Center"/>
             <!-- Space to place user action buttons -->
-        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="3" Grid.Row="15" Grid.ColumnSpan="6" Grid.RowSpan="3" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True"/>
+        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
 
             <!-- Spells/Fight-->
-        <StackPanel Orientation="Vertical" Grid.Column="10" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5">
+        <StackPanel Orientation="Vertical" Grid.Column="9" Grid.Row="13" Grid.ColumnSpan="3" Grid.RowSpan="5">
             <TextBlock Text="Spells/Fight" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
             <!-- Space to place spells/fight abilities-->
         </StackPanel>

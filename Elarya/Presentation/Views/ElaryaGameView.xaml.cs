@@ -72,5 +72,35 @@ namespace Elarya
         {
             _elaryaGameViewModel.MoveWest();
         }
+
+        private void PickUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationItemsDataGrid.SelectedItem != null)
+            {
+                _elaryaGameViewModel.AddItemToInventory();
+            }
+        }
+
+        private void PutDownButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayerInfoTabControl.SelectedItem != null)
+            {
+                _elaryaGameViewModel.RemoveItemFromInventory();
+            }
+
+        }
+
+        private void UseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayerInfoTabControl.SelectedItem != null)
+            {
+                _elaryaGameViewModel.OnUseGameItem();
+            }
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.QuitApplication();
+        }
     }
 }

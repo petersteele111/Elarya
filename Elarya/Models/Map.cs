@@ -8,11 +8,13 @@ namespace Elarya.Models
 {
     public class Map
     {
+
 		#region Fields
 
 		private Location[,] _locations;
 		private MapCoordinates _currentLocationCoords;
 		private int _maxRows, _maxColumns;
+        private List<GameItem> _standardGameItems;
 
 		#endregion
 
@@ -47,7 +49,18 @@ namespace Elarya.Models
 			get => _locations[_currentLocationCoords.Row, _currentLocationCoords.Column];
 		}
 
+        public List<GameItem> StandardGameItems
+        {
+            get => _standardGameItems;
+            set
+            {
+                _standardGameItems = value;
+            }
+        }
+
 		#endregion
+
+		#region Constructors
 
 		/// <summary>
 		/// Public Constructor
@@ -55,11 +68,13 @@ namespace Elarya.Models
 		/// <param name="rows">Number of Rows for the Map</param>
 		/// <param name="columns">Number of Columns for the Map</param>
 		public Map(int rows, int columns)
-		{
-			_maxRows = rows;
-			_maxColumns = columns;
-			_locations = new Location[rows, columns];
-		}
+        {
+            _maxRows = rows;
+            _maxColumns = columns;
+            _locations = new Location[rows, columns];
+        }
+
+        #endregion
 
 		#region Methods
 
@@ -67,7 +82,7 @@ namespace Elarya.Models
 		/// Checks to see if Player can move North
 		/// </summary>
 		/// <returns>Returns False if player cannot go North, True if they can</returns>
-		public void canMoveNorth()
+		public void CanMoveNorth()
 		{
 			if (_currentLocationCoords.Row > 0)
 			{
@@ -79,7 +94,7 @@ namespace Elarya.Models
 		/// Checks to see if Player can move East
 		/// </summary>
 		/// <returns>Returns False if player cannot go East, True if they can</returns>
-		public void canMoveEast()
+		public void CanMoveEast()
 		{
 			if (_currentLocationCoords.Column < _maxColumns - 1 )
 			{
@@ -91,7 +106,7 @@ namespace Elarya.Models
 		/// Checks to see if Player can move South
 		/// </summary>
 		/// <returns>Returns False if player cannot go South, True if they can</returns>
-		public void canMoveSouth()
+		public void CanMoveSouth()
 		{
 			if (_currentLocationCoords.Row < _maxRows - 1 )
 			{
@@ -103,7 +118,7 @@ namespace Elarya.Models
 		/// Checks to see if Player can move West
 		/// </summary>
 		/// <returns>Returns False if player cannot go West, True if they can</returns>
-		public void canMoveWest()
+		public void CanMoveWest()
 		{
 			if (_currentLocationCoords.Column > 0)
 			{
@@ -192,6 +207,34 @@ namespace Elarya.Models
 			return westLocation;
 		}
 
+
+		/// <summary>
+		/// Opens a given location based on a given Item
+		/// </summary>
+		/// <param name="itemId">Item to open location</param>
+		/// <returns>Returns a message of success or not</returns>
+		public string OpenLocationsByItem(int itemId)
+		{
+			string message = "The Item did nothing.";
+			Location mapLocation = new Location();
+
+			for (int row = 0; row < _maxRows; row++)
+			{
+				for (int column = 0; column < _maxColumns; column++)
+				{
+					mapLocation = _locations[row, column];
+
+					if (mapLocation != null && mapLocation.RequiredItem == itemId)
+					{
+						mapLocation.Accessible = true;
+						message = $"{mapLocation.Name} is now accessible.";
+					}
+				}
+			}
+			return message;
+		}
+
 		#endregion
-    }
+
+	}
 }
