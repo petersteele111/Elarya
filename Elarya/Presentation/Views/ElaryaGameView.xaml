@@ -124,23 +124,40 @@
 
         <TextBlock 
             Grid.Row="10"
-            Text="Experience: "
+            Text="Exp: "
             FontSize="20px"
             FontWeight="Bold"
+            Margin="10 0 0 0"
             />
         <TextBlock 
             Grid.Column="1"
             Grid.Row="10"
             Text="{Binding Player.Experience}"
             FontSize="20px"
-            FontWeight="Bold"/>
-        
+            FontWeight="Bold"
+            />
+
+        <TextBlock 
+            Grid.Row="11"
+            Text="Wealth: "
+            FontSize="20px"
+            FontWeight="Bold"
+            Margin="10 0 0 0"
+            />
+        <TextBlock 
+            Grid.Column="1"
+            Grid.Row="11"
+            Text="{Binding Player.Wealth}"
+            FontSize="20px"
+            FontWeight="Bold"
+            />
+
         <!-- Main Window-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="12">
 
         </Border>
         <TextBlock Text="Current Location Information" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20px"></TextBlock>
-        <TextBox Text="{Binding CurrentLocation.Description, Mode=OneWay}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
+        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10 0 0 0">
             <TextBlock Text="Mage Skill: " FontSize="20px" FontWeight="Bold" />
@@ -155,7 +172,7 @@
         <Button
             Grid.Row="12"
             Grid.Column="8"
-            Content="Pick Up"
+            Content="Pick Up All"
             Click="PickUpButton_Click" 
             Margin="0 0 10 10"
             />

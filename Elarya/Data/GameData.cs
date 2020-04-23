@@ -84,7 +84,9 @@ namespace Elarya.Data
                 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(101), 2),
+                    new GameItemQuantity(GameItemById(121), 1),
+                    new GameItemQuantity(GameItemById(123), 1)
                 }
 
             };
@@ -99,31 +101,33 @@ namespace Elarya.Data
                 "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
                 "wafts over you, inundating your senses.",
 
-                Messages = "To your left is the Herbalist Shop. A great place to herbs for healing and potions (If you have the coin) " +
+                Messages = "To your left is the Merchant Shop. A great place to sell treasures Nocti Quarks " +
                 "To your right is the Stables, filled with glorious horses of all breeds. ",
 
                 Accessible = true,
 
-                ExperienceGain = 10
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(101), 10)
+                }
             };
 
             gameMap.Locations[3, 5] = new Location()
             {
                 ID = 3,
 
-                Name = "Herbalist (Nocti)",
+                Name = "Merchant (Nocti)",
 
-                Description = "The Herbalist is pounding away in her mortar. As you enter the shop, she looks up at you " +
-                "and welcomes you to the shop! The smell of dried herbs fills your nostrils " +
-                "You glance around the shop. You see lots of different herbs for healing.",
+                Description = "The Merchant shop looks pristine and kept up. A faint scent of Junl'ai berries fill the air " +
+                "In the corner sits a case with the most magnificient gems in the land! " +
+                "On the wall behind the merchant sit scrolls from times gone by.",
 
-                Messages = "On your quest, you may have need of some herbs. " +
-                "You have limited coin however, and there are many other shops to visit before leaving on your epic quest!" +
-                "Choose wisely, or you may regret your decisions later.",
+                Messages = "On your quest, you may discover treasures throughout the land! " +
+                "Find these treasures and bring them back to the Merchant to trade for Nocti Quarks! ",
 
-                Accessible = false,
-
-                RequiredExperience = 0,
+                Accessible = true,
 
                 ExperienceGain = 10,
 
@@ -147,7 +151,12 @@ namespace Elarya.Data
 
                 RequiredExperience = 40,
 
-                ExperienceGain = 10
+                ExperienceGain = 10,
+
+                GameItems = new ObservableCollection<GameItemQuantity>
+                {
+                    new GameItemQuantity(GameItemById(132), 1)
+                }
             };
 
             gameMap.Locations[4, 7] = new Location()
@@ -164,7 +173,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(131), 2)
                 }
             };
 
@@ -188,7 +197,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(131), 10)
                 }
             };
 
@@ -213,7 +222,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(131), 1)
                 }
             };
 
@@ -235,7 +244,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(131), 5)
                 }
             };
 
@@ -250,7 +259,9 @@ namespace Elarya.Data
 
                 Accessible = false,
 
-                RequiredExperience = 100
+                RequiredExperience = 100,
+
+                ExperienceGain = 5
             };
 
             gameMap.Locations[5, 6] = new Location()
@@ -261,7 +272,7 @@ namespace Elarya.Data
 
                 Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!" ,
 
-                Messages = "Too bad they are deadly! You died!",
+                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Now Be Gone!",
 
                 Accessible = false,
 
@@ -280,7 +291,11 @@ namespace Elarya.Data
 
                 Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 100,
+
+                ExperienceGain = 5
             };
 
             gameMap.Locations[6, 6] = new Location()
@@ -293,15 +308,21 @@ namespace Elarya.Data
 
                 Messages = "You stand in a swamp of great magic! You gain +10 Mage Skill and +10 Healer Skill!",
 
-                Accessible = true,
+                Accessible = false,
+
+                RequiredExperience = 110,
 
                 MageSkill = 10,
 
                 HealerSkill = 10,
 
+                ExperienceGain = 20,
+
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(103), 1),
+                    new GameItemQuantity(GameItemById(105), 1),
+                    new GameItemQuantity(GameItemById(131), 50)
                 }
             };
 
@@ -313,8 +334,8 @@ namespace Elarya.Data
 
                 Description = "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
                 "To the east is a fishing shop and to the west is a man sitting on a dock.",
-                Messages = "After such a long journey, the thought of a fresh fish sounds tantalizing to your taste buds. " +
-                "Alas, you do not have a fishing pole however. Maybe that fishing shop to the east you've heard about can help?",
+                Messages = "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
+                "Maybe that old woman on the path up ahead might know when they open?",
 
                 Accessible = true
             };
@@ -329,13 +350,16 @@ namespace Elarya.Data
 
                 Messages = "This old man may be in some serious need of a healer and stat! " ,
 
-                Accessible = true,
+                Accessible = false,
 
-                HealerSkill = 5,
+                HealerSkill = 15,
+
+                RequiredItem = 102,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(102), 2),
+                    new GameItemQuantity(GameItemById(131), 25)
                 }
             };
 
@@ -348,16 +372,18 @@ namespace Elarya.Data
                 Description = "You see an old man, sitting on the dock, feet hanging off in the Water. This must be Tornul " +
                 "the Fishing Master everyone talks about.",
 
-                Messages = "Tornul is one of the greatest fishermen of all time! He uses his advanced knowledge of magic to call th fish to his lures. " +
+                Messages = "Tornul is one of the greatest fishermen of all time! He uses his advanced knowledge of magic to call the fish to his lures. " +
                 "Maybe he can teach you a thing or two about his magic?",
 
-                Accessible = true,
+                Accessible = false,
 
-                MageSkill = 5,
+                MageSkill = 15,
+
+                RequiredExperience = 135,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(131), 2)
                 }
             };
 
@@ -369,7 +395,11 @@ namespace Elarya.Data
 
                 Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 120,
+                
+                ExperienceGain = 10
             };
 
             gameMap.Locations[5, 9] = new Location()
@@ -380,7 +410,11 @@ namespace Elarya.Data
 
                 Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
-                Accessible = true
+                Accessible = false,
+
+                RequiredExperience = 125,
+
+                ExperienceGain = 25
             };
 
             gameMap.Locations[5, 10] = new Location()
@@ -394,13 +428,16 @@ namespace Elarya.Data
                 Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
                 "Perhaps you can learn some of this magic or even gather some dragon scale! Too bad that hike has left you starving though. 25 health lost",
 
-                Accessible = true,
+                Accessible = false,
 
-                ModifyHealth = 25,
+                ModifyHealth = -25,
+
+                RequiredExperience = 130,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(101), 1),
+                    new GameItemQuantity(GameItemById(137), 10)
                 }
             };
 
@@ -413,11 +450,15 @@ namespace Elarya.Data
                 Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . .",
 
                 Messages = "You are determined to gather loose dragon scales! Only problem is, their clutch is a solid 300 feet down the bluff " +
-                "Good thing you bought some rope back in Nocti, right?!?",
+                "Good thing you found the Scroll of Descent right?!?",
 
-                Accessible = true,
+                Accessible = false,
 
                 HealerSkill = 25,
+
+                RequiredItem = 137,
+
+                RequiredExperience = 110,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
@@ -436,13 +477,15 @@ namespace Elarya.Data
                 Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? " +
                 "I'm sure some of those mage affinity potions would come in great help in this instance!",
 
-                Accessible = true,
+                Accessible = false,
 
                 MageSkill = 25,
 
+                RequiredExperience = 150,
+
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(122), 4)
                 }
             };
 
@@ -485,7 +528,8 @@ namespace Elarya.Data
                 new Treasure(133, "Qui'lash Star", 500, Treasure.TreasureType.Gem, "The rarest gem of Qui'lash! Worth a sizeable sum"),
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
                 new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
-                new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions")
+                new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
+                new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!")
             };
         }
     }

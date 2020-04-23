@@ -17,8 +17,8 @@ namespace Elarya.Models
 
         public TreasureType Type { get; set; }
 
-        public Treasure(int id, string name, int value, TreasureType type, string description)
-            : base(id, name, value, description)
+        public Treasure(int id, string name, int value, TreasureType type, string description, string useMessage = "")
+            : base(id, name, value, description, useMessage)
         {
             Type = type;
         }

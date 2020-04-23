@@ -19,6 +19,7 @@ namespace Elarya.Presentation.ViewModels
         private TimeSpan _gameTime;
         private DateTime _gameStartTime;
         private string _gameTimeDisplay;
+        private string _currentMessage;
 
         private GameItemQuantity _currentGameItem;
 
@@ -44,6 +45,17 @@ namespace Elarya.Presentation.ViewModels
             set { _gameMap = value; }
         }
 
+
+        public string CurrentMessage
+        {
+            get => _currentMessage;
+            set
+            {
+                _currentMessage = value;
+                OnPropertyChanged(nameof(CurrentMessage));
+            }
+        }
+
         /// <summary>
         /// Gets and sets the current location
         /// </summary>
@@ -53,7 +65,9 @@ namespace Elarya.Presentation.ViewModels
             set
             {
                 _currentLocation = value;
+                _currentMessage = _currentLocation.Description;
                 OnPropertyChanged(nameof(CurrentLocation));
+                OnPropertyChanged(nameof(CurrentMessage));
             }
         }
 
@@ -185,6 +199,7 @@ namespace Elarya.Presentation.ViewModels
             _gameMap = gameMap;
             _gameMap.CurrentLocationCoords = mapCoordinates;
             _currentLocation = _gameMap.CurrentLocation;
+            _currentMessage = _currentLocation.Description;
             InitializeView();
             GameTimer();
         }
@@ -380,13 +395,10 @@ namespace Elarya.Presentation.ViewModels
             //
             if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
             {
-                //
-                // cast selected game item 
-                //
-                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem;
 
-                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity);
-                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
+                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
+                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
 
                 OnPlayerPickUp(selectedGameItemQuantity);
             }
@@ -439,13 +451,26 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void OnUseGameItem()
         {
-            switch (_currentGameItem.GameItem)
+           try
             {
-                case Potion potion:
-                    ProcessPotionUse(potion);
-                    break;
-                default:
-                    break;
+                switch (_currentGameItem.GameItem)
+                {
+                    case Potion potion:
+                        ProcessPotionUse(potion);
+                        break;
+                    case Treasure treasure:
+                        ProcessTreasure(treasure);
+                        break;
+                    case Food food:
+                        ProcessFood(food);
+                        break;
+                    default:
+                        break;
+                }
+            } 
+            catch (NullReferenceException)
+            {
+                CurrentMessage = "Sorry, there is no use for that!";
             }
         }
 
@@ -455,9 +480,36 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="potion">potion</param>
         private void ProcessPotionUse(Potion potion)
         {
+            CurrentMessage = potion.UseMessage;
+
             _player.Health += potion.HealthChange;
             _player.Life += potion.LivesChange;
+            _player.MageSkill += potion.MageSkillChange;
+            _player.HealerSkill += potion.HealerSkillChange;
             _player.Experience += potion.ExperienceGain;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+        }
+
+        private void ProcessTreasure(Treasure treasure)
+        {
+            if (treasure.Type == Treasure.TreasureType.Coin)
+            {
+                CurrentMessage = "You threw a coin to your Witcher!";
+                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            }
+            else
+            {
+                string message = _gameMap.OpenLocationsByItem(treasure.Id);
+                CurrentMessage = message;
+                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            }
+        }
+
+        private void ProcessFood(Food food)
+        {
+            CurrentMessage = food.UseMessage;
+            _player.Health += food.HealthChange;
+            _player.Mana += food.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
         }
 

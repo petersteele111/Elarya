@@ -275,7 +275,7 @@ namespace Elarya.Models
             }
         }
 
-        public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity)
+        public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity, int quantity)
         {
             //
             // locate selected item in inventory
@@ -286,13 +286,13 @@ namespace Elarya.Models
             {
                 GameItemQuantity newGameItemQuantity = new GameItemQuantity();
                 newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
-                newGameItemQuantity.Quantity = 1;
+                newGameItemQuantity.Quantity = quantity;
 
                 _inventory.Add(newGameItemQuantity);
             }
             else
             {
-                gameItemQuantity.Quantity++;
+                gameItemQuantity.Quantity += quantity;
             }
 
             UpdateInventory();

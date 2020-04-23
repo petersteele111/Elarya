@@ -21,6 +21,7 @@ namespace Elarya.Models
         private int _modifyLives;
         private int _modifyHealth;
         private int _requiredExperience;
+        private int _requiredItem;
         private int _experienceGain;
         private string _message;
         private ObservableCollection<GameItemQuantity> _gameItems;
@@ -122,6 +123,15 @@ namespace Elarya.Models
             }
         }
 
+        public int RequiredItem
+        {
+            get => _requiredItem;
+            set
+            {
+                _requiredItem = value;
+            }
+        }
+
         public ObservableCollection<GameItemQuantity> GameItems
         {
             get => _gameItems;
@@ -217,7 +227,7 @@ namespace Elarya.Models
             UpdateLocationGameItems();
         }
 
-        public void RemoveGameItemQuantityFromLocation(GameItemQuantity selectedGameItemQuantity)
+        public void RemoveGameItemQuantityFromLocation(GameItemQuantity selectedGameItemQuantity, int quantity)
         {
             //
             // locate selected item in location
@@ -226,14 +236,14 @@ namespace Elarya.Models
 
             if (gameItemQuantity != null)
             {
-                if (selectedGameItemQuantity.Quantity == 1)
+                if (selectedGameItemQuantity.Quantity == quantity)
                 {
                     _gameItems.Remove(gameItemQuantity);
                 }
-                else
-                {
-                    gameItemQuantity.Quantity--;
-                }
+                //else
+                //{
+                //    gameItemQuantity.Quantity--;
+                //}
             }
 
             UpdateLocationGameItems();
