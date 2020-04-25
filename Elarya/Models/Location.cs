@@ -24,8 +24,8 @@ namespace Elarya.Models
         private int _requiredExperience;
         private int _requiredItem;
         private int _experienceGain;
-        private string _message;
         private ObservableCollection<GameItemQuantity> _gameItems;
+        private ObservableCollection<NPC> _npcs;
 
 
 		#endregion
@@ -160,6 +160,15 @@ namespace Elarya.Models
             set
             {
                 _gameItems = value;
+            }
+        }
+
+        public ObservableCollection<NPC> Npcs
+        {
+            get => _npcs;
+            set
+            {
+                _npcs = value;
             }
         }
 

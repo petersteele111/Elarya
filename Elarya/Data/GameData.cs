@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Navigation;
 using Elarya.Models;
 
 namespace Elarya.Data
@@ -57,6 +58,12 @@ namespace Elarya.Data
             return StandardGameItems().FirstOrDefault(i => i.Id == id);
         }
 
+        public static NPC GetNpcById(int id)
+        {
+            return Npcs().FirstOrDefault(i => i.Id == id);
+        }
+
+
         /// <summary>
         /// Creates the data for the Game Map
         /// </summary>
@@ -92,6 +99,12 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(101), 2),
                     new GameItemQuantity(GameItemById(121), 1),
                     new GameItemQuantity(GameItemById(123), 1)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1004),
+                    GetNpcById(1001)
                 }
 
             };
@@ -139,6 +152,11 @@ namespace Elarya.Data
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(101), 2)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1001)
                 }
             };
 
@@ -203,6 +221,11 @@ namespace Elarya.Data
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(131), 10)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1003)
                 }
             };
 
@@ -228,6 +251,11 @@ namespace Elarya.Data
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(131), 1)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1002)
                 }
             };
 
@@ -530,7 +558,7 @@ namespace Elarya.Data
                 new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, 10, "These delicious berries can be used to restore health", "Restored 10HP"),
                 new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, 10, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
                 new Food(123, "Quil'ash Stout", 10, Food.FoodType.Drink, 25, 25, 10, "These stout is briming with medicinal herbs and roots. Great for Health and Mana", "Restored 25HP and 25 Mana"),
-                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, 10, "Ncoti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
+                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, 10, "Nocti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
                 new Food(125, "Starl'ai Boar", 40, Food.FoodType.Meat, 40, 0, 10, "Some of the finest meat around!", "Restored 40 HP"),
                 new Food(126, "Yerlund Venison", 60, Food.FoodType.Meat, 60, 0, 10, "Venision from the finest magical forest", "Restored 60HP"),
                 new Food(127, "Nocti Bakers Special", 25, Food.FoodType.Bread, 30, 30, 10, "Nocti's cheapest bread. Restores health and mana", "Restored 30 HP and 30 Mana"),
@@ -546,7 +574,106 @@ namespace Elarya.Data
             };
         }
 
-        #endregion
+        public static List<NPC> Npcs()
+        {
+            return new List<NPC>()
+            {
+                new Merchant()
+                {
+                    Id = 1001,
+                    Name = "Qenli",
+                    Age = 32,
+                    Race = Character.RaceType.Diolecian,
+                    Gender = Character.GenderType.Female,
+                    Description = "A quaint little woman with sharp eyes, and a sharper wit!",
+                    LocationId = 3,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Merchant Shop!",
+                        "Do you have any treasure to show me?",
+                        "What brings you into my shop today?",
+                        "If you come across treasure on your travels, I can make you richer!"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>
+                    {
+                        new GameItemQuantity(GameItemById(131), 1),
+                        new GameItemQuantity(GameItemById(132), 1),
+                        new GameItemQuantity(GameItemById(133), 1),
+                        new GameItemQuantity(GameItemById(134), 1),
+                        new GameItemQuantity(GameItemById(135), 1),
+                        new GameItemQuantity(GameItemById(136), 1)
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1002,
+                    Name = "Shi'ler",
+                    Age = 18,
+                    Race = Character.RaceType.Draggaru,
+                    Gender = Character.GenderType.Male,
+                    Description = "A man with a powerful presence. Decked out head to toe in the finest clothing, looking dapper!",
+                    LocationId = 7,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Tailor Shop!",
+                        "We have the finest clothing around!",
+                        "What brings you into my shop today?"
+                    },
+                    
+                    GameItems = new ObservableCollection<GameItemQuantity>
+                    {
+                        new GameItemQuantity(GameItemById(111), 1),
+                        new GameItemQuantity(GameItemById(112), 1),
+                        new GameItemQuantity(GameItemById(113), 1),
+                        new GameItemQuantity(GameItemById(114), 1),
+                        new GameItemQuantity(GameItemById(115), 1),
+                        new GameItemQuantity(GameItemById(116), 1)
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1003,
+                    Name = "Horec",
+                    Age = 32,
+                    Race = Character.RaceType.Plenskolt,
+                    Gender = Character.GenderType.Female,
+                    Description = "A rather portly woman who is covered in flour and smells of fresh baked bread! ",
+                    LocationId = 6,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Food Shop!",
+                        "We have the finest food in Nocti. What would you like today?",
+                        "What brings you into my shop today?"
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1004,
+                    Name = "Jurolion",
+                    Age = 65,
+                    Race = Character.RaceType.Nungari,
+                    Gender = Character.GenderType.Male,
+                    Description = "A tall man with a large black hood. He towers over the cauldron he tends too. ",
+                    LocationId = 8,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Potions Shop!",
+                        "Are you in need of Potions today? We have several to choose from!",
+                        "What brings you into my shop today?"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>
+                    {
+                        new GameItemQuantity(GameItemById(111), 1),
+                        new GameItemQuantity(GameItemById(112), 1),
+                        new GameItemQuantity(GameItemById(113), 1),
+                        new GameItemQuantity(GameItemById(114), 1),
+                        new GameItemQuantity(GameItemById(115), 1),
+                        new GameItemQuantity(GameItemById(116), 1)
+                    }
+                }
+            };
+        }
 
+        #endregion
     }
 }

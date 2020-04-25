@@ -98,6 +98,31 @@ namespace Elarya
             }
         }
 
+        private void TalkToNpcButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationNpcsDataGrid.SelectedItem != null)
+            {
+                _elaryaGameViewModel.OnPlayerTalkTo();
+            }
+        }
+
+        private void BuyItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationNpcsDataGrid.SelectedItem != null)
+            {
+                _elaryaGameViewModel.BuyItem();
+            }
+        }
+
+
+        private void SellItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationNpcsDataGrid.SelectedItem != null)
+            {
+                _elaryaGameViewModel.SellItem();
+            }
+        }
+
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             _elaryaGameViewModel.QuitApplication();

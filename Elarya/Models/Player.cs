@@ -340,6 +340,54 @@ namespace Elarya.Models
             UpdateInventory();
         }
 
+        public bool PayMerchant(int quantity)
+        {
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            if (gameItemQuantity != null)
+            {
+                if (gameItemQuantity.Quantity < quantity)
+                {
+                    return false;
+                }
+                else if (gameItemQuantity.Quantity == quantity)
+                {
+                    _inventory.Remove(gameItemQuantity);
+                    UpdateInventory();
+                    return true;
+                }
+                else
+                {
+                    gameItemQuantity.Quantity -= quantity;
+                    UpdateInventory();
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SellToMerchant(int quantity)
+        {
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = gameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = quantity;
+
+                _inventory.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity += quantity;
+            }
+
+            UpdateInventory();
+        }
+
+
         /// <summary>
         /// Remove selected item from inventory
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Elarya.Presentation.ViewModels
         private string _gameTimeDisplay;
         private string _currentMessage;
 
+        private NPC _currentNpc;
         private GameItemQuantity _currentGameItem;
 
         #endregion
@@ -190,6 +192,19 @@ namespace Elarya.Presentation.ViewModels
         {
             get => _currentGameItem;
             set { _currentGameItem = value; }
+        }
+
+        /// <summary>
+        /// Gets and Sets the Current NPC
+        /// </summary>
+        public NPC CurrentNpc
+        {
+            get => _currentNpc;
+            set
+            {
+                _currentNpc = value;
+                OnPropertyChanged(nameof(CurrentNpc));
+            }
         }
 
         #endregion
@@ -454,7 +469,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void OnUseGameItem()
         {
-           try
+            try
             {
                 switch (_currentGameItem.GameItem)
                 {
@@ -470,7 +485,7 @@ namespace Elarya.Presentation.ViewModels
                     default:
                         break;
                 }
-            } 
+            }
             catch (NullReferenceException)
             {
                 CurrentMessage = "Sorry, there is no use for that!";
@@ -526,6 +541,59 @@ namespace Elarya.Presentation.ViewModels
             _player.Mana += food.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
             _player.Wealth -= food.Value;
+        }
+
+        #endregion
+
+        #region NPC Actions
+
+        /// <summary>
+        /// handle the speak to event in the view
+        /// </summary>
+        public void OnPlayerTalkTo()
+        {
+            if (CurrentNpc != null && CurrentNpc is ISpeak)
+            {
+                ISpeak speakingNpc = CurrentNpc as ISpeak;
+                CurrentMessage = speakingNpc.Speak();
+            }
+        }
+
+        /// <summary>
+        /// Buy Items from an NPC
+        /// </summary>
+        public void BuyItem()
+        {
+            if (_currentGameItem != null && _currentNpc is Merchant)
+            {
+                Merchant NPC = _currentNpc as Merchant;
+                GameItemQuantity selectGameItemQuantity = _currentGameItem;
+                _player.AddGameItemQuantityToInventory(selectGameItemQuantity, selectGameItemQuantity.Quantity);
+                if (_player.PayMerchant(selectGameItemQuantity.GameItem.Value))
+                {
+                    NPC.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                    OnPlayerPutDown(selectGameItemQuantity);
+                }
+                else
+                {
+                    CurrentMessage = "Sorry, you do not have enough Nocti Quarks for that!";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Buy Items from an NPC
+        /// </summary>
+        public void SellItem()
+        {
+            if (_currentGameItem != null && _player.Inventory.Contains(_currentGameItem))
+            {
+                GameItemQuantity selectGameItemQuantity = _currentGameItem;
+                _player.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                _player.SellToMerchant(selectGameItemQuantity.GameItem.Value);
+                OnPlayerPickUp(selectGameItemQuantity);
+            }
         }
 
         #endregion
