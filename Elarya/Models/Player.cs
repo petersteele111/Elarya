@@ -31,7 +31,6 @@ namespace Elarya.Models
         private int _life;
         private int _mageSkill;
         private int _healerSkill;
-        private string _spell;
         private int _experience;
         private List<Location> _locationsVisited;
         private List<NPC> _npcsTalkedTo;
@@ -41,6 +40,7 @@ namespace Elarya.Models
         private ObservableCollection<GameItemQuantity> _clothes;
         private ObservableCollection<GameItemQuantity> _food;
         private ObservableCollection<GameItemQuantity> _treasure;
+        private ObservableCollection<GameItemQuantity> _spell;
 
         #endregion
 
@@ -145,13 +145,12 @@ namespace Elarya.Models
         /// <summary>
         /// Sets and Gets the Spell for the Player
         /// </summary>
-        public string  Spell
+        public ObservableCollection<GameItemQuantity> Spell
         {
             get => _spell;
             set
             {
                 _spell = value;
-                OnPropertyChanged(nameof(Spell));
             }
         }
 
@@ -278,6 +277,7 @@ namespace Elarya.Models
             _food = new ObservableCollection<GameItemQuantity>();
             _treasure = new ObservableCollection<GameItemQuantity>();
             _inventory = new ObservableCollection<GameItemQuantity>();
+            _spell = new ObservableCollection<GameItemQuantity>();
         }
         
         #endregion
@@ -301,6 +301,7 @@ namespace Elarya.Models
             Clothes.Clear();
             Food.Clear();
             Treasure.Clear();
+            Spell.Clear();
 
             foreach (var gameItemQuantity in _inventory)
             {
@@ -322,6 +323,11 @@ namespace Elarya.Models
                 if (gameItemQuantity.GameItem is Treasure)
                 {
                     Treasure.Add(gameItemQuantity);
+                }
+
+                if (gameItemQuantity.GameItem is Spell)
+                {
+                    Spell.Add(gameItemQuantity);
                 }
             }
         }

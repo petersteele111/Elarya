@@ -80,6 +80,7 @@
     <Compile Include="Models\NPC.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Potion.cs" />
+    <Compile Include="Models\Spell.cs" />
     <Compile Include="Models\Treasure.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Presentation\ViewModels\ElaryaGameViewModel.cs" />

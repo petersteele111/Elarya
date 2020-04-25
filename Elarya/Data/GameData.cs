@@ -31,7 +31,6 @@ namespace Elarya.Data
                 Life = 3,
                 MageSkill = 5,
                 HealerSkill = 0,
-                Spell = null,
                 Experience = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
@@ -118,7 +117,13 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                ExperienceGain = 10
+                ExperienceGain = 10,
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1005),
+                    GetNpcById(1010)
+                }
             };
 
             gameMap.Locations[3, 5] = new Location()
@@ -181,6 +186,11 @@ namespace Elarya.Data
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(131), 50)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1011)
                 }
             };
 
@@ -340,7 +350,12 @@ namespace Elarya.Data
                 Messages = "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
                 "Maybe that old woman on the path up ahead might know when they open?",
 
-                Accessible = true
+                Accessible = true,
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1009)
+                }
             };
 
             gameMap.Locations[7, 8] = new Location()
@@ -543,9 +558,10 @@ namespace Elarya.Data
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
                 new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
                 new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
-                new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
-                new Treasure(138, "Scroll of Thanks", 0, Treasure.TreasureType.Scroll, "This scroll can be used over with Tornul!"),
-                new Treasure(139, "Scroll of Revival", 250, Treasure.TreasureType.Scroll, "Scroll of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!")
+               
+                new Spell(137, "Scroll of Descent", 100, Spell.SpellType.Mage, 50, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
+                new Spell(138, "Scroll of Thanks", 0, Spell.SpellType.Mage, 25, "This scroll can be used over with Tornul!"),
+                new Spell(139, "Scroll of Revival", 250, Spell.SpellType.Healing, 75, "Scroll of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!")
             };
         }
 
@@ -733,11 +749,33 @@ namespace Elarya.Data
                 },
                 new Guard()
                 {
-
+                    Id = 1010,
+                    Name = "Captain Hrelion",
+                    Age = 32,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Nungari,
+                    Description = "The Captian is decked out in full Military Garb. A sword in one hand and a shield in the other",
+                    Messages = new List<string>()
+                    {
+                        "Good luck on your journey, now move along!",
+                        "This is no time to loiter, your future here depends on this adventure!",
+                        "Make sure you have what you need to leave the city. We won't let under prepared travelers out until you are ready"
+                    }
                 },
                 new Guard()
                 {
-
+                    Id = 1011,
+                    Name = "Seargant Lia'e",
+                    Age = 21,
+                    Gender = Character.GenderType.Female,
+                    Race = Character.RaceType.Nungari,
+                    Description = "A young Nungari woman who just completed her quest to find her calling. She guards the gate into Nocti with pride and youthfulness",
+                    Messages = new List<string>()
+                    {
+                        "You cannot leave the city without the basic provisions!",
+                        "Best of luck on your journey",
+                        "If you don't have at least 100 experience, I cannot let you leave"
+                    }
                 }
             };
         }

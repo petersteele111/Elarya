@@ -482,6 +482,12 @@ namespace Elarya.Presentation.ViewModels
                     case Food food:
                         ProcessFood(food);
                         break;
+                    case Clothes clothes:
+                        ProcessClothes(clothes);
+                        break;
+                    case Spell spell:
+                        ProcessSpell(spell);
+                        break;
                     default:
                         break;
                 }
@@ -505,6 +511,7 @@ namespace Elarya.Presentation.ViewModels
             _player.MageSkill += potion.MageSkillChange;
             _player.HealerSkill += potion.HealerSkillChange;
             _player.Experience += potion.ExperienceGain;
+            _player.Mana += potion.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
             _player.Wealth -= potion.Value;
         }
@@ -530,6 +537,22 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        private void ProcessSpell(Spell spell)
+        {
+            if (_player.Mana < spell.ManaCost)
+            {
+                CurrentMessage = "Sorry, you do not have enough mana to perform that spell!";
+            }
+            else
+            {
+                string message = _gameMap.OpenLocationsByItem(spell.Id);
+                CurrentMessage = message;
+                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+                _player.Mana -= spell.ManaCost;
+                _player.Wealth -= spell.Value;
+            }
+        }
+
         /// <summary>
         /// Process the use of Food
         /// </summary>
@@ -541,6 +564,16 @@ namespace Elarya.Presentation.ViewModels
             _player.Mana += food.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
             _player.Wealth -= food.Value;
+        }
+
+        private void ProcessClothes(Clothes clothes)
+        {
+            CurrentMessage = clothes.UseMessage;
+            _player.Experience += clothes.ExperienceGain;
+            _player.MageSkill += clothes.MageSkillChange;
+            _player.HealerSkill += clothes.HealerSkillChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            _player.Wealth -= clothes.Value;
         }
 
         #endregion

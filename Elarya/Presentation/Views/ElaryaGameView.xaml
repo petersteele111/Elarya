@@ -153,15 +153,15 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn
-                            Header="QTY"
-                            IsReadOnly="True"
-                            Width="Auto"
-                            Binding="{Binding Quantity}" />
-                        <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
                             Width="Auto"
                             Binding="{Binding GameItem.Value}" />
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Width="Auto"
+                            Binding="{Binding Quantity}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -248,7 +248,18 @@
                             Header="Name"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Name, Mode=OneWay}"
-                            Width="*" />
+                            Width="Auto" />
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description, Mode=OneWay}"
+                            Width="6*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
@@ -276,7 +287,18 @@
                             Header="Name"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Name, Mode=OneWay}"
-                            Width="*"/>
+                            Width="Auto"/>
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description, Mode=OneWay}"
+                            Width="6*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
@@ -304,7 +326,18 @@
                             Header="Name"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Name, Mode=OneWay}"
-                            Width="*"/>
+                            Width="Auto"/>
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description, Mode=OneWay}"
+                            Width="6*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
@@ -332,7 +365,62 @@
                             Header="Name"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Name, Mode=OneWay}"
-                            Width="*"/>
+                            Width="Auto"/>
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description, Mode=OneWay}"
+                            Width="6*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header="Value"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Value, Mode=OneWay}"
+                            Width="Auto"/>
+                        <DataGridTextColumn
+                            Header="QTY"
+                            IsReadOnly="True"
+                            Binding="{Binding Quantity, Mode=OneWay}"
+                            Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem
+                Header="Spells (Scrolls)"
+                x:Name="PlayerSpells">
+                <DataGrid
+                    x:Name="SpellsDataGrid"
+                    ItemsSource="{Binding Player.Spell}"
+                    SelectedItem="{Binding CurrentGameItem}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="Name"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Name, Mode=OneWay}"
+                            Width="Auto"/>
+                        <DataGridTextColumn
+                            Header="Description"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.Description, Mode=OneWay}"
+                            Width="6*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                            <DataGridTextColumn
+                            Header="Mana Cost"
+                            IsReadOnly="True"
+                            Binding="{Binding GameItem.ManaCost, Mode=OneWay}"
+                            Width="2*"/>
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
