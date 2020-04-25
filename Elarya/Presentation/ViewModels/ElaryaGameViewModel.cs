@@ -556,6 +556,14 @@ namespace Elarya.Presentation.ViewModels
             {
                 ISpeak speakingNpc = CurrentNpc as ISpeak;
                 CurrentMessage = speakingNpc.Speak();
+                if (!_player.HasTalkedTo(_currentNpc))
+                {
+                    _player.NpcsTalkedTo.Add(_currentNpc);
+                    _player.MageSkill += _currentNpc.MageSkillGain;
+                    _player.HealerSkill += _currentNpc.HealerSkillGain;
+                    OnPropertyChanged(nameof(MessageDisplay));
+                }
+                
             }
         }
 
@@ -564,14 +572,13 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void BuyItem()
         {
-            if (_currentGameItem != null && _currentNpc is Merchant && _currentNpc.GameItems.Contains(_currentGameItem))
+            if (_currentGameItem != null && _currentNpc.GameItems.Contains(_currentGameItem))
             {
-                Merchant NPC = _currentNpc as Merchant;
                 GameItemQuantity selectGameItemQuantity = _currentGameItem;
                 if (_player.PayMerchant(selectGameItemQuantity.GameItem.Value))
                 {
-                    _player.AddGameItemQuantityToInventory(selectGameItemQuantity, selectGameItemQuantity.Quantity);
-                    //NPC.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                    _player.AddGameItemQuantityToInventory(selectGameItemQuantity, 1);
+                    _currentNpc.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
                     OnPlayerPutDown(selectGameItemQuantity);
                 }
                 else

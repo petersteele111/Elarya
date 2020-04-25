@@ -12,6 +12,10 @@ namespace Elarya.Models
         public string Description { get; set; }
         private ObservableCollection<GameItemQuantity> _gameItems;
 
+        public int MageSkillGain { get; set; }
+
+        public int HealerSkillGain { get; set; }
+
         public ObservableCollection<GameItemQuantity> GameItems 
         {
             get => _gameItems;

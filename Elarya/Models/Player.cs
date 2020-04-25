@@ -34,6 +34,7 @@ namespace Elarya.Models
         private string _spell;
         private int _experience;
         private List<Location> _locationsVisited;
+        private List<NPC> _npcsTalkedTo;
         private int _wealth;
         private ObservableCollection<GameItemQuantity> _inventory;
         private ObservableCollection<GameItemQuantity> _potions;
@@ -192,6 +193,15 @@ namespace Elarya.Models
             }
         }
 
+        public List<NPC> NpcsTalkedTo
+        {
+            get => _npcsTalkedTo;
+            set
+            {
+                _npcsTalkedTo = value;
+            }
+        }
+
         /// <summary>
         /// Gets and Sets a new inventory for the player
         /// </summary>
@@ -262,6 +272,7 @@ namespace Elarya.Models
         public Player()
         {
             _locationsVisited = new List<Location>();
+            _npcsTalkedTo = new List<NPC>();
             _potions = new ObservableCollection<GameItemQuantity>();
             _clothes = new ObservableCollection<GameItemQuantity>();
             _food = new ObservableCollection<GameItemQuantity>();
@@ -419,6 +430,12 @@ namespace Elarya.Models
         public bool HasVisited(Location location)
         {
             return _locationsVisited.Contains(location);
+        }
+
+
+        public bool HasTalkedTo(NPC npc)
+        {
+            return _npcsTalkedTo.Contains(npc);
         }
 
         /// <summary>

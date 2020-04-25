@@ -35,7 +35,7 @@ namespace Elarya.Data
                 Experience = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(GameItemById(131), 500)
+                    new GameItemQuantity(GameItemById(131), 1000)
                 }
             };
         }
@@ -264,9 +264,7 @@ namespace Elarya.Data
                 Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
                 "from the North.",
 
-                Accessible = false,
-
-                RequiredExperience = 100,
+                Accessible = true,
 
                 ExperienceGain = 5
             };
@@ -283,8 +281,6 @@ namespace Elarya.Data
 
                 Accessible = false,
 
-                RequiredExperience = 110,
-
                 ModifyHealth = -75,
 
                 ModifyLives = -1
@@ -298,9 +294,7 @@ namespace Elarya.Data
 
                 Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
-                Accessible = false,
-
-                RequiredExperience = 100,
+                Accessible = true,
 
                 ExperienceGain = 5
             };
@@ -363,12 +357,17 @@ namespace Elarya.Data
 
                 HealerSkill = 15,
 
-                RequiredItem = 102,
+                RequiredItem = 139,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(102), 2),
                     new GameItemQuantity(GameItemById(131), 25)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1007)
                 }
             };
 
@@ -388,11 +387,16 @@ namespace Elarya.Data
 
                 MageSkill = 15,
 
-                RequiredExperience = 135,
+                RequiredItem = 138,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(131), 2)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1006)
                 }
             };
 
@@ -404,10 +408,8 @@ namespace Elarya.Data
 
                 Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
-                Accessible = false,
+                Accessible = true,
 
-                RequiredExperience = 120,
-                
                 ExperienceGain = 10
             };
 
@@ -419,9 +421,7 @@ namespace Elarya.Data
 
                 Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
-                Accessible = false,
-
-                RequiredExperience = 125,
+                Accessible = true,
 
                 ExperienceGain = 25
             };
@@ -437,16 +437,14 @@ namespace Elarya.Data
                 Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
                 "Perhaps you can learn some of this magic or even gather some dragon scale! Too bad that hike has left you starving though. 25 health lost",
 
-                Accessible = false,
+                Accessible = true,
 
                 ModifyHealth = -25,
-
-                RequiredExperience = 130,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(101), 1),
-                    new GameItemQuantity(GameItemById(137), 10)
+                    new GameItemQuantity(GameItemById(137), 1)
                 }
             };
 
@@ -466,8 +464,6 @@ namespace Elarya.Data
                 HealerSkill = 25,
 
                 RequiredItem = 137,
-
-                RequiredExperience = 110,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
@@ -490,8 +486,6 @@ namespace Elarya.Data
 
                 MageSkill = 25,
 
-                RequiredExperience = 150,
-
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(122), 4)
@@ -513,21 +507,26 @@ namespace Elarya.Data
         {
             return new List<GameItem>()
             {
-                new Potion(101, "Lesser Health Potion", 10, 25, 0, 0, 0, 0, 10, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
-                new Potion(102, "Greater Health Potion", 25, 75, 0, 0, 0, 0, 10, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
+                new Potion(101, "Lesser Health Potion", 50, 25, 0, 0, 0, 0, 10, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
+                new Potion(102, "Greater Health Potion", 150, 75, 0, 0, 0, 0, 10, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
                 new Potion(103, "Lesser Mage Potion", 100, 0, 0, 0, 10, 0, 10, "Lesser Mage Potion grants 10 Mage Skill Points", "You gained 10 Mage Skill Points"),
                 new Potion(104, "Greater Mage Potion", 250, 0, 0, 0, 25, 0, 10, "Greater Mage Potion grants 25 Mage Skill Points", "You gained 25 Mage Skill Points"),
                 new Potion(105, "Lesser Healer Potion", 100, 0, 0, 0, 0, 10, 10, "Lesser Healer Potion grants 10 Healer Skill Points", "You gained 10 Healer Skill Points"),
                 new Potion(106, "Greater Healer Potion", 250, 0, 0, 0, 0, 25, 10, "Greater Healer Potion grants 25 Healer Skill Points", "You gained 25 Healer Skill Points"),
-                new Potion(107, "Mana Potion", 10, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
+                new Potion(107, "Mana Potion", 50, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
                 new Potion(108, "Life Potion", 500, 100, 1, 100, 0, 0, 10, "Life Potions grant 1 life, Full Health, and Full Mana", "You gained 1 life, Full Health, and Full Mana"),
+                
 
-                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 10, "This hat pulses with the power of many mages!"),
-                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 10, "This robe has decades of mages secrets woven into it's fibers"),
-                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 10,"This clock glows with the power of the Quin'lai mages"),
-                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 10, "The hat glows with the golden light of Aqua'l"),
-                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 10, "This robe seems to be imbued with healing powers"),
-                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 10, "This cloak casts a warm healing light"),
+                new Potion(109, "Free Mage Potion", 0, 0, 0, 0, 25, 0, 25, "Increase your Mage Skill points", "You gained 25 Mage Skill Points"),
+                new Potion(110, "Free Healer Potion", 0, 0, 0, 0, 0, 25, 0, "Grants 25 Healer Skill", "You gained 25 Healer Skill Points!"),
+
+
+                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 20, "This hat pulses with the power of many mages!"),
+                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 20, "This robe has decades of mages secrets woven into it's fibers"),
+                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 20,"This cloak glows with the power of the Quin'lai mages"),
+                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 20, "The hat glows with the golden light of Aqua'l"),
+                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 20, "This robe seems to be imbued with healing powers"),
+                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 20, "This cloak casts a warm healing light"),
 
                 new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, 10, "These delicious berries can be used to restore health", "Restored 10HP"),
                 new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, 10, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
@@ -544,7 +543,9 @@ namespace Elarya.Data
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
                 new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
                 new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
-                new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!")
+                new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
+                new Treasure(138, "Scroll of Thanks", 0, Treasure.TreasureType.Scroll, "This scroll can be used over with Tornul!"),
+                new Treasure(139, "Scroll of Revival", 250, Treasure.TreasureType.Scroll, "Scroll of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!")
             };
         }
 
@@ -567,6 +568,11 @@ namespace Elarya.Data
                         "Do you have any treasure to show me?",
                         "What brings you into my shop today?",
                         "If you come across treasure on your travels, I can make you richer!"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(139), 1),
+                        new GameItemQuantity(GameItemById(137),1)
                     }
                 },
                 new Merchant()
@@ -612,14 +618,14 @@ namespace Elarya.Data
                     },
                     GameItems = new ObservableCollection<GameItemQuantity>()
                     {
-                        new GameItemQuantity(GameItemById(121), 1),
-                        new GameItemQuantity(GameItemById(122), 1),
-                        new GameItemQuantity(GameItemById(123), 1),
-                        new GameItemQuantity(GameItemById(124), 1),
-                        new GameItemQuantity(GameItemById(125), 1),
-                        new GameItemQuantity(GameItemById(126), 1),
-                        new GameItemQuantity(GameItemById(127), 1),
-                        new GameItemQuantity(GameItemById(128), 1),
+                        new GameItemQuantity(GameItemById(121), 10),
+                        new GameItemQuantity(GameItemById(122), 10),
+                        new GameItemQuantity(GameItemById(123), 10),
+                        new GameItemQuantity(GameItemById(124), 10),
+                        new GameItemQuantity(GameItemById(125), 10),
+                        new GameItemQuantity(GameItemById(126), 10),
+                        new GameItemQuantity(GameItemById(127), 10),
+                        new GameItemQuantity(GameItemById(128), 10),
 
                     }
                 },
@@ -649,6 +655,89 @@ namespace Elarya.Data
                         new GameItemQuantity(GameItemById(107), 10),
                         new GameItemQuantity(GameItemById(108), 10)
                     }
+                },
+                new Citizen()
+                {
+                    Id = 1005,
+                    Name = "Tru'pli",
+                    Age = 43,
+                    Description = "A citizen from Diolece! 4 arms, 3 legs, and 6 eyes! Rare around these parts",
+                    Race = Character.RaceType.Diolecian,
+                    Gender = Character.GenderType.Nonbinary,
+                    Messages = new List<string>()
+                    {
+                        "Oh how exciting! You are going on your coming of age adventure today!",
+                        "You know, I hear there is a wonderful magic swamp around here.",
+                        "If your going on your adventure, make sure to stock up on some potions and food!",
+                        "Have you seen where they sell Wizard berries? Oh nvm, I couldn't afford them anyways."
+                    }
+                },
+                new Citizen()
+                {
+                    Id = 1006,
+                    Name = "Tornul",
+                    Age = 150,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Plenskolt,
+                    Description = "Tornul is an old wizard, who has mastered the art of fish magic!",
+                    MageSkillGain = 25,
+                    Messages = new List<string>()
+                    {
+                        "Welcome traveler! I heard what you did for my friend over in the Fish shop! Here take this Mage Skill Potion if you are interested and some Mage Skill Points too!"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(109), 1)
+                    }
+
+                },
+                new Citizen()
+                {
+                    Id = 1007,
+                    Name = "Hrcs'et",
+                    Age = 95,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Draggaru,
+                    Description = "A frail old Draggaru who is not looking so well",
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(110), 1),
+                        new GameItemQuantity(GameItemById(138), 1)
+                    },
+                    HealerSkillGain = 25,
+                    Messages = new List<string>()
+                    {
+                        "Thank you so much for healing me!",
+                        "Wow I feel so much better, thank you!",
+                        "Did you remember to grab that free Scroll of Thanks yet?"
+                    }
+                },
+                new Citizen()
+                {
+
+                },
+                new Citizen()
+                {
+                    Id = 1009,
+                    Name = "Relia",
+                    Age = 65,
+                    Gender = Character.GenderType.Female,
+                    Race = Character.RaceType.Nungari,
+                    Description = "She may look old, but this woman in spritely and alive!",
+                    Messages = new List<string>()
+                    {
+                        "Hello Traveler!",
+                        "I hope your journey has been treating you well so far?",
+                        "I hear the fish shop owner is not doing so well, if you have a greater heal potion, I am sure it would perk him right up!"
+                    }
+                },
+                new Guard()
+                {
+
+                },
+                new Guard()
+                {
+
                 }
             };
         }

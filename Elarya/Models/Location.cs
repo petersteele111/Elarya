@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Elarya.Models
 {
@@ -209,6 +210,7 @@ namespace Elarya.Models
 
         #region Methods
 
+        // TODO: Fix this so that if the required experience is 0, it does not become accessible. Remove comment as well
         /// <summary>
         /// Checks if location is accessbile by experience points
         /// </summary>
@@ -216,7 +218,17 @@ namespace Elarya.Models
         /// <returns>Returns true or false if player can access location</returns>
         public bool IsAccessibleByExperience(int experience)
         {
-            return experience >= _requiredExperience ? true : false;
+            if (_requiredExperience == 0)
+            {
+                return false;
+            } 
+            else if (experience >= _requiredExperience)
+            {
+                return true;
+            }
+
+            return false;
+            //return experience >= _requiredExperience ? true : false;
         }
 
         /// <summary>
