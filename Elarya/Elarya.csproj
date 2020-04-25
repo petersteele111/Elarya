@@ -66,6 +66,7 @@
     <Compile Include="Business\GameBusiness.cs" />
     <Compile Include="Data\GameData.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Citizen.cs" />
     <Compile Include="Models\Clothes.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\GameItem.cs" />
