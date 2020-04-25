@@ -564,14 +564,14 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void BuyItem()
         {
-            if (_currentGameItem != null && _currentNpc is Merchant)
+            if (_currentGameItem != null && _currentNpc is Merchant && _currentNpc.GameItems.Contains(_currentGameItem))
             {
                 Merchant NPC = _currentNpc as Merchant;
                 GameItemQuantity selectGameItemQuantity = _currentGameItem;
-                _player.AddGameItemQuantityToInventory(selectGameItemQuantity, selectGameItemQuantity.Quantity);
                 if (_player.PayMerchant(selectGameItemQuantity.GameItem.Value))
                 {
-                    NPC.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                    _player.AddGameItemQuantityToInventory(selectGameItemQuantity, selectGameItemQuantity.Quantity);
+                    //NPC.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
                     OnPlayerPutDown(selectGameItemQuantity);
                 }
                 else

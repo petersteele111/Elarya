@@ -99,12 +99,6 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(101), 2),
                     new GameItemQuantity(GameItemById(121), 1),
                     new GameItemQuantity(GameItemById(123), 1)
-                },
-
-                Npcs = new ObservableCollection<NPC>()
-                {
-                    GetNpcById(1004),
-                    GetNpcById(1001)
                 }
 
             };
@@ -124,12 +118,7 @@ namespace Elarya.Data
 
                 Accessible = true,
 
-                ExperienceGain = 10,
-
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(101), 5)
-                }
+                ExperienceGain = 10
             };
 
             gameMap.Locations[3, 5] = new Location()
@@ -148,11 +137,6 @@ namespace Elarya.Data
                 Accessible = true,
 
                 ExperienceGain = 10,
-
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(101), 2)
-                },
 
                 Npcs = new ObservableCollection<NPC>()
                 {
@@ -196,7 +180,7 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(131), 2)
+                    new GameItemQuantity(GameItemById(131), 50)
                 }
             };
 
@@ -217,11 +201,6 @@ namespace Elarya.Data
                 RequiredExperience = 10,
 
                 ExperienceGain = 10,
-
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(131), 10)
-                },
 
                 Npcs = new ObservableCollection<NPC>()
                 {
@@ -248,11 +227,6 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(131), 1)
-                },
-
                 Npcs = new ObservableCollection<NPC>()
                 {
                     GetNpcById(1002)
@@ -275,9 +249,9 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(131), 5)
+                    GetNpcById(1004)
                 }
             };
 
@@ -593,15 +567,6 @@ namespace Elarya.Data
                         "Do you have any treasure to show me?",
                         "What brings you into my shop today?",
                         "If you come across treasure on your travels, I can make you richer!"
-                    },
-                    GameItems = new ObservableCollection<GameItemQuantity>
-                    {
-                        new GameItemQuantity(GameItemById(131), 1),
-                        new GameItemQuantity(GameItemById(132), 1),
-                        new GameItemQuantity(GameItemById(133), 1),
-                        new GameItemQuantity(GameItemById(134), 1),
-                        new GameItemQuantity(GameItemById(135), 1),
-                        new GameItemQuantity(GameItemById(136), 1)
                     }
                 },
                 new Merchant()
@@ -620,7 +585,7 @@ namespace Elarya.Data
                         "What brings you into my shop today?"
                     },
                     
-                    GameItems = new ObservableCollection<GameItemQuantity>
+                    GameItems = new ObservableCollection<GameItemQuantity>()
                     {
                         new GameItemQuantity(GameItemById(111), 1),
                         new GameItemQuantity(GameItemById(112), 1),
@@ -644,6 +609,18 @@ namespace Elarya.Data
                         "Welcome to the Food Shop!",
                         "We have the finest food in Nocti. What would you like today?",
                         "What brings you into my shop today?"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(121), 1),
+                        new GameItemQuantity(GameItemById(122), 1),
+                        new GameItemQuantity(GameItemById(123), 1),
+                        new GameItemQuantity(GameItemById(124), 1),
+                        new GameItemQuantity(GameItemById(125), 1),
+                        new GameItemQuantity(GameItemById(126), 1),
+                        new GameItemQuantity(GameItemById(127), 1),
+                        new GameItemQuantity(GameItemById(128), 1),
+
                     }
                 },
                 new Merchant()
@@ -661,14 +638,16 @@ namespace Elarya.Data
                         "Are you in need of Potions today? We have several to choose from!",
                         "What brings you into my shop today?"
                     },
-                    GameItems = new ObservableCollection<GameItemQuantity>
+                    GameItems = new ObservableCollection<GameItemQuantity>()
                     {
-                        new GameItemQuantity(GameItemById(111), 1),
-                        new GameItemQuantity(GameItemById(112), 1),
-                        new GameItemQuantity(GameItemById(113), 1),
-                        new GameItemQuantity(GameItemById(114), 1),
-                        new GameItemQuantity(GameItemById(115), 1),
-                        new GameItemQuantity(GameItemById(116), 1)
+                        new GameItemQuantity(GameItemById(101), 10),
+                        new GameItemQuantity(GameItemById(102), 10),
+                        new GameItemQuantity(GameItemById(103), 10),
+                        new GameItemQuantity(GameItemById(104), 10),
+                        new GameItemQuantity(GameItemById(105), 10),
+                        new GameItemQuantity(GameItemById(106), 10),
+                        new GameItemQuantity(GameItemById(107), 10),
+                        new GameItemQuantity(GameItemById(108), 10)
                     }
                 }
             };
