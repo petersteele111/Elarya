@@ -28,10 +28,7 @@ namespace Elarya.Models
         public List<NPC> RequiredNpcs
         {
             get => _requiredNpcs;
-            set
-            {
-                _requiredNpcs = value;
-            }
+            set => _requiredNpcs = value;
         }
 
         #endregion

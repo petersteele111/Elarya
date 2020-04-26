@@ -35,12 +35,15 @@ namespace Elarya.Models
         private List<Location> _locationsVisited;
         private List<NPC> _npcsTalkedTo;
         private int _wealth;
+        private List<NPC> _npcsEngaged;
+
         private ObservableCollection<GameItemQuantity> _inventory;
         private ObservableCollection<GameItemQuantity> _potions;
         private ObservableCollection<GameItemQuantity> _clothes;
         private ObservableCollection<GameItemQuantity> _food;
         private ObservableCollection<GameItemQuantity> _treasure;
         private ObservableCollection<GameItemQuantity> _spell;
+        private ObservableCollection<Quest> _quests;
 
         #endregion
 
@@ -265,6 +268,12 @@ namespace Elarya.Models
             }
         }
 
+        public ObservableCollection<Quest> Quests
+        {
+            get => _quests;
+            set => _quests = value;
+        }
+
         #endregion
         
         #region Constructor
@@ -276,12 +285,14 @@ namespace Elarya.Models
         {
             _locationsVisited = new List<Location>();
             _npcsTalkedTo = new List<NPC>();
+            _npcsEngaged = new List<NPC>();
             _potions = new ObservableCollection<GameItemQuantity>();
             _clothes = new ObservableCollection<GameItemQuantity>();
             _food = new ObservableCollection<GameItemQuantity>();
             _treasure = new ObservableCollection<GameItemQuantity>();
             _inventory = new ObservableCollection<GameItemQuantity>();
             _spell = new ObservableCollection<GameItemQuantity>();
+            _quests = new ObservableCollection<Quest>();
         }
         
         #endregion
@@ -477,6 +488,44 @@ namespace Elarya.Models
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateQuestStatus()
+        {
+            foreach (Quest quest in _quests.Where(q=>q.Status == Quest.QuestStatus.Incomplete))
+            {
+                if (quest is QuestTravel)
+                {
+                    if (((QuestTravel)quest).LocationsNotCompleted(_locationsVisited).Count == 0)
+                    {
+                        quest.Status = Quest.QuestStatus.Complete;
+                        Experience += quest.ExperienceGain;
+                    }
+                } 
+                else if (quest is QuestGather)
+                {
+                    if (((QuestGather)quest).GameItemQuantitiesNotCompleted(_inventory.ToList()).Count == 0)
+                    {
+                        quest.Status = Quest.QuestStatus.Complete;
+                        Experience += quest.ExperienceGain;
+                    }
+                }
+                else if (quest is QuestEngage)
+                {
+                    if (((QuestEngage)quest).NpcsNotEngaged(_npcsEngaged).Count == 0)
+                    {
+                        quest.Status = Quest.QuestStatus.Complete;
+                        Experience += quest.ExperienceGain;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unknown Mission Child Class");
+                }
+            }
+        }
+
+
+
 
         #endregion
 

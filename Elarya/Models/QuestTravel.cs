@@ -17,7 +17,7 @@ namespace Elarya.Models
         private string _description;
         private Quest.QuestStatus _status;
         private string _statusDetail;
-        private InputGesture _experienceGain;
+        private int _experienceGain;
         private List<Location> _requiredLocations;
 
         #endregion
@@ -30,10 +30,7 @@ namespace Elarya.Models
         public List<Location> RequiredLocations
         {
             get => _requiredLocations;
-            set
-            {
-                _requiredLocations = value;
-            }
+            set => _requiredLocations = value;
         }
 
         #endregion

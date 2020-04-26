@@ -88,6 +88,7 @@
     <Compile Include="Models\Treasure.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Presentation\ViewModels\ElaryaGameViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\QuestStatusViewModel.cs" />
     <Compile Include="Presentation\Views\ElaryaGameView.xaml.cs">
       <DependentUpon>ElaryaGameView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,6 +101,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\QuestStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentation\Views\HelpWindow.xaml.cs">
@@ -107,6 +112,9 @@
     </Compile>
     <Compile Include="Presentation\Views\PlayerSetupView.xaml.cs">
       <DependentUpon>PlayerSetupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\QuestStatusView.xaml.cs">
+      <DependentUpon>QuestStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -140,9 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Presentation\Resources\Assets\Images\input.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Presentation\Views\input.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Presentation\Resources\Assets\Sounds\background.wav">

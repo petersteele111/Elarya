@@ -22,6 +22,9 @@ namespace Elarya.Models
 
         #region Properties
 
+        /// <summary>
+        /// Gets and Sets the Required Game Items
+        /// </summary>
         public List<GameItemQuantity> RequiredGameItemQuantites
         {
             get => _requiredGameItemQuantities;
@@ -60,6 +63,11 @@ namespace Elarya.Models
 
         #region Methods
 
+        /// <summary>
+        /// Finds the game items that are still needed to complete the Quest
+        /// </summary>
+        /// <param name="inventory">items</param>
+        /// <returns>Returns the items still needed for the Quest</returns>
         public List<GameItemQuantity> GameItemQuantitiesNotCompleted(List<GameItemQuantity> inventory)
         {
             List<GameItemQuantity> gameItemQuantitiesToComplete = new List<GameItemQuantity>();

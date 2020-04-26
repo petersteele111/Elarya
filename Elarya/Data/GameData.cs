@@ -35,6 +35,12 @@ namespace Elarya.Data
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(131), 1000)
+                },
+                Quests = new ObservableCollection<Quest>()
+                {
+                    QuestById(1),
+                    QuestById(2),
+                    QuestById(3)
                 }
             };
         }
@@ -72,6 +78,30 @@ namespace Elarya.Data
             return Npcs().FirstOrDefault(i => i.Id == id);
         }
 
+        /// <summary>
+        /// Gets a Quest by Id
+        /// </summary>
+        /// <param name="id">Id of Quest</param>
+        /// <returns>Returns the selected Quest</returns>
+        public static Quest QuestById(int id)
+        {
+            return Quests().FirstOrDefault(q => q.Id == id);
+        }
+
+        public static Location LocationById(int id)
+        {
+            List<Location> locations =new List<Location>();
+
+            foreach (Location location in GameMap().Locations)
+            {
+                if (location != null)
+                {
+                    locations.Add(location);
+                }
+            }
+
+            return locations.FirstOrDefault(x => x.ID == id);
+        }
 
         /// <summary>
         /// Creates the data for the Game Map
@@ -835,6 +865,104 @@ namespace Elarya.Data
                         "You cannot leave the city without the basic provisions!",
                         "Best of luck on your journey",
                         "If you don't have at least 100 experience, I cannot let you leave"
+                    }
+                }
+            };
+        }
+
+        #endregion
+
+        #region Quests
+
+        public static List<Quest> Quests()
+        {
+            return new List<Quest>()
+            {
+                new QuestEngage()
+                {
+                    Id = 1,
+
+                    Name = "Speak to NPC's",
+
+                    Description =
+                        "Talk to all NPC's in the Game. Some are locked behind items and will require those Quests to be complete to open NPC's Up",
+
+                    Status = Quest.QuestStatus.Incomplete,
+
+                    RequiredNpcs = new List<NPC>()
+                    {
+                        GetNpcById(1001),
+                        GetNpcById(1002),
+                        GetNpcById(1003),
+                        GetNpcById(1004),
+                        GetNpcById(1005),
+                        GetNpcById(1006),
+                        GetNpcById(1007),
+                        GetNpcById(1008),
+                        GetNpcById(1009),
+                        GetNpcById(1010),
+                        GetNpcById(1011)
+                    },
+
+                    ExperienceGain = 100
+                },
+
+                new QuestTravel()
+                {
+                    Id = 2,
+
+                    Name = "Exploration",
+
+                    Description =
+                        "Travel to all area's in the game. Some areas are experienced locked or require a certain item to unlock them",
+
+                    Status = Quest.QuestStatus.Incomplete,
+
+                    RequiredLocations = new List<Location>()
+                    {
+                        LocationById(1),
+                        LocationById(2),
+                        LocationById(3),
+                        LocationById(4),
+                        LocationById(5),
+                        LocationById(6),
+                        LocationById(7),
+                        LocationById(8),
+                        LocationById(9),
+                        LocationById(10),
+                        LocationById(11),
+                        LocationById(12),
+                        LocationById(13),
+                        LocationById(14),
+                        LocationById(15),
+                        LocationById(16),
+                        LocationById(17),
+                        LocationById(18),
+                        LocationById(19),
+                        LocationById(20)
+                    },
+
+                    ExperienceGain = 250
+                },
+
+                new QuestGather()
+                {
+                    Id = 3,
+
+                    Name = "Trasure Hunter",
+
+                    Description = "Find all the treasures in the land!",
+
+                    Status = Quest.QuestStatus.Incomplete,
+
+                    RequiredGameItemQuantites = new List<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(132), 1),
+                        new GameItemQuantity(GameItemById(133), 1),
+                        new GameItemQuantity(GameItemById(134), 1),
+                        new GameItemQuantity(GameItemById(135), 1),
+                        new GameItemQuantity(GameItemById(136), 1),
+
                     }
                 }
             };

@@ -723,7 +723,7 @@ namespace Elarya.Presentation.ViewModels
         public void Help()
         {
             HelpWindow helpWindow = new HelpWindow();
-            helpWindow.Show();
+            helpWindow.ShowDialog();
         }
 
         /// <summary>
