@@ -154,6 +154,9 @@
     <Content Include="Presentation\Resources\Assets\Sounds\MagicUnlock.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Presentation\Resources\Assets\Sounds\PlayerCreateScreen.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

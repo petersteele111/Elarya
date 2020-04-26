@@ -555,8 +555,12 @@ namespace Elarya.Presentation.ViewModels
             {
                 string message = _gameMap.OpenLocationsByItem(treasure.Id);
                 CurrentMessage = message;
-                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-                _player.Wealth -= treasure.Value;
+                if (message != "The Item did nothing.")
+                {
+                    _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+                    _player.Wealth -= treasure.Value;
+                }
+                
             }
         }
 
@@ -573,7 +577,7 @@ namespace Elarya.Presentation.ViewModels
                 _player.Life--;
                 if (_player.Life == 0)
                 {
-                    OnPlayerDies("Oh no, you have run out of lives! Play again?");
+                    OnPlayerDies("Oh no, you have run out of lives!");
                 }
             }
             else
