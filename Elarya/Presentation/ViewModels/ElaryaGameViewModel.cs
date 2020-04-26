@@ -5,7 +5,9 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
+using Elarya.Business;
 using Elarya.Models;
 
 namespace Elarya.Presentation.ViewModels
@@ -379,6 +381,10 @@ namespace Elarya.Presentation.ViewModels
                 _player.MageSkill += _currentLocation.MageSkill;
                 _player.HealerSkill += _currentLocation.HealerSkill;
                 _player.Experience += _currentLocation.ExperienceGain;
+                if (_player.Life == 0)
+                {
+                    OnPlayerDies("Oh no, you have run out of lives!");
+                }
                 OnPropertyChanged(nameof(MessageDisplay));
             }
         }
@@ -514,6 +520,7 @@ namespace Elarya.Presentation.ViewModels
             _player.Mana += potion.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
             _player.Wealth -= potion.Value;
+
         }
 
         /// <summary>
@@ -539,9 +546,15 @@ namespace Elarya.Presentation.ViewModels
 
         private void ProcessSpell(Spell spell)
         {
-            if (_player.Mana < spell.ManaCost)
+            if (_player.Mana <= spell.ManaCost)
             {
-                CurrentMessage = "Sorry, you do not have enough mana to perform that spell!";
+                CurrentMessage = "You used too much magic and have died. Be more careful next time!";
+                _player.Mana += 100;
+                _player.Life--;
+                if (_player.Life == 0)
+                {
+                    OnPlayerDies("Oh no, you have run out of lives! Play again?");
+                }
             }
             else
             {
@@ -627,7 +640,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void SellItem()
         {
-            if (_currentGameItem != null && _player.Inventory.Contains(_currentGameItem))
+            if (_currentGameItem != null && _currentNpc is Merchant && _player.Inventory.Contains(_currentGameItem))
             {
                 GameItemQuantity selectGameItemQuantity = _currentGameItem;
                 _player.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
@@ -637,6 +650,32 @@ namespace Elarya.Presentation.ViewModels
         }
 
         #endregion
+
+        private void OnPlayerDies(string message)
+        {
+            string messagetext = message +
+                                 "\n\nWould you like to play again?";
+
+            string titleText = "Death";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ResetPlayer();
+                    break;
+                case MessageBoxResult.No:
+                    QuitApplication();
+                    break;
+            }
+        }
+
+        private void ResetPlayer()
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
 
         /// <summary>
         /// player chooses to exit game

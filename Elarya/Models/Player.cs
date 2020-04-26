@@ -98,6 +98,7 @@ namespace Elarya.Models
                 else if (_mana <= 0)
                 {
                     _mana = 0;
+                    _life--;
                 }
                 OnPropertyChanged(nameof(Mana));
             }

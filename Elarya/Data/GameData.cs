@@ -274,7 +274,9 @@ namespace Elarya.Data
                 Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
                 "from the North.",
 
-                Accessible = true,
+                Accessible = false,
+
+                RequiredExperience = 100,
 
                 ExperienceGain = 5
             };
@@ -287,13 +289,18 @@ namespace Elarya.Data
 
                 Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!" ,
 
-                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Now Be Gone!",
+                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Lucky for you, there appears to be a valuable item here you need, at the cost of your life though",
 
                 Accessible = false,
 
-                ModifyHealth = -75,
+                ModifyLives = -1,
 
-                ModifyLives = -1
+                RequiredExperience = 150,
+
+                GameItems = new ObservableCollection<GameItemQuantity>()
+                {
+                    new GameItemQuantity(GameItemById(142), 1)
+                }
             };
 
                 gameMap.Locations[6, 7] = new Location()
@@ -321,7 +328,7 @@ namespace Elarya.Data
 
                 Accessible = false,
 
-                RequiredExperience = 110,
+                RequiredExperience = 180,
 
                 MageSkill = 10,
 
@@ -352,6 +359,8 @@ namespace Elarya.Data
 
                 Accessible = true,
 
+                ExperienceGain = 20,
+
                 Npcs = new ObservableCollection<NPC>()
                 {
                     GetNpcById(1009)
@@ -373,6 +382,8 @@ namespace Elarya.Data
                 HealerSkill = 15,
 
                 RequiredItem = 139,
+
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
@@ -403,6 +414,8 @@ namespace Elarya.Data
                 MageSkill = 15,
 
                 RequiredItem = 138,
+
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
@@ -450,16 +463,17 @@ namespace Elarya.Data
                 Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
 
                 Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
-                "Perhaps you can learn some of this magic or even gather some dragon scale! Too bad that hike has left you starving though. 25 health lost",
+                "Perhaps you can learn some of this Mage magic or even find a rare Healing Spell. Too bad that hike has left you starving though. 25 health lost",
 
                 Accessible = true,
 
                 ModifyHealth = -25,
 
+                ExperienceGain = 20,
+
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 1),
-                    new GameItemQuantity(GameItemById(137), 1)
+                    new GameItemQuantity(GameItemById(101), 1)
                 }
             };
 
@@ -469,20 +483,23 @@ namespace Elarya.Data
 
                 Name = "Dragon Clutch",
 
-                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . .",
+                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . . At the bottom appears to be a scroll, closely guarded by the dragons",
 
-                Messages = "You are determined to gather loose dragon scales! Only problem is, their clutch is a solid 300 feet down the bluff " +
-                "Good thing you found the Scroll of Descent right?!?",
+                Messages = "You are determined to find out what is on that scroll! Only problem is, their clutch is a solid 300 feet down the bluff " +
+                "Good thing you found the Scroll of Descent right! Get to descending.",
 
                 Accessible = false,
 
-                HealerSkill = 25,
+                HealerSkill = 150,
 
                 RequiredItem = 137,
 
+                ExperienceGain = 20,
+
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(101), 2),
+                    new GameItemQuantity(GameItemById(141), 1)
                 }
             };
 
@@ -494,16 +511,22 @@ namespace Elarya.Data
 
                 Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
 
-                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? " +
-                "I'm sure some of those mage affinity potions would come in great help in this instance!",
-
+                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? ",
+                
                 Accessible = false,
 
-                MageSkill = 25,
+                RequiredItem = 142,
+
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(122), 4)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1008)
                 }
             };
 
@@ -536,12 +559,12 @@ namespace Elarya.Data
                 new Potion(110, "Free Healer Potion", 0, 0, 0, 0, 0, 25, 0, "Grants 25 Healer Skill", "You gained 25 Healer Skill Points!"),
 
 
-                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 20, "This hat pulses with the power of many mages!"),
-                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 20, "This robe has decades of mages secrets woven into it's fibers"),
-                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 20,"This cloak glows with the power of the Quin'lai mages"),
-                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 20, "The hat glows with the golden light of Aqua'l"),
-                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 20, "This robe seems to be imbued with healing powers"),
-                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 20, "This cloak casts a warm healing light"),
+                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 20, "This hat pulses with the power of many mages!", "You have gained 10 Mage Skill and 20 Experience!"),
+                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 20, "This robe has decades of mages secrets woven into it's fibers", "You have gained 25 Mage Skill and 20 Experience"),
+                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 20,"This cloak glows with the power of the Quin'lai mages", "You have gained 25 Mage Skill and 20 Experience"),
+                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 20, "The hat glows with the golden light of Aqua'l", "You have gained 10 Healer Skill and 20 Experience"),
+                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 20, "This robe seems to be imbued with healing powers", "You have gained 25 Healer Skill and 20 Experience"),
+                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 20, "This cloak casts a warm healing light", "You have gained 25 Healer Skill and 20 Experience"),
 
                 new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, 10, "These delicious berries can be used to restore health", "Restored 10HP"),
                 new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, 10, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
@@ -559,9 +582,12 @@ namespace Elarya.Data
                 new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
                 new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
                
-                new Spell(137, "Scroll of Descent", 100, Spell.SpellType.Mage, 50, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
-                new Spell(138, "Scroll of Thanks", 0, Spell.SpellType.Mage, 25, "This scroll can be used over with Tornul!"),
-                new Spell(139, "Scroll of Revival", 250, Spell.SpellType.Healing, 75, "Scroll of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!")
+                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, "Spell of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
+                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, "This spell can be used to remove the mist surrounding Tornul!"),
+                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, "Spell of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!"),
+                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, "This spell grants a massive amount of Mage Skill. Take only if you wish to be a mage!", "You have gained 200 Mage Skill Points"),
+                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, "This spell grants a massive amount of Healer Skill. Take only if you wish to be a Healer!", "You have gained 200 Healer Skill Points"),
+                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, "This spell will remove illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
             };
         }
 
@@ -587,8 +613,7 @@ namespace Elarya.Data
                     },
                     GameItems = new ObservableCollection<GameItemQuantity>()
                     {
-                        new GameItemQuantity(GameItemById(139), 1),
-                        new GameItemQuantity(GameItemById(137),1)
+                        new GameItemQuantity(GameItemById(139), 1)
                     }
                 },
                 new Merchant()
@@ -730,7 +755,23 @@ namespace Elarya.Data
                 },
                 new Citizen()
                 {
+                    Id = 1008,
+                    Name = "Geryres",
+                    Age = 78,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Nungari,
+                    Description = "An old and wise mage, capable of great magic!",
+                    Messages = new List<string>()
+                    {
+                        "Welcome, if you have made it this far, you must possess great magic!",
+                        "If its magic skill you seek, I have a potion for that! Please take it",
+                        "You will be a great mage some day! I can feel it in my bones."
+                    },
 
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(140), 1)
+                    }
                 },
                 new Citizen()
                 {
@@ -744,7 +785,8 @@ namespace Elarya.Data
                     {
                         "Hello Traveler!",
                         "I hope your journey has been treating you well so far?",
-                        "I hear the fish shop owner is not doing so well, if you have a greater heal potion, I am sure it would perk him right up!"
+                        "I hear the fish shop owner is not doing so well, if you have the Spell of Revival, I am sure it would perk him right up!",
+                        "Remember, if you are stuck and feel like there is no where else to go, try gaining some experience with potions or clothes. New areas may open up once you break past a certain experience threshold."
                     }
                 },
                 new Guard()

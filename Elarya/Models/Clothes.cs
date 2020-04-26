@@ -72,7 +72,7 @@ namespace Elarya.Models
         /// <param name="experienceGain">experience gain for clothes item</param>
         /// <param name="description">description of clothes item</param>
         public Clothes(int id, string name, int value, ClothesType type, int healthChange, int manaChange, int mageSkillChange,
-          int healerSkillChange, int experienceGain, string description) : base(id, name, value, description)
+          int healerSkillChange, int experienceGain, string description, string onUseMessage) : base(id, name, value, description, onUseMessage)
         {
             Type = type;
             HealthChange = healthChange;
