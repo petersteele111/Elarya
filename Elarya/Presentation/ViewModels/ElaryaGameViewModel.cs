@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Elarya.Business;
 using Elarya.Models;
+using Elarya.Presentation.Views;
 
 namespace Elarya.Presentation.ViewModels
 {
@@ -544,6 +545,10 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
+        /// <summary>
+        /// Process the Use of Spells
+        /// </summary>
+        /// <param name="spell">Selected Spell</param>
         private void ProcessSpell(Spell spell)
         {
             if (_player.Mana <= spell.ManaCost)
@@ -579,6 +584,10 @@ namespace Elarya.Presentation.ViewModels
             _player.Wealth -= food.Value;
         }
 
+        /// <summary>
+        /// Process the use of Clothes
+        /// </summary>
+        /// <param name="clothes">Selected Clothes Item</param>
         private void ProcessClothes(Clothes clothes)
         {
             CurrentMessage = clothes.UseMessage;
@@ -651,6 +660,10 @@ namespace Elarya.Presentation.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// Handles Player Death
+        /// </summary>
+        /// <param name="message">Message to display on death!</param>
         private void OnPlayerDies(string message)
         {
             string messagetext = message +
@@ -671,10 +684,22 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-        private void ResetPlayer()
+        /// <summary>
+        /// Resets the game
+        /// </summary>
+        public void ResetPlayer()
         {
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// Diaplyes the Help Window
+        /// </summary>
+        public void Help()
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
         }
 
         /// <summary>

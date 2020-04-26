@@ -210,7 +210,6 @@ namespace Elarya.Models
 
         #region Methods
 
-        // TODO: Fix this so that if the required experience is 0, it does not become accessible. Remove comment as well
         /// <summary>
         /// Checks if location is accessbile by experience points
         /// </summary>

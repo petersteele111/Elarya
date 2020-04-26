@@ -127,5 +127,15 @@ namespace Elarya
         {
             _elaryaGameViewModel.QuitApplication();
         }
+
+        private void RestartMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.ResetPlayer();
+        }
+
+        private void HelpMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.Help();
+        }
     }
 }

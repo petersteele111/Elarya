@@ -10,13 +10,17 @@ namespace Elarya.Models
     public class Merchant : NPC, ISpeak
     {
 
+        #region Properties
+
+        /// <summary>
+        /// Gets and Sets the Messages
+        /// </summary>
         public List<string> Messages { get; set; }
 
-        public Merchant()
-        {
-           
-        }
-
+        /// <summary>
+        /// Gets and Sets the Speak function to get messages
+        /// </summary>
+        /// <returns></returns>
         public string Speak()
         {
             if (this.Messages != null)
@@ -29,6 +33,26 @@ namespace Elarya.Models
             }
         }
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Public Constructor
+        /// </summary>
+        public Merchant()
+        {
+
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets the Message for the NPC Randomly
+        /// </summary>
+        /// <returns>Returns random message for NPC</returns>
         private string GetMessage()
         {
             Random random = new Random();
@@ -36,9 +60,16 @@ namespace Elarya.Models
             return Messages[index];
         }
 
+        /// <summary>
+        /// Displays the NPC Information
+        /// </summary>
+        /// <returns>Returns the NPC Information String</returns>
         protected override string InformationText()
         {
             return $"{Name} - {Description}";
         }
+
+        #endregion
+
     }
 }

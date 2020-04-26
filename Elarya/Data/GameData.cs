@@ -52,11 +52,21 @@ namespace Elarya.Data
             return new MapCoordinates() { Row = 4, Column = 6 };
         }
 
+        /// <summary>
+        /// Gets the Item by Item ID
+        /// </summary>
+        /// <param name="id">Selected Item ID</param>
+        /// <returns>Returns the Item</returns>
         public static GameItem GameItemById(int id)
         {
             return StandardGameItems().FirstOrDefault(i => i.Id == id);
         }
 
+        /// <summary>
+        /// Gets the NPC by ID
+        /// </summary>
+        /// <param name="id">Selected NPC ID</param>
+        /// <returns>Returns the NPC</returns>
         public static NPC GetNpcById(int id)
         {
             return Npcs().FirstOrDefault(i => i.Id == id);
@@ -591,6 +601,14 @@ namespace Elarya.Data
             };
         }
 
+        #endregion
+
+        #region NPC's
+
+        /// <summary>
+        /// Creates the List of NPCs
+        /// </summary>
+        /// <returns>Returns the List of NPCs</returns>
         public static List<NPC> Npcs()
         {
             return new List<NPC>()
@@ -631,7 +649,7 @@ namespace Elarya.Data
                         "We have the finest clothing around!",
                         "What brings you into my shop today?"
                     },
-                    
+
                     GameItems = new ObservableCollection<GameItemQuantity>()
                     {
                         new GameItemQuantity(GameItemById(111), 1),
@@ -823,5 +841,6 @@ namespace Elarya.Data
         }
 
         #endregion
+
     }
 }

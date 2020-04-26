@@ -193,6 +193,9 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Lis of NPC's talked too
+        /// </summary>
         public List<NPC> NpcsTalkedTo
         {
             get => _npcsTalkedTo;
@@ -358,6 +361,11 @@ namespace Elarya.Models
             UpdateInventory();
         }
 
+        /// <summary>
+        /// Pays the Merchant for an Item
+        /// </summary>
+        /// <param name="quantity">Cost of Item</param>
+        /// <returns>Returns true or false if the payment went through</returns>
         public bool PayMerchant(int quantity)
         {
             GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
@@ -386,6 +394,10 @@ namespace Elarya.Models
             }
         }
 
+        /// <summary>
+        /// Sells and Item to a merchant
+        /// </summary>
+        /// <param name="quantity">Price for Merchant to pay Player</param>
         public void SellToMerchant(int quantity)
         {
             GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
@@ -404,7 +416,6 @@ namespace Elarya.Models
 
             UpdateInventory();
         }
-
 
         /// <summary>
         /// Remove selected item from inventory
@@ -439,7 +450,11 @@ namespace Elarya.Models
             return _locationsVisited.Contains(location);
         }
 
-
+        /// <summary>
+        /// Tracks if the player has talked to an NPC
+        /// </summary>
+        /// <param name="npc">NPC player talked too</param>
+        /// <returns>Returns if the player has talked to an NPC or not</returns>
         public bool HasTalkedTo(NPC npc)
         {
             return _npcsTalkedTo.Contains(npc);

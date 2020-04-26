@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     class Spell : GameItem
     {
+
         #region Enums
 
         /// <summary>
@@ -28,6 +29,9 @@ namespace Elarya.Models
         /// </summary>
         public SpellType Type { get; set; }
 
+        /// <summary>
+        /// Mana cost to cast the spell
+        /// </summary>
         public int ManaCost { get; set; }
 
         #endregion

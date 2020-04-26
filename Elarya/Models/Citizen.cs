@@ -8,8 +8,18 @@ namespace Elarya.Models
 {
     public class Citizen : NPC, ISpeak
     {
+
+        #region Properties
+
+        /// <summary>
+        /// Gets and Sets the Messages
+        /// </summary>
         public List<string> Messages { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the Message to Display
+        /// </summary>
+        /// <returns>Returns the Message</returns>
         public string Speak()
         {
             if (this.Messages != null)
@@ -22,11 +32,26 @@ namespace Elarya.Models
             }
         }
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Public Constructor
+        /// </summary>
         public Citizen()
         {
 
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets the Message 
+        /// </summary>
+        /// <returns>Returns the Message Randomly</returns>
         private string GetMessage()
         {
             Random random = new Random();
@@ -34,9 +59,16 @@ namespace Elarya.Models
             return Messages[index];
         }
 
+        /// <summary>
+        /// Displays Information about the NPC
+        /// </summary>
+        /// <returns>Returns NPC Info String</returns>
         protected override string InformationText()
         {
             return $"{Name} - {Description}";
         }
+
+        #endregion
+
     }
 }
