@@ -249,12 +249,6 @@ namespace Elarya.Presentation.ViewModels
             backgroundMusic.PlayLooping();
         }
 
-        private void BackgroundMusicOff()
-        {
-            
-        }
-
-
         /// <summary>
         /// Initializes the timer and locations available
         /// </summary>
@@ -327,6 +321,7 @@ namespace Elarya.Presentation.ViewModels
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 PlayerMove();
+                _player.UpdateQuestStatus();
             }
         }
 
@@ -341,6 +336,7 @@ namespace Elarya.Presentation.ViewModels
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 PlayerMove();
+                _player.UpdateQuestStatus();
             }
         }
 
@@ -355,6 +351,7 @@ namespace Elarya.Presentation.ViewModels
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 PlayerMove();
+                _player.UpdateQuestStatus();
             }
         }
 
@@ -369,6 +366,7 @@ namespace Elarya.Presentation.ViewModels
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 PlayerMove();
+                _player.UpdateQuestStatus();
             }
         }
 
@@ -480,6 +478,7 @@ namespace Elarya.Presentation.ViewModels
         private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
         {
             _player.Wealth += gameItemQuantity.GameItem.Value;
+            _player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -638,8 +637,10 @@ namespace Elarya.Presentation.ViewModels
                 if (!_player.HasTalkedTo(_currentNpc))
                 {
                     _player.NpcsTalkedTo.Add(_currentNpc);
+                    _player.NpcsEngaged.Add(_currentNpc);
                     _player.MageSkill += _currentNpc.MageSkillGain;
                     _player.HealerSkill += _currentNpc.HealerSkillGain;
+                    _player.UpdateQuestStatus();
                     OnPropertyChanged(nameof(MessageDisplay));
                 }
                 
@@ -680,6 +681,123 @@ namespace Elarya.Presentation.ViewModels
                 _player.SellToMerchant(selectGameItemQuantity.GameItem.Value);
                 OnPlayerPickUp(selectGameItemQuantity);
             }
+        }
+
+        private string GenerateQuestTravelDetail(QuestTravel quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            sb.Append("All Required Locations");
+            foreach (var location in quest.RequiredLocations)
+            {
+                sb.AppendLine(Tab + location.Name);
+            }
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("Locations yet to visit");
+                foreach (var location in quest.LocationsNotCompleted(_player.LocationsVisited))
+                {
+                    sb.AppendLine(Tab + location.Name);
+                }
+            }
+
+            sb.Remove(sb.Length - 2, 2);
+
+            return sb.ToString();
+        }
+
+        private string GenerateQuestEngageDetail(QuestEngage quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            sb.Append("All Required NPC's");
+            foreach (var location in quest.RequiredNpcs)
+            {
+                sb.AppendLine(Tab + location.Name);
+            }
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("NPC's yet to Engage");
+                foreach (var location in quest.NpcsNotEngaged(_player.NpcsEngaged))
+                {
+                    sb.AppendLine(Tab + location.Name);
+                }
+            }
+
+            sb.Remove(sb.Length - 2, 2);
+
+            return sb.ToString();
+        }
+
+        private string GenerateQuestGatherDetail(QuestGather quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            sb.Append("All Required Game Items");
+            foreach (var gameItemQuantity in quest.RequiredGameItemQuantites)
+            {
+                sb.AppendLine(Tab + gameItemQuantity.GameItem.Name);
+                sb.AppendLine($" ({gameItemQuantity.Quantity})");
+            }
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("Game Items yet to Gather");
+                foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(_player.Inventory.ToList()))
+                {
+                    int quantityInInventory = 0;
+                    GameItemQuantity gameItemQuantityGathered =
+                        _player.Inventory.FirstOrDefault(x => x.GameItem.Id == gameItemQuantity.GameItem.Id);
+                    if (gameItemQuantityGathered != null)
+                    {
+                        quantityInInventory = gameItemQuantityGathered.Quantity;
+                    }
+
+                    sb.Append(Tab + gameItemQuantity.GameItem.Name);
+                    sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
+                }
+            }
+
+            sb.Remove(sb.Length - 2, 2);
+
+            return sb.ToString();
+        }
+
+        private string GenerateQuestStatusInformation()
+        {
+            string questStatusInformation;
+
+            double totalQuests = _player.Quests.Count;
+            double questsCompleted = _player.Quests.Count(q => q.Status == Quest.QuestStatus.Complete);
+
+            int percentQuestsCompleted = (int) ((questsCompleted / totalQuests) * 100);
+            questStatusInformation = $"Quests Complete: {percentQuestsCompleted}%" + New_Line;
+
+            if (percentQuestsCompleted == 0)
+            {
+                questStatusInformation +=
+                    "Looks like you are just starting on your journey of self discovery! Best of luck.";
+            }
+            else if (percentQuestsCompleted <= 33)
+            {
+                questStatusInformation += "Looks like you completed at least one of your quests! Congrats. Keep at it though, there are more things to be discovered";
+            }
+            else if (percentQuestsCompleted <= 66)
+            {
+                questStatusInformation += "Great job so far! Only one more quest to go. Keep at it!";
+            }
+            else if (percentQuestsCompleted == 100)
+            {
+                questStatusInformation +=
+                    "Congratulations! You have completed all the quests. Whichever Skill rank is higher, is the skill that you have in society!";
+            }
+
+            return questStatusInformation;
         }
 
         #endregion
@@ -733,6 +851,47 @@ namespace Elarya.Presentation.ViewModels
         {
             Environment.Exit(0);
         }
+
+        private QuestStatusViewModel InitializeQuestStatusViewModel()
+        {
+            QuestStatusViewModel questStatusViewModel = new QuestStatusViewModel();
+
+            questStatusViewModel.QuestInformation = GenerateQuestStatusInformation();
+
+            questStatusViewModel.Quests = new List<Quest>(_player.Quests);
+            foreach (Quest quest in questStatusViewModel.Quests)
+            {
+                if (quest is QuestTravel)
+                {
+                    quest.StatusDetail = GenerateQuestTravelDetail((QuestTravel) quest);
+                }
+
+                if (quest is QuestEngage)
+                {
+                    quest.StatusDetail = GenerateQuestEngageDetail((QuestEngage) quest);
+                }
+
+                if (quest is QuestGather)
+                {
+                    quest.StatusDetail = GenerateQuestGatherDetail((QuestGather) quest);
+                }
+            }
+
+            return questStatusViewModel;
+        }
+
+        public void QuestWindow()
+        {
+            QuestStatusView questStatus = new QuestStatusView(InitializeQuestStatusViewModel());
+            questStatus.Show();
+        }
+
+        #endregion
+
+        #region Constants
+
+        private const string Tab = "\t";
+        private const string New_Line = "\n";
 
         #endregion
 

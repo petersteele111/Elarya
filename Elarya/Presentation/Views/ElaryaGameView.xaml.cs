@@ -137,5 +137,10 @@ namespace Elarya
         {
             _elaryaGameViewModel.Help();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            _elaryaGameViewModel.QuestWindow();
+        }
     }
 }

@@ -144,6 +144,22 @@
             <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
+        <Button 
+            Grid.ColumnSpan="2"
+            Grid.Row="10"
+            Content="Quest Information"
+            FontSize="20"
+            FontWeight="Bold"
+            FontFamily="Papyrus"
+            Background="CadetBlue"
+            Foreground="White"
+            Margin="10 0"
+            Click="ButtonBase_OnClick">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
+
         <!-- Main Window-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="12"/>
 

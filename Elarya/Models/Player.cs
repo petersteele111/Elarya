@@ -209,6 +209,15 @@ namespace Elarya.Models
         }
 
         /// <summary>
+        /// Lis of NPC's talked too
+        /// </summary>
+        public List<NPC> NpcsEngaged
+        {
+            get => _npcsEngaged;
+            set => _npcsEngaged = value;
+        }
+
+        /// <summary>
         /// Gets and Sets a new inventory for the player
         /// </summary>
         public ObservableCollection<GameItemQuantity> Inventory

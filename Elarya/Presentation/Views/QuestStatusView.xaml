@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Elarya.Presentation.Views"
         mc:Ignorable="d"
-        Title="Quests" Height="600" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Quests" Height="800" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Elarya;component/Presentation/Resources/Assets/Images/playerSetupBackground.png"/>
@@ -51,9 +51,62 @@
             FontWeight="Bold"
             FontFamily="Papyrus">
             <TextBlock.Effect>
-                <DropShadowEffect/>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
+        <TextBox
+            Text="{Binding QuestInformation}"
+            Grid.ColumnSpan="10"
+            Grid.Column="1"
+            Grid.Row="2"
+            Grid.RowSpan="2" />
 
+        <DataGrid
+            x:Name="Quests"
+            Grid.Column="1"
+            Grid.Row="5"
+            Grid.ColumnSpan="10"
+            Grid.RowSpan="5"
+            ItemsSource="{Binding Quests}"
+            AutoGenerateColumns="False"
+            HeadersVisibility="Column" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Name"
+                    IsReadOnly="True"
+                    Binding="{Binding Name, Mode=OneWay}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Status"
+                    IsReadOnly="True"
+                    Binding="{Binding Status, Mode=OneWay}"
+                    Width="*" />
+                <DataGridTextColumn
+                    Header="Details"
+                    IsReadOnly="True"
+                    Binding="{Binding StatusDetail}"
+                    Width="3*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Grid.Column="9"
+            Grid.Row="10"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            Height="50"
+            Margin="0 20"
+            Content="Close"
+            Background="DarkRed"
+            Foreground="White"
+            FontSize="20"
+            FontWeight="Bold"
+            FontFamily="Papyrus" 
+            Click="QuestStatusWindowClose_Click"/>
     </Grid>
 </Window>
