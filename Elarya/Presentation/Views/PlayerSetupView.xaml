@@ -46,7 +46,7 @@
                 HorizontalAlignment="Center"
                 Foreground="DarkRed" FontFamily="Papyrus">
                 <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </TextBlock.Effect>
             </TextBlock>
 
@@ -60,7 +60,7 @@
                 FontSize="20px" 
                 FontWeight="Bold" FontFamily="Papyrus" >
                 <Label.Effect>
-                    <DropShadowEffect BlurRadius="10" Direction="314"/>
+                    <DropShadowEffect BlurRadius="20" Direction="314" Opacity="0.5"/>
                 </Label.Effect>
             </Label>
 
@@ -74,7 +74,7 @@
                 Name="PlayerName" 
                 FontSize="20px" FontFamily="Papyrus">
                 <TextBox.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </TextBox.Effect>
             </TextBox>
 
@@ -82,12 +82,12 @@
             <TextBlock 
                 Grid.Column="1" 
                 Grid.Row="3" 
-                Grid.ColumnSpan="2" 
+                Grid.ColumnSpan="3" 
                 x:Name="ErrorMessageTextBlock" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
-                FontSize="12px" 
-                Foreground="red" FontFamily="Papyrus"><Run Text="This is an error "/><Run Text="message"/></TextBlock>
+                FontSize="14" 
+                Foreground="red" FontFamily="Papyrus" FontWeight="Bold" Margin="45,12,0,13" Width="296"><Run Text="This is an error "/><Run Text="message"/></TextBlock>
 
             <!-- Age Label -->
             <Label 
@@ -99,7 +99,7 @@
                 FontSize="20px" 
                 FontWeight="Bold" FontFamily="Papyrus" >
                 <Label.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Label.Effect>
             </Label>
 
@@ -113,7 +113,7 @@
                 Name="Age" 
                 FontSize="20px" FontFamily="Papyrus">
                 <TextBox.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </TextBox.Effect>
             </TextBox>
 
@@ -121,13 +121,13 @@
             <TextBlock 
                 Grid.Column="1" 
                 Grid.Row="5" 
-                Grid.ColumnSpan="2" 
+                Grid.ColumnSpan="3" 
                 Text="This is an error message" 
                 Name="ErrorMessageTextBlockAge" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
-                FontSize="12px" 
-                Foreground="red" FontFamily="Papyrus"/>
+                FontSize="14" 
+                Foreground="red" FontFamily="Papyrus" FontWeight="Bold" Margin="45,13,0,12" Width="296"/>
 
             <!-- Race Label -->
             <Label 
@@ -139,7 +139,7 @@
                 FontSize="20px" 
                 FontWeight="Bold" FontFamily="Papyrus" >
                 <Label.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Label.Effect>
             </Label>
 
@@ -154,7 +154,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" FontFamily="Papyrus">
                 <ComboBox.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </ComboBox.Effect>
             </ComboBox>
 
@@ -168,7 +168,7 @@
                 FontSize="20px" 
                 FontWeight="Bold" FontFamily="Papyrus">
                 <Label.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
+                    <DropShadowEffect BlurRadius="50" Opacity="0.5"/>
                 </Label.Effect>
             </Label>
 
@@ -183,7 +183,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" FontFamily="Papyrus" >
                 <ComboBox.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </ComboBox.Effect>
             </ComboBox>
 
@@ -197,7 +197,7 @@
                 FontSize="20px" 
                 FontWeight="Bold" FontFamily="Papyrus">
                 <Label.Effect>
-                    <DropShadowEffect BlurRadius="10"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Label.Effect>
             </Label>
 
@@ -212,7 +212,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" FontFamily="Papyrus" >
                 <ComboBox.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </ComboBox.Effect>
             </ComboBox>
 
@@ -224,8 +224,8 @@
                 FontWeight="bold"
                 TextWrapping="Wrap"
                 VerticalAlignment="Center"
-                Foreground="White"
-                Padding="10px" FontFamily="Papyrus"
+                Foreground="#FF8F0000"
+                Padding="10px" FontFamily="Papyrus" TextDecorations="Underline"
 
                 />
 
@@ -241,7 +241,7 @@
                 Foreground="White" 
                 Click="OKButton_Click" FontFamily="Papyrus">
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="20"/>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
             </Button>
         </Grid>

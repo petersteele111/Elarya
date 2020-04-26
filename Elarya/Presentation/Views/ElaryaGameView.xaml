@@ -48,7 +48,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- File Menu --> 
+        <!-- File Menu -->
         <DockPanel Grid.ColumnSpan="12">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -64,7 +64,7 @@
 
         <!-- Information Bar-->
         <Border BorderBrush="black" BorderThickness="0 0 0 1" Grid.ColumnSpan="12">
-            <StackPanel Orientation="Horizontal" Margin="60 0 0 0">
+            <StackPanel Orientation="Horizontal" Margin="28,10,32,-10">
                 <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" FontFamily="Papyrus" />
                 <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
@@ -93,7 +93,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="Red" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Papyrus"/>
+        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="DarkRed" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Papyrus"/>
 
         <TextBlock 
             Text="Travel"
@@ -109,7 +109,7 @@
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="North" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="NorthButton_Click" FontFamily="Papyrus">
+            <Button Content="North" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="NorthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -118,7 +118,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="East" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="EastButton_Click" FontFamily="Papyrus">
+            <Button Content="East" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="EastButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -127,7 +127,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="South" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="SouthButton_Click" FontFamily="Papyrus">
+            <Button Content="South" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="SouthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -136,7 +136,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="West" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="WestButton_Click" FontFamily="Papyrus">
+            <Button Content="West" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="WestButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -229,7 +229,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus">
+        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus" Background="#FFF0F0F0">
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
             </TextBox.Effect>
@@ -258,7 +258,7 @@
             Grid.Column="6"
             Content="Pick Up All"
             Click="PickUpButton_Click" 
-            Margin="0 0 10 10" FontFamily="Papyrus"
+            Margin="0 0 10 10" FontFamily="Papyrus" FontWeight="Bold" Background="DarkGreen" Foreground="White" FontSize="16"
             >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -270,7 +270,7 @@
             Grid.Column="7"
             Content="Talk to NPC"
             Click="TalkToNpcButton_Click" 
-            Margin="0 0 10 10" FontFamily="Papyrus"
+            Margin="0 0 10 10" FontFamily="Papyrus" FontWeight="Bold" Foreground="White" Background="CadetBlue" FontSize="16"
         >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -280,7 +280,7 @@
         <!-- Inventory Panel-->
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" FontFamily="Papyrus" >
+            <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" FontFamily="Papyrus" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </TextBlock.Effect>
@@ -444,7 +444,7 @@
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="*"/>
+                            Width="1.2*"/>
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
@@ -479,7 +479,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                            <DataGridTextColumn
+                        <DataGridTextColumn
                             Header="Mana Cost"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.ManaCost, Mode=OneWay}"
@@ -510,7 +510,7 @@
                 Content="Put Down" 
                 Click="PutDownButton_Click"
                 Width="100"
-                Margin="0 0 50 0" FontFamily="Papyrus">
+                Margin="0 0 50 0" FontFamily="Papyrus" FontWeight="Bold" Background="DarkRed" Foreground="White" FontSize="16">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -518,7 +518,7 @@
             <Button 
                 Content="Use" 
                 Click="UseButton_Click"
-                Width="100" FontFamily="Papyrus">
+                Width="100" FontFamily="Papyrus" FontWeight="Bold" Foreground="White" Background="DarkGreen" FontSize="16">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -544,14 +544,14 @@
             </TabControl.Effect>
             <TabItem
                 Header="Buy"
-                x:Name="BuyInfoTab" FontFamily="Papyrus">
+                x:Name="BuyInfoTab" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="NpcsBuyDataGrid"
                     Height="150"
                     ItemsSource="{Binding CurrentNpc.GameItems}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -591,7 +591,7 @@
                 Content="Buy"
                 Width="100"
                 Margin="0 0 50 0"
-                Click="BuyItemButton_Click" FontFamily="Papyrus">
+                Click="BuyItemButton_Click" FontFamily="Papyrus" FontWeight="Bold" FontSize="16" Background="DarkRed" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
@@ -599,13 +599,13 @@
             <Button 
                 Content="Sell"
                 Width="100"
-                Click="SellItemButton_Click" FontFamily="Papyrus">
+                Click="SellItemButton_Click" FontFamily="Papyrus" FontWeight="Bold" FontSize="16" Foreground="White" Background="DarkGreen">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
                 </Button.Effect>
             </Button>
         </StackPanel>
-        
+
 
 
         <!-- Player Info Panel Border-->
@@ -626,7 +626,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left" Width="110" VerticalAlignment="Center">
+        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left" Width="110" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
             </TextBox.Effect>
@@ -639,7 +639,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" >
+        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0" >
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
             </TextBox.Effect>
@@ -652,7 +652,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center">
+        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
             </TextBox.Effect>
@@ -664,7 +664,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center">
+        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
             </TextBox.Effect>
@@ -678,7 +678,7 @@
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="2" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus">
+        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="2" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus" Background="#FFF0F0F0">
             <TextBox.Effect>
                 <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
             </TextBox.Effect>

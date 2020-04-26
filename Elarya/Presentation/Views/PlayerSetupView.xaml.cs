@@ -84,7 +84,7 @@ namespace Elarya.Presentation.Views
             }
             else if (!PlayerName.Text.All(chr => char.IsLetter(chr)))
             {
-                errorMessage += "No numbers! Letters only!";
+                errorMessage += "No numbers, spaces, or special characters!";
             } 
             else
             {

@@ -249,6 +249,11 @@ namespace Elarya.Presentation.ViewModels
             backgroundMusic.PlayLooping();
         }
 
+        private void BackgroundMusicOff()
+        {
+            
+        }
+
 
         /// <summary>
         /// Initializes the timer and locations available
