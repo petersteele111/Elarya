@@ -48,6 +48,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- File Menu --> 
         <DockPanel Grid.ColumnSpan="12">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -62,25 +63,25 @@
         </DockPanel>
 
         <!-- Information Bar-->
-        <Border BorderBrush="black" BorderThickness="1px" Grid.ColumnSpan="12">
+        <Border BorderBrush="black" BorderThickness="0 0 0 1" Grid.ColumnSpan="12">
             <StackPanel Orientation="Horizontal" Margin="60 0 0 0">
                 <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
 
                 <TextBlock Text="Health: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Health}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Player.Health}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
 
                 <TextBlock Text="Mana: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Mana}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Player.Mana}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
 
                 <TextBlock Text="Lives: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Life}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Player.Life}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
 
                 <TextBlock Text="Exp: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Experience}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Player.Experience}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
 
                 <TextBlock Text="Time: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding GameTimeDisplay}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding GameTimeDisplay}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed"/>
             </StackPanel>
         </Border>
 

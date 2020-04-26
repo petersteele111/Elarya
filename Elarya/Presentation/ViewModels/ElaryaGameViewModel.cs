@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Elarya.Business;
 using Elarya.Models;
@@ -228,12 +230,25 @@ namespace Elarya.Presentation.ViewModels
             _currentLocation = _gameMap.CurrentLocation;
             _currentMessage = _currentLocation.Description;
             InitializeView();
+            BackgroundMusic();
             GameTimer();
+
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Creates the Sound player for background music and loops it
+        /// </summary>
+        private void BackgroundMusic()
+        {
+            SoundPlayer backgroundMusic = new SoundPlayer("Presentation/Resources/Assets/Sounds/background.wav");
+            backgroundMusic.Load();
+            backgroundMusic.PlayLooping();
+        }
+
 
         /// <summary>
         /// Initializes the timer and locations available
