@@ -114,10 +114,9 @@ namespace Elarya.Business
                     _player.MageSkill += 5;
                     _player.HealerSkill += 5;
                 }
-                _player.Spell = null;
                 _player.Inventory = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(GameData.GameItemById(131), 500)
+                    new GameItemQuantity(GameData.GameItemById(131), 1000)
                 };
             }
             else

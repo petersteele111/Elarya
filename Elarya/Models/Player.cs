@@ -31,15 +31,16 @@ namespace Elarya.Models
         private int _life;
         private int _mageSkill;
         private int _healerSkill;
-        private string _spell;
         private int _experience;
         private List<Location> _locationsVisited;
+        private List<NPC> _npcsTalkedTo;
         private int _wealth;
         private ObservableCollection<GameItemQuantity> _inventory;
         private ObservableCollection<GameItemQuantity> _potions;
         private ObservableCollection<GameItemQuantity> _clothes;
         private ObservableCollection<GameItemQuantity> _food;
         private ObservableCollection<GameItemQuantity> _treasure;
+        private ObservableCollection<GameItemQuantity> _spell;
 
         #endregion
 
@@ -97,6 +98,7 @@ namespace Elarya.Models
                 else if (_mana <= 0)
                 {
                     _mana = 0;
+                    _life--;
                 }
                 OnPropertyChanged(nameof(Mana));
             }
@@ -144,13 +146,12 @@ namespace Elarya.Models
         /// <summary>
         /// Sets and Gets the Spell for the Player
         /// </summary>
-        public string  Spell
+        public ObservableCollection<GameItemQuantity> Spell
         {
             get => _spell;
             set
             {
                 _spell = value;
-                OnPropertyChanged(nameof(Spell));
             }
         }
 
@@ -189,6 +190,18 @@ namespace Elarya.Models
             set
             {
                 _locationsVisited = value;
+            }
+        }
+
+        /// <summary>
+        /// Lis of NPC's talked too
+        /// </summary>
+        public List<NPC> NpcsTalkedTo
+        {
+            get => _npcsTalkedTo;
+            set
+            {
+                _npcsTalkedTo = value;
             }
         }
 
@@ -262,11 +275,13 @@ namespace Elarya.Models
         public Player()
         {
             _locationsVisited = new List<Location>();
+            _npcsTalkedTo = new List<NPC>();
             _potions = new ObservableCollection<GameItemQuantity>();
             _clothes = new ObservableCollection<GameItemQuantity>();
             _food = new ObservableCollection<GameItemQuantity>();
             _treasure = new ObservableCollection<GameItemQuantity>();
             _inventory = new ObservableCollection<GameItemQuantity>();
+            _spell = new ObservableCollection<GameItemQuantity>();
         }
         
         #endregion
@@ -290,6 +305,7 @@ namespace Elarya.Models
             Clothes.Clear();
             Food.Clear();
             Treasure.Clear();
+            Spell.Clear();
 
             foreach (var gameItemQuantity in _inventory)
             {
@@ -312,6 +328,11 @@ namespace Elarya.Models
                 {
                     Treasure.Add(gameItemQuantity);
                 }
+
+                if (gameItemQuantity.GameItem is Spell)
+                {
+                    Spell.Add(gameItemQuantity);
+                }
             }
         }
 
@@ -328,6 +349,62 @@ namespace Elarya.Models
             {
                 GameItemQuantity newGameItemQuantity = new GameItemQuantity();
                 newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = quantity;
+
+                _inventory.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity += quantity;
+            }
+
+            UpdateInventory();
+        }
+
+        /// <summary>
+        /// Pays the Merchant for an Item
+        /// </summary>
+        /// <param name="quantity">Cost of Item</param>
+        /// <returns>Returns true or false if the payment went through</returns>
+        public bool PayMerchant(int quantity)
+        {
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            if (gameItemQuantity != null)
+            {
+                if (gameItemQuantity.Quantity < quantity)
+                {
+                    return false;
+                }
+                else if (gameItemQuantity.Quantity == quantity)
+                {
+                    _inventory.Remove(gameItemQuantity);
+                    UpdateInventory();
+                    return true;
+                }
+                else
+                {
+                    gameItemQuantity.Quantity -= quantity;
+                    UpdateInventory();
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Sells and Item to a merchant
+        /// </summary>
+        /// <param name="quantity">Price for Merchant to pay Player</param>
+        public void SellToMerchant(int quantity)
+        {
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = gameItemQuantity.GameItem;
                 newGameItemQuantity.Quantity = quantity;
 
                 _inventory.Add(newGameItemQuantity);
@@ -371,6 +448,16 @@ namespace Elarya.Models
         public bool HasVisited(Location location)
         {
             return _locationsVisited.Contains(location);
+        }
+
+        /// <summary>
+        /// Tracks if the player has talked to an NPC
+        /// </summary>
+        /// <param name="npc">NPC player talked too</param>
+        /// <returns>Returns if the player has talked to an NPC or not</returns>
+        public bool HasTalkedTo(NPC npc)
+        {
+            return _npcsTalkedTo.Contains(npc);
         }
 
         /// <summary>

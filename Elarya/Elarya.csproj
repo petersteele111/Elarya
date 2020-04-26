@@ -66,15 +66,21 @@
     <Compile Include="Business\GameBusiness.cs" />
     <Compile Include="Data\GameData.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Citizen.cs" />
     <Compile Include="Models\Clothes.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\GameItem.cs" />
     <Compile Include="Models\GameItemQuantity.cs" />
+    <Compile Include="Models\Guard.cs" />
+    <Compile Include="Models\ISpeak.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\MapCoordinates.cs" />
+    <Compile Include="Models\Merchant.cs" />
+    <Compile Include="Models\NPC.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Potion.cs" />
+    <Compile Include="Models\Spell.cs" />
     <Compile Include="Models\Treasure.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Presentation\ViewModels\ElaryaGameViewModel.cs" />
@@ -82,12 +88,19 @@
       <DependentUpon>ElaryaGameView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentation\Views\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\PlayerSetupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentation\Views\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\PlayerSetupView.xaml.cs">
       <DependentUpon>PlayerSetupView.xaml</DependentUpon>
     </Compile>

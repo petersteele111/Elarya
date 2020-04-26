@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Elarya.Models
 {
@@ -24,8 +25,8 @@ namespace Elarya.Models
         private int _requiredExperience;
         private int _requiredItem;
         private int _experienceGain;
-        private string _message;
         private ObservableCollection<GameItemQuantity> _gameItems;
+        private ObservableCollection<NPC> _npcs;
 
 
 		#endregion
@@ -163,6 +164,15 @@ namespace Elarya.Models
             }
         }
 
+        public ObservableCollection<NPC> Npcs
+        {
+            get => _npcs;
+            set
+            {
+                _npcs = value;
+            }
+        }
+
         /// <summary>
         /// Gets and Sets the required experience to access a location
         /// </summary>
@@ -207,7 +217,17 @@ namespace Elarya.Models
         /// <returns>Returns true or false if player can access location</returns>
         public bool IsAccessibleByExperience(int experience)
         {
-            return experience >= _requiredExperience ? true : false;
+            if (_requiredExperience == 0)
+            {
+                return false;
+            } 
+            else if (experience >= _requiredExperience)
+            {
+                return true;
+            }
+
+            return false;
+            //return experience >= _requiredExperience ? true : false;
         }
 
         /// <summary>

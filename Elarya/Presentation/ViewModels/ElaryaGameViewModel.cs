@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
+using Elarya.Business;
 using Elarya.Models;
+using Elarya.Presentation.Views;
 
 namespace Elarya.Presentation.ViewModels
 {
@@ -22,6 +26,7 @@ namespace Elarya.Presentation.ViewModels
         private string _gameTimeDisplay;
         private string _currentMessage;
 
+        private NPC _currentNpc;
         private GameItemQuantity _currentGameItem;
 
         #endregion
@@ -190,6 +195,19 @@ namespace Elarya.Presentation.ViewModels
         {
             get => _currentGameItem;
             set { _currentGameItem = value; }
+        }
+
+        /// <summary>
+        /// Gets and Sets the Current NPC
+        /// </summary>
+        public NPC CurrentNpc
+        {
+            get => _currentNpc;
+            set
+            {
+                _currentNpc = value;
+                OnPropertyChanged(nameof(CurrentNpc));
+            }
         }
 
         #endregion
@@ -364,6 +382,10 @@ namespace Elarya.Presentation.ViewModels
                 _player.MageSkill += _currentLocation.MageSkill;
                 _player.HealerSkill += _currentLocation.HealerSkill;
                 _player.Experience += _currentLocation.ExperienceGain;
+                if (_player.Life == 0)
+                {
+                    OnPlayerDies("Oh no, you have run out of lives!");
+                }
                 OnPropertyChanged(nameof(MessageDisplay));
             }
         }
@@ -454,7 +476,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void OnUseGameItem()
         {
-           try
+            try
             {
                 switch (_currentGameItem.GameItem)
                 {
@@ -467,10 +489,16 @@ namespace Elarya.Presentation.ViewModels
                     case Food food:
                         ProcessFood(food);
                         break;
+                    case Clothes clothes:
+                        ProcessClothes(clothes);
+                        break;
+                    case Spell spell:
+                        ProcessSpell(spell);
+                        break;
                     default:
                         break;
                 }
-            } 
+            }
             catch (NullReferenceException)
             {
                 CurrentMessage = "Sorry, there is no use for that!";
@@ -490,8 +518,10 @@ namespace Elarya.Presentation.ViewModels
             _player.MageSkill += potion.MageSkillChange;
             _player.HealerSkill += potion.HealerSkillChange;
             _player.Experience += potion.ExperienceGain;
+            _player.Mana += potion.ManaChange;
             _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
             _player.Wealth -= potion.Value;
+
         }
 
         /// <summary>
@@ -516,6 +546,32 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
+        /// Process the Use of Spells
+        /// </summary>
+        /// <param name="spell">Selected Spell</param>
+        private void ProcessSpell(Spell spell)
+        {
+            if (_player.Mana <= spell.ManaCost)
+            {
+                CurrentMessage = "You used too much magic and have died. Be more careful next time!";
+                _player.Mana += 100;
+                _player.Life--;
+                if (_player.Life == 0)
+                {
+                    OnPlayerDies("Oh no, you have run out of lives! Play again?");
+                }
+            }
+            else
+            {
+                string message = _gameMap.OpenLocationsByItem(spell.Id);
+                CurrentMessage = message;
+                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+                _player.Mana -= spell.ManaCost;
+                _player.Wealth -= spell.Value;
+            }
+        }
+
+        /// <summary>
         /// Process the use of Food
         /// </summary>
         /// <param name="food">food</param>
@@ -528,7 +584,123 @@ namespace Elarya.Presentation.ViewModels
             _player.Wealth -= food.Value;
         }
 
+        /// <summary>
+        /// Process the use of Clothes
+        /// </summary>
+        /// <param name="clothes">Selected Clothes Item</param>
+        private void ProcessClothes(Clothes clothes)
+        {
+            CurrentMessage = clothes.UseMessage;
+            _player.Experience += clothes.ExperienceGain;
+            _player.MageSkill += clothes.MageSkillChange;
+            _player.HealerSkill += clothes.HealerSkillChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+            _player.Wealth -= clothes.Value;
+        }
+
         #endregion
+
+        #region NPC Actions
+
+        /// <summary>
+        /// handle the speak to event in the view
+        /// </summary>
+        public void OnPlayerTalkTo()
+        {
+            if (CurrentNpc != null && CurrentNpc is ISpeak)
+            {
+                ISpeak speakingNpc = CurrentNpc as ISpeak;
+                CurrentMessage = speakingNpc.Speak();
+                if (!_player.HasTalkedTo(_currentNpc))
+                {
+                    _player.NpcsTalkedTo.Add(_currentNpc);
+                    _player.MageSkill += _currentNpc.MageSkillGain;
+                    _player.HealerSkill += _currentNpc.HealerSkillGain;
+                    OnPropertyChanged(nameof(MessageDisplay));
+                }
+                
+            }
+        }
+
+        /// <summary>
+        /// Buy Items from an NPC
+        /// </summary>
+        public void BuyItem()
+        {
+            if (_currentGameItem != null && _currentNpc.GameItems.Contains(_currentGameItem))
+            {
+                GameItemQuantity selectGameItemQuantity = _currentGameItem;
+                if (_player.PayMerchant(selectGameItemQuantity.GameItem.Value))
+                {
+                    _player.AddGameItemQuantityToInventory(selectGameItemQuantity, 1);
+                    _currentNpc.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                    OnPlayerPutDown(selectGameItemQuantity);
+                }
+                else
+                {
+                    CurrentMessage = "Sorry, you do not have enough Nocti Quarks for that!";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Buy Items from an NPC
+        /// </summary>
+        public void SellItem()
+        {
+            if (_currentGameItem != null && _currentNpc is Merchant && _player.Inventory.Contains(_currentGameItem))
+            {
+                GameItemQuantity selectGameItemQuantity = _currentGameItem;
+                _player.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                _player.SellToMerchant(selectGameItemQuantity.GameItem.Value);
+                OnPlayerPickUp(selectGameItemQuantity);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Handles Player Death
+        /// </summary>
+        /// <param name="message">Message to display on death!</param>
+        private void OnPlayerDies(string message)
+        {
+            string messagetext = message +
+                                 "\n\nWould you like to play again?";
+
+            string titleText = "Death";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ResetPlayer();
+                    break;
+                case MessageBoxResult.No:
+                    QuitApplication();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Resets the game
+        /// </summary>
+        public void ResetPlayer()
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// Diaplyes the Help Window
+        /// </summary>
+        public void Help()
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
 
         /// <summary>
         /// player chooses to exit game

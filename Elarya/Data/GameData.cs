@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Navigation;
 using Elarya.Models;
 
 namespace Elarya.Data
@@ -30,11 +31,10 @@ namespace Elarya.Data
                 Life = 3,
                 MageSkill = 5,
                 HealerSkill = 0,
-                Spell = null,
                 Experience = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(GameItemById(131), 500)
+                    new GameItemQuantity(GameItemById(131), 1000)
                 }
             };
         }
@@ -52,10 +52,26 @@ namespace Elarya.Data
             return new MapCoordinates() { Row = 4, Column = 6 };
         }
 
+        /// <summary>
+        /// Gets the Item by Item ID
+        /// </summary>
+        /// <param name="id">Selected Item ID</param>
+        /// <returns>Returns the Item</returns>
         public static GameItem GameItemById(int id)
         {
             return StandardGameItems().FirstOrDefault(i => i.Id == id);
         }
+
+        /// <summary>
+        /// Gets the NPC by ID
+        /// </summary>
+        /// <param name="id">Selected NPC ID</param>
+        /// <returns>Returns the NPC</returns>
+        public static NPC GetNpcById(int id)
+        {
+            return Npcs().FirstOrDefault(i => i.Id == id);
+        }
+
 
         /// <summary>
         /// Creates the data for the Game Map
@@ -113,9 +129,10 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(101), 5)
+                    GetNpcById(1005),
+                    GetNpcById(1010)
                 }
             };
 
@@ -136,9 +153,9 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    GetNpcById(1001)
                 }
             };
 
@@ -178,7 +195,12 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(131), 2)
+                    new GameItemQuantity(GameItemById(131), 50)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1011)
                 }
             };
 
@@ -200,9 +222,9 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(131), 10)
+                    GetNpcById(1003)
                 }
             };
 
@@ -225,9 +247,9 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(131), 1)
+                    GetNpcById(1002)
                 }
             };
 
@@ -247,9 +269,9 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
+                Npcs = new ObservableCollection<NPC>()
                 {
-                    new GameItemQuantity(GameItemById(131), 5)
+                    GetNpcById(1004)
                 }
             };
 
@@ -277,15 +299,18 @@ namespace Elarya.Data
 
                 Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!" ,
 
-                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Now Be Gone!",
+                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Lucky for you, there appears to be a valuable item here you need, at the cost of your life though",
 
                 Accessible = false,
 
-                RequiredExperience = 110,
+                ModifyLives = -1,
 
-                ModifyHealth = -75,
+                RequiredExperience = 150,
 
-                ModifyLives = -1
+                GameItems = new ObservableCollection<GameItemQuantity>()
+                {
+                    new GameItemQuantity(GameItemById(142), 1)
+                }
             };
 
                 gameMap.Locations[6, 7] = new Location()
@@ -296,9 +321,7 @@ namespace Elarya.Data
 
                 Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
-                Accessible = false,
-
-                RequiredExperience = 100,
+                Accessible = true,
 
                 ExperienceGain = 5
             };
@@ -315,7 +338,7 @@ namespace Elarya.Data
 
                 Accessible = false,
 
-                RequiredExperience = 110,
+                RequiredExperience = 180,
 
                 MageSkill = 10,
 
@@ -344,7 +367,14 @@ namespace Elarya.Data
                 Messages = "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
                 "Maybe that old woman on the path up ahead might know when they open?",
 
-                Accessible = true
+                Accessible = true,
+
+                ExperienceGain = 20,
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1009)
+                }
             };
 
             gameMap.Locations[7, 8] = new Location()
@@ -361,12 +391,19 @@ namespace Elarya.Data
 
                 HealerSkill = 15,
 
-                RequiredItem = 102,
+                RequiredItem = 139,
+
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(102), 2),
                     new GameItemQuantity(GameItemById(131), 25)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1007)
                 }
             };
 
@@ -386,11 +423,18 @@ namespace Elarya.Data
 
                 MageSkill = 15,
 
-                RequiredExperience = 135,
+                RequiredItem = 138,
+
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(131), 2)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1006)
                 }
             };
 
@@ -402,10 +446,8 @@ namespace Elarya.Data
 
                 Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
-                Accessible = false,
+                Accessible = true,
 
-                RequiredExperience = 120,
-                
                 ExperienceGain = 10
             };
 
@@ -417,9 +459,7 @@ namespace Elarya.Data
 
                 Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
-                Accessible = false,
-
-                RequiredExperience = 125,
+                Accessible = true,
 
                 ExperienceGain = 25
             };
@@ -433,18 +473,17 @@ namespace Elarya.Data
                 Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
 
                 Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
-                "Perhaps you can learn some of this magic or even gather some dragon scale! Too bad that hike has left you starving though. 25 health lost",
+                "Perhaps you can learn some of this Mage magic or even find a rare Healing Spell. Too bad that hike has left you starving though. 25 health lost",
 
-                Accessible = false,
+                Accessible = true,
 
                 ModifyHealth = -25,
 
-                RequiredExperience = 130,
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 1),
-                    new GameItemQuantity(GameItemById(137), 10)
+                    new GameItemQuantity(GameItemById(101), 1)
                 }
             };
 
@@ -454,22 +493,23 @@ namespace Elarya.Data
 
                 Name = "Dragon Clutch",
 
-                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . .",
+                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . . At the bottom appears to be a scroll, closely guarded by the dragons",
 
-                Messages = "You are determined to gather loose dragon scales! Only problem is, their clutch is a solid 300 feet down the bluff " +
-                "Good thing you found the Scroll of Descent right?!?",
+                Messages = "You are determined to find out what is on that scroll! Only problem is, their clutch is a solid 300 feet down the bluff " +
+                "Good thing you found the Scroll of Descent right! Get to descending.",
 
                 Accessible = false,
 
-                HealerSkill = 25,
+                HealerSkill = 150,
 
                 RequiredItem = 137,
 
-                RequiredExperience = 110,
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(101), 2)
+                    new GameItemQuantity(GameItemById(101), 2),
+                    new GameItemQuantity(GameItemById(141), 1)
                 }
             };
 
@@ -481,18 +521,22 @@ namespace Elarya.Data
 
                 Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
 
-                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? " +
-                "I'm sure some of those mage affinity potions would come in great help in this instance!",
-
+                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? ",
+                
                 Accessible = false,
 
-                MageSkill = 25,
+                RequiredItem = 142,
 
-                RequiredExperience = 150,
+                ExperienceGain = 20,
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(122), 4)
+                },
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1008)
                 }
             };
 
@@ -511,26 +555,31 @@ namespace Elarya.Data
         {
             return new List<GameItem>()
             {
-                new Potion(101, "Lesser Health Potion", 10, 25, 0, 0, 0, 0, 10, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
-                new Potion(102, "Greater Health Potion", 25, 75, 0, 0, 0, 0, 10, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
+                new Potion(101, "Lesser Health Potion", 50, 25, 0, 0, 0, 0, 10, "Lesser Health Potion restores 25 HP", "You restored 25 HP"),
+                new Potion(102, "Greater Health Potion", 150, 75, 0, 0, 0, 0, 10, "Greater Health Potion restores 75 HP", "You restored 75 HP"),
                 new Potion(103, "Lesser Mage Potion", 100, 0, 0, 0, 10, 0, 10, "Lesser Mage Potion grants 10 Mage Skill Points", "You gained 10 Mage Skill Points"),
                 new Potion(104, "Greater Mage Potion", 250, 0, 0, 0, 25, 0, 10, "Greater Mage Potion grants 25 Mage Skill Points", "You gained 25 Mage Skill Points"),
                 new Potion(105, "Lesser Healer Potion", 100, 0, 0, 0, 0, 10, 10, "Lesser Healer Potion grants 10 Healer Skill Points", "You gained 10 Healer Skill Points"),
                 new Potion(106, "Greater Healer Potion", 250, 0, 0, 0, 0, 25, 10, "Greater Healer Potion grants 25 Healer Skill Points", "You gained 25 Healer Skill Points"),
-                new Potion(107, "Mana Potion", 10, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
+                new Potion(107, "Mana Potion", 50, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
                 new Potion(108, "Life Potion", 500, 100, 1, 100, 0, 0, 10, "Life Potions grant 1 life, Full Health, and Full Mana", "You gained 1 life, Full Health, and Full Mana"),
+                
 
-                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 10, "This hat pulses with the power of many mages!"),
-                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 10, "This robe has decades of mages secrets woven into it's fibers"),
-                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 10,"This clock glows with the power of the Quin'lai mages"),
-                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 10, "The hat glows with the golden light of Aqua'l"),
-                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 10, "This robe seems to be imbued with healing powers"),
-                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 10, "This cloak casts a warm healing light"),
+                new Potion(109, "Free Mage Potion", 0, 0, 0, 0, 25, 0, 25, "Increase your Mage Skill points", "You gained 25 Mage Skill Points"),
+                new Potion(110, "Free Healer Potion", 0, 0, 0, 0, 0, 25, 0, "Grants 25 Healer Skill", "You gained 25 Healer Skill Points!"),
+
+
+                new Clothes( 111, "Hat of Quin'lai", 50, Clothes.ClothesType.Hat, 0, 0, 10, 0, 20, "This hat pulses with the power of many mages!", "You have gained 10 Mage Skill and 20 Experience!"),
+                new Clothes(112, "Robe of Quin'lai", 150, Clothes.ClothesType.Robe, 0, 0, 25, 0, 20, "This robe has decades of mages secrets woven into it's fibers", "You have gained 25 Mage Skill and 20 Experience"),
+                new Clothes(113, "Cloak of Quin'lai", 150, Clothes.ClothesType.Cloak, 0, 0, 25, 0, 20,"This cloak glows with the power of the Quin'lai mages", "You have gained 25 Mage Skill and 20 Experience"),
+                new Clothes(114, "Hat of Aqua'l", 50, Clothes.ClothesType.Hat, 0, 0, 0, 10, 20, "The hat glows with the golden light of Aqua'l", "You have gained 10 Healer Skill and 20 Experience"),
+                new Clothes(115, "Robe of Aqua'l", 150, Clothes.ClothesType.Robe, 0, 0, 0, 25, 20, "This robe seems to be imbued with healing powers", "You have gained 25 Healer Skill and 20 Experience"),
+                new Clothes(116, "Cloak of Aqua'l", 150, Clothes.ClothesType.Cloak, 0, 0, 0, 25, 20, "This cloak casts a warm healing light", "You have gained 25 Healer Skill and 20 Experience"),
 
                 new Food(121, "Marlio Berries", 5, Food.FoodType.Berries, 10, 0, 10, "These delicious berries can be used to restore health", "Restored 10HP"),
                 new Food(122, "Wizard Berries", 25, Food.FoodType.Berries, 75, 0, 10, "These bright white berries are known for restoring large amounts of health", "Restored 75HP"),
                 new Food(123, "Quil'ash Stout", 10, Food.FoodType.Drink, 25, 25, 10, "These stout is briming with medicinal herbs and roots. Great for Health and Mana", "Restored 25HP and 25 Mana"),
-                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, 10, "Ncoti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
+                new Food(124, "Nocti Tea", 300, Food.FoodType.Drink, 50, 50, 10, "Nocti tea is renowned for its healing and regeneration properties", "Restored 50HP and 50 Mana"),
                 new Food(125, "Starl'ai Boar", 40, Food.FoodType.Meat, 40, 0, 10, "Some of the finest meat around!", "Restored 40 HP"),
                 new Food(126, "Yerlund Venison", 60, Food.FoodType.Meat, 60, 0, 10, "Venision from the finest magical forest", "Restored 60HP"),
                 new Food(127, "Nocti Bakers Special", 25, Food.FoodType.Bread, 30, 30, 10, "Nocti's cheapest bread. Restores health and mana", "Restored 30 HP and 30 Mana"),
@@ -542,7 +591,252 @@ namespace Elarya.Data
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
                 new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
                 new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
-                new Treasure(137, "Scroll of Descent", 100, Treasure.TreasureType.Scroll, "Scroll of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!")
+               
+                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, "Spell of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
+                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, "This spell can be used to remove the mist surrounding Tornul!"),
+                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, "Spell of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!"),
+                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, "This spell grants a massive amount of Mage Skill. Take only if you wish to be a mage!", "You have gained 200 Mage Skill Points"),
+                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, "This spell grants a massive amount of Healer Skill. Take only if you wish to be a Healer!", "You have gained 200 Healer Skill Points"),
+                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, "This spell will remove illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
+            };
+        }
+
+        #endregion
+
+        #region NPC's
+
+        /// <summary>
+        /// Creates the List of NPCs
+        /// </summary>
+        /// <returns>Returns the List of NPCs</returns>
+        public static List<NPC> Npcs()
+        {
+            return new List<NPC>()
+            {
+                new Merchant()
+                {
+                    Id = 1001,
+                    Name = "Qenli",
+                    Age = 32,
+                    Race = Character.RaceType.Diolecian,
+                    Gender = Character.GenderType.Female,
+                    Description = "A quaint little woman with sharp eyes, and a sharper wit!",
+                    LocationId = 3,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Merchant Shop!",
+                        "Do you have any treasure to show me?",
+                        "What brings you into my shop today?",
+                        "If you come across treasure on your travels, I can make you richer!"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(139), 1)
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1002,
+                    Name = "Shi'ler",
+                    Age = 18,
+                    Race = Character.RaceType.Draggaru,
+                    Gender = Character.GenderType.Male,
+                    Description = "A man with a powerful presence. Decked out head to toe in the finest clothing, looking dapper!",
+                    LocationId = 7,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Tailor Shop!",
+                        "We have the finest clothing around!",
+                        "What brings you into my shop today?"
+                    },
+
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(111), 1),
+                        new GameItemQuantity(GameItemById(112), 1),
+                        new GameItemQuantity(GameItemById(113), 1),
+                        new GameItemQuantity(GameItemById(114), 1),
+                        new GameItemQuantity(GameItemById(115), 1),
+                        new GameItemQuantity(GameItemById(116), 1)
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1003,
+                    Name = "Horec",
+                    Age = 32,
+                    Race = Character.RaceType.Plenskolt,
+                    Gender = Character.GenderType.Female,
+                    Description = "A rather portly woman who is covered in flour and smells of fresh baked bread! ",
+                    LocationId = 6,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Food Shop!",
+                        "We have the finest food in Nocti. What would you like today?",
+                        "What brings you into my shop today?"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(121), 10),
+                        new GameItemQuantity(GameItemById(122), 10),
+                        new GameItemQuantity(GameItemById(123), 10),
+                        new GameItemQuantity(GameItemById(124), 10),
+                        new GameItemQuantity(GameItemById(125), 10),
+                        new GameItemQuantity(GameItemById(126), 10),
+                        new GameItemQuantity(GameItemById(127), 10),
+                        new GameItemQuantity(GameItemById(128), 10),
+
+                    }
+                },
+                new Merchant()
+                {
+                    Id = 1004,
+                    Name = "Jurolion",
+                    Age = 65,
+                    Race = Character.RaceType.Nungari,
+                    Gender = Character.GenderType.Male,
+                    Description = "A tall man with a large black hood. He towers over the cauldron he tends too. ",
+                    LocationId = 8,
+                    Messages = new List<string>()
+                    {
+                        "Welcome to the Potions Shop!",
+                        "Are you in need of Potions today? We have several to choose from!",
+                        "What brings you into my shop today?"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(101), 10),
+                        new GameItemQuantity(GameItemById(102), 10),
+                        new GameItemQuantity(GameItemById(103), 10),
+                        new GameItemQuantity(GameItemById(104), 10),
+                        new GameItemQuantity(GameItemById(105), 10),
+                        new GameItemQuantity(GameItemById(106), 10),
+                        new GameItemQuantity(GameItemById(107), 10),
+                        new GameItemQuantity(GameItemById(108), 10)
+                    }
+                },
+                new Citizen()
+                {
+                    Id = 1005,
+                    Name = "Tru'pli",
+                    Age = 43,
+                    Description = "A citizen from Diolece! 4 arms, 3 legs, and 6 eyes! Rare around these parts",
+                    Race = Character.RaceType.Diolecian,
+                    Gender = Character.GenderType.Nonbinary,
+                    Messages = new List<string>()
+                    {
+                        "Oh how exciting! You are going on your coming of age adventure today!",
+                        "You know, I hear there is a wonderful magic swamp around here.",
+                        "If your going on your adventure, make sure to stock up on some potions and food!",
+                        "Have you seen where they sell Wizard berries? Oh nvm, I couldn't afford them anyways."
+                    }
+                },
+                new Citizen()
+                {
+                    Id = 1006,
+                    Name = "Tornul",
+                    Age = 150,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Plenskolt,
+                    Description = "Tornul is an old wizard, who has mastered the art of fish magic!",
+                    MageSkillGain = 25,
+                    Messages = new List<string>()
+                    {
+                        "Welcome traveler! I heard what you did for my friend over in the Fish shop! Here take this Mage Skill Potion if you are interested and some Mage Skill Points too!"
+                    },
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(109), 1)
+                    }
+
+                },
+                new Citizen()
+                {
+                    Id = 1007,
+                    Name = "Hrcs'et",
+                    Age = 95,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Draggaru,
+                    Description = "A frail old Draggaru who is not looking so well",
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(110), 1),
+                        new GameItemQuantity(GameItemById(138), 1)
+                    },
+                    HealerSkillGain = 25,
+                    Messages = new List<string>()
+                    {
+                        "Thank you so much for healing me!",
+                        "Wow I feel so much better, thank you!",
+                        "Did you remember to grab that free Scroll of Thanks yet?"
+                    }
+                },
+                new Citizen()
+                {
+                    Id = 1008,
+                    Name = "Geryres",
+                    Age = 78,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Nungari,
+                    Description = "An old and wise mage, capable of great magic!",
+                    Messages = new List<string>()
+                    {
+                        "Welcome, if you have made it this far, you must possess great magic!",
+                        "If its magic skill you seek, I have a potion for that! Please take it",
+                        "You will be a great mage some day! I can feel it in my bones."
+                    },
+
+                    GameItems = new ObservableCollection<GameItemQuantity>()
+                    {
+                        new GameItemQuantity(GameItemById(140), 1)
+                    }
+                },
+                new Citizen()
+                {
+                    Id = 1009,
+                    Name = "Relia",
+                    Age = 65,
+                    Gender = Character.GenderType.Female,
+                    Race = Character.RaceType.Nungari,
+                    Description = "She may look old, but this woman in spritely and alive!",
+                    Messages = new List<string>()
+                    {
+                        "Hello Traveler!",
+                        "I hope your journey has been treating you well so far?",
+                        "I hear the fish shop owner is not doing so well, if you have the Spell of Revival, I am sure it would perk him right up!",
+                        "Remember, if you are stuck and feel like there is no where else to go, try gaining some experience with potions or clothes. New areas may open up once you break past a certain experience threshold."
+                    }
+                },
+                new Guard()
+                {
+                    Id = 1010,
+                    Name = "Captain Hrelion",
+                    Age = 32,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Nungari,
+                    Description = "The Captian is decked out in full Military Garb. A sword in one hand and a shield in the other",
+                    Messages = new List<string>()
+                    {
+                        "Good luck on your journey, now move along!",
+                        "This is no time to loiter, your future here depends on this adventure!",
+                        "Make sure you have what you need to leave the city. We won't let under prepared travelers out until you are ready"
+                    }
+                },
+                new Guard()
+                {
+                    Id = 1011,
+                    Name = "Seargant Lia'e",
+                    Age = 21,
+                    Gender = Character.GenderType.Female,
+                    Race = Character.RaceType.Nungari,
+                    Description = "A young Nungari woman who just completed her quest to find her calling. She guards the gate into Nocti with pride and youthfulness",
+                    Messages = new List<string>()
+                    {
+                        "You cannot leave the city without the basic provisions!",
+                        "Best of luck on your journey",
+                        "If you don't have at least 100 experience, I cannot let you leave"
+                    }
+                }
             };
         }
 
