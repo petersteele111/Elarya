@@ -33,18 +33,22 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <!-- Main Title -->
             <TextBlock 
-                Grid.Column="0" 
+                Text="Elarya"
+                Grid.Column="1" 
                 Grid.Row="0" 
-                Text="Welcome to Elarya" 
-                Grid.ColumnSpan="7" 
+                Grid.ColumnSpan="5" 
                 Grid.RowSpan="2" 
                 FontSize="48px" 
                 VerticalAlignment="Center" 
-                HorizontalAlignment="Center" 
-                Foreground="DarkRed" />
+                HorizontalAlignment="Center"
+                Foreground="DarkRed" FontFamily="Papyrus">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
             <!-- Name Label -->
             <Label 
@@ -54,7 +58,11 @@
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
                 FontSize="20px" 
-                FontWeight="Bold" />
+                FontWeight="Bold" FontFamily="Papyrus" >
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="20" Direction="314" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
 
             <!-- Name TextBox -->
             <TextBox 
@@ -64,20 +72,22 @@
                 Width="200px"
                 Height="32px"
                 Name="PlayerName" 
-                FontSize="20px">
+                FontSize="20px" FontFamily="Papyrus">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBox.Effect>
             </TextBox>
 
             <!-- Name Error TextBlock -->
             <TextBlock 
                 Grid.Column="1" 
                 Grid.Row="3" 
-                Grid.ColumnSpan="2" 
-                Text="This is an error message" 
-                Name="ErrorMessageTextBlock" 
+                Grid.ColumnSpan="3" 
+                x:Name="ErrorMessageTextBlock" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
-                FontSize="12px" 
-                Foreground="red"/>
+                FontSize="14" 
+                Foreground="red" FontFamily="Papyrus" FontWeight="Bold" Margin="45,12,0,13" Width="296"><Run Text="This is an error "/><Run Text="message"/></TextBlock>
 
             <!-- Age Label -->
             <Label 
@@ -87,7 +97,11 @@
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
                 FontSize="20px" 
-                FontWeight="Bold" />
+                FontWeight="Bold" FontFamily="Papyrus" >
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
 
             <!-- Age TextBox -->
             <TextBox 
@@ -97,20 +111,23 @@
                 Width="200px"
                 Height="32px"
                 Name="Age" 
-                FontSize="20px">
+                FontSize="20px" FontFamily="Papyrus">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBox.Effect>
             </TextBox>
 
             <!-- Age Error TextBlock -->
             <TextBlock 
                 Grid.Column="1" 
                 Grid.Row="5" 
-                Grid.ColumnSpan="2" 
+                Grid.ColumnSpan="3" 
                 Text="This is an error message" 
                 Name="ErrorMessageTextBlockAge" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
-                FontSize="12px" 
-                Foreground="red"/>
+                FontSize="14" 
+                Foreground="red" FontFamily="Papyrus" FontWeight="Bold" Margin="45,13,0,12" Width="296"/>
 
             <!-- Race Label -->
             <Label 
@@ -120,7 +137,11 @@
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
                 FontSize="20px" 
-                FontWeight="Bold" />
+                FontWeight="Bold" FontFamily="Papyrus" >
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
 
             <!-- Race ComboBox-->
             <ComboBox
@@ -131,7 +152,10 @@
                 Name="RaceTypeComboBox" 
                 FontSize="20px" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" FontFamily="Papyrus">
+                <ComboBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </ComboBox.Effect>
             </ComboBox>
 
             <!-- Role Label -->
@@ -142,8 +166,12 @@
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
                 FontSize="20px" 
-                FontWeight="Bold"/>
-            
+                FontWeight="Bold" FontFamily="Papyrus">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="50" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
+
             <!-- Role Combo Box -->
             <ComboBox 
                 Grid.Column="5" 
@@ -153,7 +181,11 @@
                 Name="JobTitleTypeComboBox" 
                 FontSize="20px" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center" FontFamily="Papyrus" >
+                <ComboBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </ComboBox.Effect>
+            </ComboBox>
 
             <!-- Gender Label -->
             <Label 
@@ -163,7 +195,11 @@
                 HorizontalContentAlignment="Center" 
                 VerticalContentAlignment="Center" 
                 FontSize="20px" 
-                FontWeight="Bold"/>
+                FontWeight="Bold" FontFamily="Papyrus">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
 
             <!-- Gender Combo Box -->
             <ComboBox 
@@ -174,7 +210,11 @@
                 Name="GenderTypeComboBox" 
                 FontSize="20px" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center" FontFamily="Papyrus" >
+                <ComboBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </ComboBox.Effect>
+            </ComboBox>
 
             <TextBlock
                 Grid.ColumnSpan="5"
@@ -184,8 +224,8 @@
                 FontWeight="bold"
                 TextWrapping="Wrap"
                 VerticalAlignment="Center"
-                Foreground="White"
-                Padding="10px"
+                Foreground="#FF8F0000"
+                Padding="10px" FontFamily="Papyrus" TextDecorations="Underline"
 
                 />
 
@@ -199,7 +239,11 @@
                 FontWeight="Bold"  
                 Background="DarkGreen" 
                 Foreground="White" 
-                Click="OKButton_Click"/>
+                Click="OKButton_Click" FontFamily="Papyrus">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
         </Grid>
     </Grid>
 </Window>

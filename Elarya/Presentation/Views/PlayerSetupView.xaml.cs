@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,15 @@ namespace Elarya.Presentation.Views
     /// </summary>
     public partial class PlayerSetupView : Window
     {
+
+        public void BackgroundMusic()
+        {
+            SoundPlayer playerCreate = new SoundPlayer(System.AppDomain.CurrentDomain.BaseDirectory + @"\Presentation\Resources\Assets\Sounds\PlayerCreateScreen.wav");
+            playerCreate.Load();
+            playerCreate.PlayLooping();
+        }
+        
+
         #region Fields
 
         private Player _player;
@@ -56,6 +66,7 @@ namespace Elarya.Presentation.Views
 
             ErrorMessageTextBlock.Visibility = Visibility.Hidden;
             ErrorMessageTextBlockAge.Visibility = Visibility.Hidden;
+            BackgroundMusic();
 
         }
 
@@ -73,7 +84,7 @@ namespace Elarya.Presentation.Views
             }
             else if (!PlayerName.Text.All(chr => char.IsLetter(chr)))
             {
-                errorMessage += "No numbers! Letters only!";
+                errorMessage += "No numbers, spaces, or special characters!";
             } 
             else
             {

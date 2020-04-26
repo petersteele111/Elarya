@@ -130,9 +130,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentation\Resources\Assets\Sounds\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Presentation\Resources\Assets\Images\playerSetupBackground.png" />
   </ItemGroup>
@@ -141,6 +139,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Presentation\Views\input.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Presentation\Resources\Assets\Sounds\background.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Presentation\Resources\Assets\Sounds\Game Over 1.wav" />
+    <Content Include="Presentation\Resources\Assets\Sounds\Game Over.wav" />
+    <Content Include="Presentation\Resources\Assets\Sounds\Lost.wav" />
+    <Content Include="Presentation\Resources\Assets\Sounds\MagicPortal.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Presentation\Resources\Assets\Sounds\Magic Sound.wav" />
+    <Content Include="Presentation\Resources\Assets\Sounds\MagicUnlock.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Presentation\Resources\Assets\Sounds\PlayerCreateScreen.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

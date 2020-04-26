@@ -48,6 +48,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- File Menu -->
         <DockPanel Grid.ColumnSpan="12">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -62,33 +63,37 @@
         </DockPanel>
 
         <!-- Information Bar-->
-        <Border BorderBrush="black" BorderThickness="1px" Grid.ColumnSpan="12">
-            <StackPanel Orientation="Horizontal" Margin="60 0 0 0">
-                <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+        <Border BorderBrush="black" BorderThickness="0 0 0 1" Grid.ColumnSpan="12">
+            <StackPanel Orientation="Horizontal" Margin="28,10,32,-10">
+                <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" FontFamily="Papyrus" />
+                <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
-                <TextBlock Text="Health: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Health}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Health: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0" FontFamily="Papyrus"/>
+                <TextBlock Text="{Binding Player.Health}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
-                <TextBlock Text="Mana: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Mana}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Mana: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0" FontFamily="Papyrus"/>
+                <TextBlock Text="{Binding Player.Mana}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
-                <TextBlock Text="Lives: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Life}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Lives: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0" FontFamily="Papyrus"/>
+                <TextBlock Text="{Binding Player.Life}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
-                <TextBlock Text="Exp: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding Player.Experience}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Exp: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0" FontFamily="Papyrus"/>
+                <TextBlock Text="{Binding Player.Experience}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
 
-                <TextBlock Text="Time: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0"/>
-                <TextBlock Text="{Binding GameTimeDisplay}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Time: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Margin="140px 0 0 0" FontFamily="Papyrus"/>
+                <TextBlock Text="{Binding GameTimeDisplay}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
             </StackPanel>
         </Border>
 
         <!-- General Info Panel-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12" Height="516" VerticalAlignment="Bottom" />
 
-        <TextBlock Text="Current Location" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="center" FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="Red" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <TextBlock Text="Current Location" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="center" FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="DarkRed" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Papyrus"/>
 
         <TextBlock 
             Text="Travel"
@@ -97,26 +102,46 @@
             FontSize="20"
             VerticalAlignment="center"
             HorizontalAlignment="Center"
-            FontWeight="Bold"/>
+            FontWeight="Bold" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="North" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="NorthButton_Click"/>
-            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold"/>
+            <Button Content="North" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="NorthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="East" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="EastButton_Click"/>
-            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold"/>
+            <Button Content="East" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="EastButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="South" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="SouthButton_Click"/>
-            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold"/>
+            <Button Content="South" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="SouthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="2" Margin="10 0 0 0">
-            <Button Content="West" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="WestButton_Click"/>
-            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold"/>
+            <Button Content="West" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="WestButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock Text="{Binding WestLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
         <!-- Main Window-->
@@ -129,27 +154,30 @@
             Grid.RowSpan="5"
             Grid.ColumnSpan="6"
             Margin="10 0 10 0">
+            <TabControl.Effect>
+                <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
+            </TabControl.Effect>
             <TabItem
                 Header="Items in Location"
-                x:Name="ItemsInfoTab">
+                x:Name="ItemsInfoTab" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="LocationItemsDataGrid"
                     Height="150px"
                     ItemsSource="{Binding CurrentLocation.GameItems}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontFamily="Papyrus" FontSize="16">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Name}"
-                            Width="*"></DataGridTextColumn>
+                            Width="Auto"></DataGridTextColumn>
                         <DataGridTextColumn
                             Header="Description"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Description}"
-                            Width="Auto">
+                            Width="8*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
@@ -159,26 +187,26 @@
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
-                            Width="Auto"
+                            Width="*"
                             Binding="{Binding GameItem.Value}" />
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
-                            Width="Auto"
+                            Width="1.2*"
                             Binding="{Binding Quantity}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem
                 Header="NPCs"
-                x:Name="NpcsInfoTab">
+                x:Name="NpcsInfoTab" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="LocationNpcsDataGrid"
                     Height="150"
                     ItemsSource="{Binding CurrentLocation.Npcs}"
                     SelectedItem="{Binding CurrentNpc}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="16">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Description"
@@ -196,17 +224,33 @@
             </TabItem>
         </TabControl>
 
-        <TextBlock Text="Current Location Information" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20px"/>
-        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
+        <TextBlock Text="Current Location Information" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20px" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding CurrentMessage, Mode=OneWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="20px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus" Background="#FFF0F0F0">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10 0 0 0">
-            <TextBlock Text="Mage Skill: " FontSize="20px" FontWeight="Bold" />
-            <TextBlock Text="{Binding Player.MageSkill}" FontSize="20px" FontWeight="Bold"  />
+            <TextBlock Text="Mage Skill: " FontSize="20px" FontWeight="Bold" FontFamily="Papyrus" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="{Binding Player.MageSkill}" FontSize="20px" FontWeight="Bold" FontFamily="Papyrus" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center">
-            <TextBlock Text="Healer Skill: " FontSize="20px" FontWeight="Bold" />
-            <TextBlock Text="{Binding Player.HealerSkill}" FontSize="20px" FontWeight="Bold"  />
+            <TextBlock Text="Healer Skill: " FontSize="20px" FontWeight="Bold" FontFamily="Papyrus" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="{Binding Player.HealerSkill}" FontSize="20px" FontWeight="Bold"  FontFamily="Papyrus"/>
         </StackPanel>
 
         <Button
@@ -214,21 +258,33 @@
             Grid.Column="6"
             Content="Pick Up All"
             Click="PickUpButton_Click" 
-            Margin="0 0 10 10"
-            />
+            Margin="0 0 10 10" FontFamily="Papyrus" FontWeight="Bold" Background="DarkGreen" Foreground="White" FontSize="16"
+            >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
 
         <Button
             Grid.Row="12"
             Grid.Column="7"
             Content="Talk to NPC"
             Click="TalkToNpcButton_Click" 
-            Margin="0 0 10 10"
-        />
+            Margin="0 0 10 10" FontFamily="Papyrus" FontWeight="Bold" Foreground="White" Background="CadetBlue" FontSize="16"
+        >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
 
         <!-- Inventory Panel-->
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" />
+            <TextBlock Text="Inventory" FontSize="36px" FontWeight="Bold" FontFamily="Papyrus" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
         </StackPanel>
 
         <TabControl
@@ -238,15 +294,18 @@
             Grid.RowSpan="5"
             Grid.ColumnSpan="4"
             Margin="10 0 10 0">
+            <TabControl.Effect>
+                <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
+            </TabControl.Effect>
             <TabItem
                 Header="Potions"
-                x:Name="PlayerPotions">
+                x:Name="PlayerPotions" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="PotionsDataGrid"
                     ItemsSource="{Binding Player.Potions}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontFamily="Papyrus" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -268,24 +327,24 @@
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="Auto" />
+                            Width="*" />
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
                             Binding="{Binding Quantity, Mode=OneWay}"
-                            Width="Auto" />
+                            Width="1.2*" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem
                 Header="Clothes"
-                x:Name="PlayerClothes">
+                x:Name="PlayerClothes" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="ClothesDataGrid"
                     ItemsSource="{Binding Player.Clothes}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -307,24 +366,24 @@
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="1.5*"/>
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
                             Binding="{Binding Quantity, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="1.5*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem
                 Header="Food"
-                x:Name="PlayerFood">
+                x:Name="PlayerFood" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="FoodDataGrid"
                     ItemsSource="{Binding Player.Food}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -346,24 +405,24 @@
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="*"/>
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
                             Binding="{Binding Quantity, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="1.2*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem
                 Header="Treasure"
-                x:Name="PlayerTreasure">
+                x:Name="PlayerTreasure" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="TreasureDataGrid"
                     ItemsSource="{Binding Player.Treasure}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -385,24 +444,24 @@
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="1.2*"/>
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
                             Binding="{Binding Quantity, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="1.4*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem
                 Header="Spells (Scrolls)"
-                x:Name="PlayerSpells">
+                x:Name="PlayerSpells" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="SpellsDataGrid"
                     ItemsSource="{Binding Player.Spell}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -413,28 +472,28 @@
                             Header="Description"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Description, Mode=OneWay}"
-                            Width="6*">
+                            Width="8*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                            <DataGridTextColumn
+                        <DataGridTextColumn
                             Header="Mana Cost"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.ManaCost, Mode=OneWay}"
-                            Width="2*"/>
+                            Width="Auto"/>
                         <DataGridTextColumn
                             Header="Value"
                             IsReadOnly="True"
                             Binding="{Binding GameItem.Value, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="3*"/>
                         <DataGridTextColumn
                             Header="QTY"
                             IsReadOnly="True"
                             Binding="{Binding Quantity, Mode=OneWay}"
-                            Width="Auto"/>
+                            Width="3*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -451,16 +510,28 @@
                 Content="Put Down" 
                 Click="PutDownButton_Click"
                 Width="100"
-                Margin="0 0 50 0"/>
+                Margin="0 0 50 0" FontFamily="Papyrus" FontWeight="Bold" Background="DarkRed" Foreground="White" FontSize="16">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
             <Button 
                 Content="Use" 
                 Click="UseButton_Click"
-                Width="100"/>
+                Width="100" FontFamily="Papyrus" FontWeight="Bold" Foreground="White" Background="DarkGreen" FontSize="16">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
 
         <!-- Buy/Sell-->
         <StackPanel Orientation="Vertical" Grid.Column="8" Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="5">
-            <TextBlock Text="Buy Items" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Buy Items" FontSize="36px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
         </StackPanel>
         <TabControl
             Grid.Column="8"
@@ -468,16 +539,19 @@
             Grid.RowSpan="5"
             Grid.ColumnSpan="4"
             Margin="10 0 10 0">
+            <TabControl.Effect>
+                <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
+            </TabControl.Effect>
             <TabItem
                 Header="Buy"
-                x:Name="BuyInfoTab">
+                x:Name="BuyInfoTab" FontFamily="Papyrus" FontSize="18">
                 <DataGrid
                     x:Name="NpcsBuyDataGrid"
                     Height="150"
                     ItemsSource="{Binding CurrentNpc.GameItems}"
                     SelectedItem="{Binding CurrentGameItem}"
                     AutoGenerateColumns="False"
-                    HeadersVisibility="Column">
+                    HeadersVisibility="Column" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Header="Name"
@@ -517,45 +591,97 @@
                 Content="Buy"
                 Width="100"
                 Margin="0 0 50 0"
-                Click="BuyItemButton_Click"/>
+                Click="BuyItemButton_Click" FontFamily="Papyrus" FontWeight="Bold" FontSize="16" Background="DarkRed" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
             <Button 
                 Content="Sell"
                 Width="100"
-                Click="SellItemButton_Click"/>
+                Click="SellItemButton_Click" FontFamily="Papyrus" FontWeight="Bold" FontSize="16" Foreground="White" Background="DarkGreen">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
-        
+
 
 
         <!-- Player Info Panel Border-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
-            <TextBlock Text="Player Info" FontSize="28px" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Player Info" FontSize="28px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus" >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
             <!-- Space to list messages -->
         </StackPanel>
 
 
-        <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left" Width="110" VerticalAlignment="Center"/>
+        <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding Player.Race, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left" Width="110" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
 
 
 
-        <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" />
+        <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding Player.Gender, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0" >
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
 
 
 
-        <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center"/>
+        <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding Player.JobTitle, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
 
 
-        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center"/>
+        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding Player.Age, Mode=OneWay}" FontSize="16px" IsReadOnly="True" Grid.Row="17" Grid.Column="1" HorizontalAlignment="Left" Width="110px" VerticalAlignment="Center" FontFamily="Papyrus" Foreground="Black" Background="#FFDDF1F0">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
 
         <!-- User Actions-->
         <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="6" Grid.RowSpan="5"/>
 
-        <TextBlock Text="Messages" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="6" VerticalAlignment="Top" FontSize="30px" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="2" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0"/>
+        <TextBlock Text="Messages" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="6" VerticalAlignment="Top" FontSize="30px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBox Text="{Binding CurrentLocation.Messages, Mode=OneWay}" Grid.Column="2" Grid.Row="14" Grid.ColumnSpan="6" Grid.RowSpan="4" FontSize="16px" TextWrapping="Wrap" IsReadOnly="True" Margin="10 0 10 0" FontFamily="Papyrus" Background="#FFF0F0F0">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="30" Opacity="0.5"/>
+            </TextBox.Effect>
+        </TextBox>
     </Grid>
 </Window>
