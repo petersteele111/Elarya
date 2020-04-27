@@ -113,471 +113,470 @@ namespace Elarya.Data
         /// <returns>Returns the populated Game Map</returns>
         public static Map GameMap()
         {
-            int rows = 8;
-            int columns = 12;
+            const int rows = 8;
+            const int columns = 12;
 
-            Map gameMap = new Map(rows, columns);
-
-            gameMap.StandardGameItems = StandardGameItems();
-
-            gameMap.Locations[4, 6] = new Location()
+            var gameMap = new Map(rows, columns)
             {
-                Id = 1,
-
-                Name = "Home (Nocti)",
-
-                Description = "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
-                "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed. " +
-                "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth. " +
-                "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the foreseeable future.",
-
-                Messages = "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society. " +
-                "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage? " +
-                "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
-
-                Accessible = true,
-
-                GameItems = new ObservableCollection<GameItemQuantity>
+                StandardGameItems = StandardGameItems(),
+                Locations =
                 {
-                    new GameItemQuantity(GameItemById(101), 2),
-                    new GameItemQuantity(GameItemById(121), 1),
-                    new GameItemQuantity(GameItemById(123), 1)
-                }
+                    [4, 6] = new Location()
+                    {
+                        Id = 1,
 
-            };
+                        Name = "Home (Nocti)",
 
-            gameMap.Locations[3, 6] = new Location()
-            {
-                Id = 2,
+                        Description =
+                        
+                            "You arose in your home in the capital City of Nocti. The air is damp, the room is dark. " +
+                            "You start to hear the hustle and bustle outside. The city is awakening and you slowly stir from bed. " +
+                            "You make your way to the kitchen, whisper Fiero'n and watch as the fire springs from your fingertips to the hearth. " +
+                            "You listen to the crackle of the fire as you prepare breakfast. Today is an important day, and you soak up your home for the foreseeable future.",
+                        
+                        Messages =
 
-                Name = "Market Square (Nocti)",
+                            "You are soon to become of age in the realm of Qui'Lash. You must venture forth on an epic journey to discover what talents and skills you have to benefit society. " +
+                            "Will you follow in your Mom's footstep as a formidable healer or in your Father's light as a powerful Mage? " +
+                            "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
 
-                Description = "The market is in full swing! Breakfast is over, and people are hustling and bustling about. " +
-                "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
-                "wafts over you, inundating your senses.",
+                        Accessible = true,
 
-                Messages = "To your left is the Merchant Shop. A great place to sell treasures for Nocti Quarks. " +
-                "To your right is the Stables, filled with glorious horses of all breeds. ",
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(101), 2),
+                            new GameItemQuantity(GameItemById(121), 1),
+                            new GameItemQuantity(GameItemById(123), 1)
+                        }
+                    },
 
-                Accessible = true,
+                    [3, 6] = new Location()
+                    {
+                        Id = 2,
 
-                ExperienceGain = 10,
+                        Name = "Market Square (Nocti)",
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1005),
-                    GetNpcById(1010)
-                }
-            };
+                        Description =
 
-            gameMap.Locations[3, 5] = new Location()
-            {
-                Id = 3,
+                            "The market is in full swing! Breakfast is over, and people are hustling and bustling about. " +
+                            "You hear the blacksmith tanging away on metal, the horses in the stables neighing, and the smell of bread " +
+                            "wafts over you, inundating your senses.",
 
-                Name = "Merchant (Nocti)",
+                        Messages =
 
-                Description = "The Merchant shop looks pristine and kept up. A faint scent of Junl'ai berries fill the air " +
-                "In the corner sits a case with the most magnificient gems in the land! " +
-                "On the wall behind the merchant sit scrolls from times gone by.",
+                            "To your left is the Merchant Shop. A great place to sell treasures for Nocti Quarks. " +
+                            "To your right is the Stables, filled with glorious horses of all breeds. ",
 
-                Messages = "On your quest, you may discover treasures throughout the land! " +
-                "Find these treasures and bring them back to the Merchant to trade for Nocti Quarks! ",
+                        Accessible = true,
 
-                Accessible = true,
+                        ExperienceGain = 10,
 
-                ExperienceGain = 10,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1005), GetNpcById(1010)}
+                    },
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1001)
-                }
-            };
+                    [3, 5] = new Location()
+                    {
+                        Id = 3,
 
-            gameMap.Locations[3, 7] = new Location()
-            {
-                Id = 4,
+                        Name = "Merchant (Nocti)",
 
-                Name = "Stables (Nocti)",
+                        Description =
 
-                Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
+                            "The Merchant shop looks pristine and kept up. A faint scent of Junl'ai berries fill the air " +
+                            "In the corner sits a case with the most magnificent gems in the land! " +
+                            "On the wall behind the merchant sit scrolls from times gone by.",
 
-                Messages = "The Stables are quite lively this morning aren't they?",
+                        Messages =
 
-                Accessible = false,
+                            "On your quest, you may discover treasures throughout the land! " +
+                            "Find these treasures and bring them back to the Merchant to trade for Nocti Quarks! ",
 
-                RequiredExperience = 40,
+                        Accessible = true,
 
-                ExperienceGain = 10,
+                        ExperienceGain = 10,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(132), 1)
-                }
-            };
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1001)}
+                    },
 
-            gameMap.Locations[4, 7] = new Location()
-            {
-                Id = 5,
+                    [3, 7] = new Location()
+                    {
+                        Id = 4,
 
-                Name = "Front Gate (Nocti)",
+                        Name = "Stables (Nocti)",
 
-                Description = "The iron wrought gate looms over the town of Nocti, the only entrance and exit from the city!",
+                        Description = "The Stables are roaring as you enter. Horses neighing and stomping their feet.",
 
-                Messages = "You must have at least 100 experience to leave the city!",
+                        Messages = "The Stables are quite lively this morning aren't they?",
 
-                Accessible = true,
+                        Accessible = false,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(131), 50)
-                },
+                        RequiredExperience = 40,
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1011)
-                }
-            };
+                        ExperienceGain = 10,
 
-            gameMap.Locations[2, 5] = new Location()
-            {
-                Id = 6,
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(132), 1)
+                        }
+                    },
 
-                Name = "Food Shop (Nocti)",
+                    [4, 7] = new Location()
+                    {
+                        Id = 5,
 
-                Description = "The aroma of food fills the air. Breads, meats, berries, oh my! The chef stands in the corner stirring " +
-                "a large pot of porridge. He's a rather portly man who clearly has a great taste in food. ",
+                        Name = "Front Gate (Nocti)",
 
-                Messages = "If you plan on traveling a fair distance from Nocti, you might want to invest in some rations to take with you. " +
-                           "I'm sure the chef would be more than happy to help you out if you asked nicely!",
+                        Description = "The iron wrought gate looms over the town of Nocti, the only entrance and exit from the city!",
 
-                Accessible = false,
+                        Messages = "You must have at least 100 experience to leave the city!",
 
-                RequiredExperience = 10,
+                        Accessible = true,
 
-                ExperienceGain = 10,
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(131), 50)
+                        },
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1003)
-                }
-            };
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1011)}
+                    },
 
-            gameMap.Locations[2, 6] = new Location()
-            {
-                Id = 7,
+                    [2, 5] = new Location()
+                    {
+                        Id = 6,
 
-                Name = "Tailor (Nocti)",
+                        Name = "Food Shop (Nocti)",
 
-                Description = "The tailor shop is overflowing with leather and cloth goods. Robes with magical affinities " +
-                "and satchels for holding copious amount of items. Wading through the rows upon rows of items, the store owner finally comes into view. " +
-                "She is a the Great Mage Tulmerian!",
+                        Description =
 
-                Messages = "With a Great Mage making these fine clothing items, surely something here can be of use on your journey! " +
-                "Items of this quality though are not cheap. Make sure to budget wisely.",
+                            "The aroma of food fills the air. Breads, meats, berries, oh my! The chef stands in the corner stirring " +
+                            "a large pot of porridge. He's a rather portly man who clearly has a great taste in food. ",
 
-                Accessible = false,
+                        Messages =
 
-                RequiredExperience = 20,
+                            "If you plan on traveling a fair distance from Nocti, you might want to invest in some rations to take with you. " +
+                            "I'm sure the chef would be more than happy to help you out if you asked nicely!",
 
-                ExperienceGain = 10,
+                        Accessible = false,
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1002)
-                }
-            };
+                        RequiredExperience = 10,
 
-            gameMap.Locations[2, 7] = new Location()
-            {
-                Id = 8,
+                        ExperienceGain = 10,
 
-                Name = "Potions Shop (Nocti)",
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1003)}
+                    },
 
-                Description = "The Potions Shop is now open!",
+                    [2, 6] = new Location()
+                    {
+                        Id = 7,
 
-                Messages = "Potions of all kind exist here. Everything from gaining life, mana, and even skill points as a Healer or Mage!",
+                        Name = "Tailor (Nocti)",
 
-                Accessible = false,
+                        Description =
 
-                RequiredExperience = 30,
+                            "The tailor shop is overflowing with leather and cloth goods. Robes with magical affinities " +
+                            "and satchels for holding copious amount of items. Wading through the rows upon rows of items, the store owner finally comes into view. " +
+                            "She is a the Great Mage Tulmerian!",
 
-                ExperienceGain = 10,
+                        Messages =
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1004)
-                }
-            };
+                            "With a Great Mage making these fine clothing items, surely something here can be of use on your journey! " +
+                            "Items of this quality though are not cheap. Make sure to budget wisely.",
 
-            gameMap.Locations[5, 7] = new Location()
-            {
-                Id = 9,
+                        Accessible = false,
 
-                Name = "Southern Road 1",
+                        RequiredExperience = 20,
 
-                Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
-                "from the North.",
+                        ExperienceGain = 10,
 
-                Accessible = false,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1002)}
+                    },
 
-                RequiredExperience = 100,
+                    [2, 7] = new Location()
+                    {
+                        Id = 8,
 
-                ExperienceGain = 5
-            };
+                        Name = "Potions Shop (Nocti)",
 
-            gameMap.Locations[5, 6] = new Location()
-            {
-                Id = 20,
+                        Description = "The Potions Shop is now open!",
 
-                Name = "Ferlion Fields",
+                        Messages = "Potions of all kind exist here. Everything from gaining life, mana, and even skill points as a Healer or Mage!",
 
-                Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!",
+                        Accessible = false,
 
-                Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Lucky for you, there appears to be a valuable item here you need, at the cost of your life though",
+                        RequiredExperience = 30,
 
-                Accessible = false,
+                        ExperienceGain = 10,
 
-                ModifyLives = -1,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1004)}
+                    },
 
-                RequiredExperience = 150,
+                    [5, 7] = new Location()
+                    {
+                        Id = 9,
 
-                GameItems = new ObservableCollection<GameItemQuantity>()
-                {
-                    new GameItemQuantity(GameItemById(142), 1)
-                }
-            };
+                        Name = "Southern Road 1",
 
-            gameMap.Locations[6, 7] = new Location()
-            {
-                Id = 10,
+                        Description =
 
-                Name = "Southern Road 2",
+                            "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
+                            "from the North.",
 
-                Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
+                        Accessible = false,
 
-                Accessible = true,
+                        RequiredExperience = 100,
 
-                ExperienceGain = 5
-            };
+                        ExperienceGain = 5
+                    },
 
-            gameMap.Locations[6, 6] = new Location()
-            {
-                Id = 19,
+                    [5, 6] = new Location()
+                    {
+                        Id = 20,
 
-                Name = "Magic Swamp",
+                        Name = "Ferlion Fields",
 
-                Description = "The Swamp teems with Magic! Fairies and sprites abound. You can feel the magic flow into you!",
+                        Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!",
 
-                Messages = "You stand in a swamp of great magic! You gain +10 Mage Skill and +10 Healer Skill!",
+                        Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Lucky for you, there appears to be a valuable item here you need, at the cost of your life though",
+                        Accessible = false,
 
-                Accessible = false,
+                        ModifyLives = -1,
 
-                RequiredExperience = 180,
+                        RequiredExperience = 150,
 
-                MageSkill = 10,
+                        GameItems = new ObservableCollection<GameItemQuantity>()
+                        {
+                            new GameItemQuantity(GameItemById(142), 1)
+                        }
+                    },
 
-                HealerSkill = 10,
+                    [6, 7] = new Location()
+                    {
+                        Id = 10,
 
-                ExperienceGain = 20,
+                        Name = "Southern Road 2",
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(103), 1),
-                    new GameItemQuantity(GameItemById(105), 1),
-                    new GameItemQuantity(GameItemById(131), 50),
-                    new GameItemQuantity(GameItemById(137), 1)
-                }
-            };
+                        Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
-            gameMap.Locations[7, 7] = new Location()
-            {
-                Id = 11,
+                        Accessible = true,
 
-                Name = "Sra'Lik Sea",
+                        ExperienceGain = 5
+                    },
 
-                Description = "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
-                "To the east is a fishing shop and to the west is a man sitting on a dock.",
+                    [6, 6] = new Location()
+                    {
+                        Id = 19,
 
-                Messages = "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
-                "Maybe that old woman on the path up ahead might know when they open?",
+                        Name = "Magic Swamp",
 
-                Accessible = true,
+                        Description = "The Swamp teems with Magic! Fairies and sprites abound. You can feel the magic flow into you!",
 
-                ExperienceGain = 20,
+                        Messages = "You stand in a swamp of great magic! You gain +10 Mage Skill and +10 Healer Skill!",
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1009)
-                }
-            };
+                        Accessible = false,
 
-            gameMap.Locations[7, 8] = new Location()
-            {
-                Id = 12,
+                        RequiredExperience = 180,
 
-                Name = "Fishing Shop",
+                        MageSkill = 10,
 
-                Description = "The fishing shop seems old and run down. A haggard old fisherman stands behind the counter. He doesn't look well. ",
+                        HealerSkill = 10,
 
-                Messages = "This old man may be in some serious need of a healer and stat! ",
+                        ExperienceGain = 20,
 
-                Accessible = false,
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(103), 1),
+                            new GameItemQuantity(GameItemById(105), 1),
+                            new GameItemQuantity(GameItemById(131), 50),
+                            new GameItemQuantity(GameItemById(137), 1)
+                        }
+                    },
 
-                HealerSkill = 15,
+                    [7, 7] = new Location()
+                    {
+                        Id = 11,
 
-                RequiredItem = 139,
+                        Name = "Sra'Lik Sea",
 
-                ExperienceGain = 20,
+                        Description =
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(102), 2),
-                    new GameItemQuantity(GameItemById(131), 25)
-                },
+                            "At last the sea is in full view! The breeze cutting through the hot mid summer sun like a cool autumn night. " +
+                            "To the east is a fishing shop and to the west is a man sitting on a dock.",
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1007)
-                }
-            };
+                        Messages =
 
-            gameMap.Locations[7, 6] = new Location()
-            {
-                Id = 13,
+                            "After Such a long journey a fresh fish sounds amazing right now! Too bad the fishing shop seems to be closed right now. " +
+                            "Maybe that old woman on the path up ahead might know when they open?",
 
-                Name = "Tornul (Fishing Master)",
+                        Accessible = true,
 
-                Description = "You see an old man, sitting on the dock, feet hanging off in the Water. This must be Tornul " +
-                "the Fishing Master everyone talks about.",
+                        ExperienceGain = 20,
 
-                Messages = "Tornul is one of the greatest fishermen of all time! He uses his advanced knowledge of magic to call the fish to his lures. " +
-                "Maybe he can teach you a thing or two about his magic?",
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1009)}
+                    },
 
-                Accessible = false,
+                    [7, 8] = new Location()
+                    {
+                        Id = 12,
 
-                MageSkill = 15,
+                        Name = "Fishing Shop",
 
-                RequiredItem = 138,
+                        Description = "The fishing shop seems old and run down. A haggard old fisherman stands behind the counter. He doesn't look well. ",
 
-                ExperienceGain = 20,
+                        Messages = "This old man may be in some serious need of a healer and stat! ",
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(131), 2),
-                    new GameItemQuantity(GameItemById(134), 2)
-                },
+                        Accessible = false,
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1006)
-                }
-            };
+                        HealerSkill = 15,
 
-            gameMap.Locations[5, 8] = new Location()
-            {
-                Id = 14,
+                        RequiredItem = 139,
 
-                Name = "Eastern Road 1",
+                        ExperienceGain = 20,
 
-                Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(102), 2), new GameItemQuantity(GameItemById(131), 25)
+                        },
 
-                Accessible = true,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1007)}
+                    },
 
-                ExperienceGain = 10
-            };
+                    [7, 6] = new Location()
+                    {
+                        Id = 13,
 
-            gameMap.Locations[5, 9] = new Location()
-            {
-                Id = 15,
+                        Name = "Tornul (Fishing Master)",
 
-                Name = "Eastern Road 2",
+                        Description =
 
-                Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
+                            "You see an old man, sitting on the dock, feet hanging off in the Water. This must be Tornul " +
+                            "the Fishing Master everyone talks about.",
 
-                Accessible = true,
+                        Messages =
 
-                ExperienceGain = 25,
+                            "Tornul is one of the greatest fishermen of all time! He uses his advanced knowledge of magic to call the fish to his lures. " +
+                            "Maybe he can teach you a thing or two about his magic?",
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1012)
-                }
-            };
+                        Accessible = false,
 
-            gameMap.Locations[5, 10] = new Location()
-            {
-                Id = 16,
+                        MageSkill = 15,
 
-                Name = "Juit Bluffs",
+                        RequiredItem = 138,
 
-                Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
+                        ExperienceGain = 20,
 
-                Messages = "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
-                "Perhaps you can learn some of this Mage magic or even find a rare Healing Spell. Too bad that hike has left you starving though. 25 health lost",
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(131), 2), new GameItemQuantity(GameItemById(134), 2)
+                        },
 
-                Accessible = true,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1006)}
+                    },
 
-                ModifyHealth = -25,
+                    [5, 8] = new Location()
+                    {
+                        Id = 14,
 
-                ExperienceGain = 20,
+                        Name = "Eastern Road 1",
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(101), 1)
-                }
-            };
+                        Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
-            gameMap.Locations[5, 11] = new Location()
-            {
-                Id = 17,
+                        Accessible = true,
 
-                Name = "Dragon Clutch",
+                        ExperienceGain = 10
+                    },
 
-                Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . . At the bottom appears to be a scroll, closely guarded by the dragons",
+                    [5, 9] = new Location()
+                    {
+                        Id = 15,
 
-                Messages = "You are determined to find out what is on that scroll! Only problem is, their clutch is a solid 300 feet down the bluff " +
-                "Good thing you found the Scroll of Descent right! Get to descending.",
+                        Name = "Eastern Road 2",
 
-                Accessible = false,
+                        Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
-                HealerSkill = 150,
+                        Accessible = true,
 
-                RequiredItem = 137,
+                        ExperienceGain = 25,
 
-                ExperienceGain = 20,
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1012)}
+                    },
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(101), 2),
-                    new GameItemQuantity(GameItemById(141), 1),
-                    new GameItemQuantity(GameItemById(133), 2)
-                }
-            };
+                    [5, 10] = new Location()
+                    {
+                        Id = 16,
 
-            gameMap.Locations[6, 10] = new Location()
-            {
-                Id = 18,
+                        Name = "Juit Bluffs",
 
-                Name = "Campfire",
+                        Description = "As the road levels off at the top, a wide bluff extends out for as far as the eye can see. This must be Juit Bluffs!",
 
-                Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
+                        Messages = 
 
-                Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? ",
+                            "Locals have talked about great magic and dragons residing here at Juit Bluffs! " +
+                            "Perhaps you can learn some of this Mage magic or even find a rare Healing Spell. Too bad that hike has left you starving though. 25 health lost",
 
-                Accessible = false,
+                        Accessible = true,
 
-                RequiredItem = 142,
+                        ModifyHealth = -25,
 
-                ExperienceGain = 20,
+                        ExperienceGain = 20,
 
-                GameItems = new ObservableCollection<GameItemQuantity>
-                {
-                    new GameItemQuantity(GameItemById(122), 4)
-                },
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(101), 1)
+                        }
+                    },
 
-                Npcs = new ObservableCollection<Npc>()
-                {
-                    GetNpcById(1008)
+                    [5, 11] = new Location()
+                    {
+                        Id = 17,
+
+                        Name = "Dragon Clutch",
+
+                        Description = "Approaching the edge, a dragon clutch can be seen down the bluffs. That is a far way down though . . . At the bottom appears to be a scroll, closely guarded by the dragons",
+                        
+                        Messages =
+
+                            "You are determined to find out what is on that scroll! Only problem is, their clutch is a solid 300 feet down the bluff " +
+                            "Good thing you found the Scroll of Descent right! Get to descending.",
+
+                        Accessible = false,
+
+                        HealerSkill = 150,
+
+                        RequiredItem = 137,
+
+                        ExperienceGain = 20,
+
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(101), 2),
+                            new GameItemQuantity(GameItemById(141), 1),
+                            new GameItemQuantity(GameItemById(133), 2)
+                        }
+                    },
+
+                    [6, 10] = new Location()
+                    {
+                        Id = 18,
+
+                        Name = "Campfire",
+
+                        Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
+
+                        Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? ",
+
+                        Accessible = false,
+
+                        RequiredItem = 142,
+
+                        ExperienceGain = 20,
+
+                        GameItems = new ObservableCollection<GameItemQuantity>
+                        {
+                            new GameItemQuantity(GameItemById(122), 4)
+                        },
+
+                        Npcs = new ObservableCollection<Npc>() {GetNpcById(1008)}
+                    }
                 }
             };
 
