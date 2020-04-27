@@ -6,10 +6,6 @@ namespace Elarya.Models
     public class Location
     {
 
-        #region Fields
-
-        #endregion
-
         #region Properties
 
         /// <summary>
