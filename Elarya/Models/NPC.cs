@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Elarya.Models
 {
-    public abstract class NPC : Character
+    public abstract class Npc : Character
     {
 
         #region Fields
-
-        private ObservableCollection<GameItemQuantity> _gameItems;
 
         #endregion
 
@@ -24,7 +20,7 @@ namespace Elarya.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets and Sets the Mage Skil Point Gain
+        /// Gets and Sets the Mage Skill Point Gain
         /// </summary>
         public int MageSkillGain { get; set; }
 
@@ -36,26 +32,12 @@ namespace Elarya.Models
         /// <summary>
         /// Gets and Sets the NPC Inventory
         /// </summary>
-        public ObservableCollection<GameItemQuantity> GameItems
-        {
-            get => _gameItems;
-            set
-            {
-                _gameItems = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> GameItems { get; set; }
 
         /// <summary>
         /// Gets and Sets the Information Text String 
         /// </summary>
-        public string Information
-        {
-            get => InformationText();
-            set
-            {
-
-            }
-        }
+        public string Information => InformationText();
 
         #endregion
 
@@ -64,9 +46,9 @@ namespace Elarya.Models
         /// <summary>
         /// Public Constructor
         /// </summary>
-        public NPC()
+        protected Npc()
         {
-            _gameItems = new ObservableCollection<GameItemQuantity>();
+            GameItems = new ObservableCollection<GameItemQuantity>();
         }
 
         /// <summary>
@@ -79,7 +61,7 @@ namespace Elarya.Models
         /// <param name="race">Race of NPC</param>
         /// <param name="gender">Gender of NPC</param>
         /// <param name="description">Description of NPC</param>
-        public NPC(int id, int locationId, string name, int age, RaceType race, GenderType gender, string description) : base(id, locationId, name, age, race, gender)
+        protected Npc(int id, int locationId, string name, int age, RaceType race, GenderType gender, string description) : base(id, locationId, name, age, race, gender)
         {
             Id = id;
             LocationId = locationId;
@@ -87,7 +69,7 @@ namespace Elarya.Models
             Race = race;
             Gender = gender;
             Description = description;
-            _gameItems = new ObservableCollection<GameItemQuantity>();
+            GameItems = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
@@ -115,13 +97,13 @@ namespace Elarya.Models
         /// <param name="selectedGameItemQuantity">selected item</param>
         public void RemoveGameItemQuantityFromInventory(GameItemQuantity selectedGameItemQuantity)
         {
-            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+            var gameItemQuantity = GameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity != null)
             {
                 if (selectedGameItemQuantity.Quantity == 1)
                 {
-                    _gameItems.Remove(gameItemQuantity);
+                    GameItems.Remove(gameItemQuantity);
                 }
                 else
                 {
@@ -137,16 +119,16 @@ namespace Elarya.Models
         /// </summary>
         public void UpdateMerchantGameItems()
         {
-            ObservableCollection<GameItemQuantity> updatedMerchantGameItems = new ObservableCollection<GameItemQuantity>();
+            var updatedMerchantGameItems = new ObservableCollection<GameItemQuantity>();
 
-            foreach (GameItemQuantity gameItemQuantity in _gameItems)
+            foreach (var gameItemQuantity in GameItems)
             {
                 updatedMerchantGameItems.Add(gameItemQuantity);
             }
 
             GameItems.Clear();
 
-            foreach (GameItemQuantity gameItemQuantity in updatedMerchantGameItems)
+            foreach (var gameItemQuantity in updatedMerchantGameItems)
             {
                 GameItems.Add(gameItemQuantity);
             }

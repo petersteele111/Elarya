@@ -164,12 +164,12 @@ namespace Elarya.Models
         /// <summary>
         /// Lis of NPC's talked too
         /// </summary>
-        public List<NPC> NpcsTalkedTo { get; set; }
+        public List<Npc> NpcsTalkedTo { get; set; }
 
         /// <summary>
         /// Lis of NPC's talked too
         /// </summary>
-        public List<NPC> NpcsEngaged { get; set; }
+        public List<Npc> NpcsEngaged { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory for the player
@@ -208,8 +208,8 @@ namespace Elarya.Models
         public Player()
         {
             LocationsVisited = new List<Location>();
-            NpcsTalkedTo = new List<NPC>();
-            NpcsEngaged = new List<NPC>();
+            NpcsTalkedTo = new List<Npc>();
+            NpcsEngaged = new List<Npc>();
             Potions = new ObservableCollection<GameItemQuantity>();
             Clothes = new ObservableCollection<GameItemQuantity>();
             Food = new ObservableCollection<GameItemQuantity>();
@@ -386,7 +386,7 @@ namespace Elarya.Models
         /// </summary>
         /// <param name="npc">NPC player talked too</param>
         /// <returns>Returns if the player has talked to an NPC or not</returns>
-        public bool HasTalkedTo(NPC npc)
+        public bool HasTalkedTo(Npc npc)
         {
             return NpcsTalkedTo.Contains(npc);
         }

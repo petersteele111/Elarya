@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Elarya.Models
 {
-    public class Guard : NPC, ISpeak
+    public class Guard : Npc, ISpeak
     {
 
         #region Properties

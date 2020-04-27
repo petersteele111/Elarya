@@ -73,7 +73,7 @@ namespace Elarya.Data
         /// </summary>
         /// <param name="id">Selected NPC ID</param>
         /// <returns>Returns the NPC</returns>
-        public static NPC GetNpcById(int id)
+        public static Npc GetNpcById(int id)
         {
             return Npcs().FirstOrDefault(i => i.Id == id);
         }
@@ -164,7 +164,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1005),
                     GetNpcById(1010)
@@ -188,7 +188,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1001)
                 }
@@ -233,7 +233,7 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(131), 50)
                 },
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1011)
                 }
@@ -257,7 +257,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1003)
                 }
@@ -282,7 +282,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1002)
                 }
@@ -304,7 +304,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 10,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1004)
                 }
@@ -406,7 +406,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 20,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1009)
                 }
@@ -436,7 +436,7 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(131), 25)
                 },
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1007)
                 }
@@ -468,7 +468,7 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(134), 2)
                 },
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1006)
                 }
@@ -499,7 +499,7 @@ namespace Elarya.Data
 
                 ExperienceGain = 25,
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1012)
                 }
@@ -576,7 +576,7 @@ namespace Elarya.Data
                     new GameItemQuantity(GameItemById(122), 4)
                 },
 
-                Npcs = new ObservableCollection<NPC>()
+                Npcs = new ObservableCollection<Npc>()
                 {
                     GetNpcById(1008)
                 }
@@ -649,9 +649,9 @@ namespace Elarya.Data
         /// Creates the List of NPCs
         /// </summary>
         /// <returns>Returns the List of NPCs</returns>
-        public static List<NPC> Npcs()
+        public static List<Npc> Npcs()
         {
-            return new List<NPC>()
+            return new List<Npc>()
             {
                 new Merchant()
                 {
@@ -918,7 +918,7 @@ namespace Elarya.Data
 
                     Status = Quest.QuestStatus.Incomplete,
 
-                    RequiredNpcs = new List<NPC>()
+                    RequiredNpcs = new List<Npc>()
                     {
                         GetNpcById(1001),
                         GetNpcById(1002),

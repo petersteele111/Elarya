@@ -28,7 +28,7 @@ namespace Elarya.Presentation.ViewModels
         private string _gameTimeDisplay;
         private string _currentMessage;
 
-        private NPC _currentNpc;
+        private Npc _currentNpc;
         private GameItemQuantity _currentGameItem;
 
         #endregion
@@ -202,7 +202,7 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Gets and Sets the Current NPC
         /// </summary>
-        public NPC CurrentNpc
+        public Npc CurrentNpc
         {
             get => _currentNpc;
             set

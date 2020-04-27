@@ -67,7 +67,7 @@ namespace Elarya.Models
         /// </summary>
         public ObservableCollection<GameItemQuantity> GameItems { get; set; }
 
-        public ObservableCollection<NPC> Npcs { get; set; }
+        public ObservableCollection<Npc> Npcs { get; set; }
 
         /// <summary>
         /// Gets and Sets the required experience to access a location

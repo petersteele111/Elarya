@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Elarya.Models
 {
-    public class Merchant : NPC, ISpeak
+    public class Merchant : Npc, ISpeak
     {
 
         #region Properties

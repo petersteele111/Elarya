@@ -14,7 +14,7 @@ namespace Elarya.Models
         private int _id;
         private string _name;
         private QuestStatus _status;
-        private List<NPC> _requiredNpcs;
+        private List<Npc> _requiredNpcs;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Elarya.Models
         /// <summary>
         /// Gets and Sets the Required Npcs for Quest
         /// </summary>
-        public List<NPC> RequiredNpcs
+        public List<Npc> RequiredNpcs
         {
             get => _requiredNpcs;
             set => _requiredNpcs = value;
@@ -48,7 +48,7 @@ namespace Elarya.Models
         /// <param name="name">Name of QuestEngagement</param>
         /// <param name="status">Status of QuestEngagement</param>
         /// <param name="requiredNpcs">Required NPC's to Engage</param>
-        public QuestEngage(int id, string name, QuestStatus status, List<NPC> requiredNpcs) : base(id, name, status)
+        public QuestEngage(int id, string name, QuestStatus status, List<Npc> requiredNpcs) : base(id, name, status)
         {
             _id = id;
             _name = name;
@@ -65,9 +65,9 @@ namespace Elarya.Models
         /// </summary>
         /// <param name="NpcsEngaged">Engaged NPC's</param>
         /// <returns>Returns NPC's to complete</returns>
-        public List<NPC> NpcsNotEngaged(List<NPC> NpcsEngaged)
+        public List<Npc> NpcsNotEngaged(List<Npc> NpcsEngaged)
         {
-            List<NPC> npcsToComplete = new List<NPC>();
+            List<Npc> npcsToComplete = new List<Npc>();
 
             foreach (var requiredNpc in _requiredNpcs)
             {
