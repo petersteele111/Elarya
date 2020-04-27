@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Elarya.Models
 {
@@ -11,54 +7,28 @@ namespace Elarya.Models
 
 		#region Fields
 
-		private Location[,] _locations;
-		private MapCoordinates _currentLocationCoords;
-		private int _maxRows, _maxColumns;
-        private List<GameItem> _standardGameItems;
+        private readonly int _maxRows;
+        private readonly int _maxColumns;
 
-		#endregion
+        #endregion
 
 		#region Properties
 
 		/// <summary>
 		/// Sets and Gets All Locations
 		/// </summary>
-		public Location[,] Locations
-		{
-			get => _locations;
-			set
-			{
-				_locations = value;
-			}
-		}
+		public Location[,] Locations { get; set; }
 
-		/// <summary>
+        /// <summary>
 		/// Gets Current Location on Map
 		/// </summary>
-		public MapCoordinates CurrentLocationCoords
-		{
-			get => _currentLocationCoords;
-			set 
-			{ 
-				_currentLocationCoords = value;
-			}
-		}
+		public MapCoordinates CurrentLocationCoords { get; set; }
 
-		public Location CurrentLocation
-		{
-			get => _locations[_currentLocationCoords.Row, _currentLocationCoords.Column];
-		}
+        public Location CurrentLocation => Locations[CurrentLocationCoords.Row, CurrentLocationCoords.Column];
 
-        public List<GameItem> StandardGameItems
-        {
-            get => _standardGameItems;
-            set
-            {
-                _standardGameItems = value;
-            }
-        }
+        public List<GameItem> StandardGameItems { get; set; }
 
-		#endregion
+        #endregion
 
 		#region Constructors
 
@@ -71,7 +41,7 @@ namespace Elarya.Models
         {
             _maxRows = rows;
             _maxColumns = columns;
-            _locations = new Location[rows, columns];
+            Locations = new Location[rows, columns];
         }
 
         #endregion
@@ -84,9 +54,9 @@ namespace Elarya.Models
 		/// <returns>Returns False if player cannot go North, True if they can</returns>
 		public void CanMoveNorth()
 		{
-			if (_currentLocationCoords.Row > 0)
+			if (CurrentLocationCoords.Row > 0)
 			{
-				_currentLocationCoords.Row -= 1;
+				CurrentLocationCoords.Row -= 1;
 			}
 		}
 
@@ -96,9 +66,9 @@ namespace Elarya.Models
 		/// <returns>Returns False if player cannot go East, True if they can</returns>
 		public void CanMoveEast()
 		{
-			if (_currentLocationCoords.Column < _maxColumns - 1 )
+			if (CurrentLocationCoords.Column < _maxColumns - 1 )
 			{
-				_currentLocationCoords.Column += 1;
+				CurrentLocationCoords.Column += 1;
 			}
 		}
 
@@ -108,9 +78,9 @@ namespace Elarya.Models
 		/// <returns>Returns False if player cannot go South, True if they can</returns>
 		public void CanMoveSouth()
 		{
-			if (_currentLocationCoords.Row < _maxRows - 1 )
+			if (CurrentLocationCoords.Row < _maxRows - 1 )
 			{
-				_currentLocationCoords.Row += 1;
+				CurrentLocationCoords.Row += 1;
 			}
 		}
 
@@ -120,9 +90,9 @@ namespace Elarya.Models
 		/// <returns>Returns False if player cannot go West, True if they can</returns>
 		public void CanMoveWest()
 		{
-			if (_currentLocationCoords.Column > 0)
+			if (CurrentLocationCoords.Column > 0)
 			{
-				_currentLocationCoords.Column -= 1;
+				CurrentLocationCoords.Column -= 1;
 			}
 		}
 
@@ -134,17 +104,15 @@ namespace Elarya.Models
 		{
 			Location northLocation = null;
 
-			if (_currentLocationCoords.Row > 0)
-			{
-				Location nextNorthLocation = _locations[_currentLocationCoords.Row - 1, _currentLocationCoords.Column];
+            if (CurrentLocationCoords.Row <= 0) return null;
+            var nextNorthLocation = Locations[CurrentLocationCoords.Row - 1, CurrentLocationCoords.Column];
 
-				if (nextNorthLocation != null)
-				{
-					northLocation = nextNorthLocation;
-				}
-			}
+            if (nextNorthLocation != null)
+            {
+                northLocation = nextNorthLocation;
+            }
 
-			return northLocation;
+            return northLocation;
 		}
 
 		/// <summary>
@@ -155,16 +123,14 @@ namespace Elarya.Models
 		{
 			Location eastLocation = null;
 
-			if (_currentLocationCoords.Column < _maxColumns - 1)
-			{
-				Location nextEastLocation = _locations[_currentLocationCoords.Row, _currentLocationCoords.Column + 1];
-				if (nextEastLocation != null)
-				{
-					eastLocation = nextEastLocation;
-				}
-			}
+            if (CurrentLocationCoords.Column >= _maxColumns - 1) return null;
+            var nextEastLocation = Locations[CurrentLocationCoords.Row, CurrentLocationCoords.Column + 1];
+            if (nextEastLocation != null)
+            {
+                eastLocation = nextEastLocation;
+            }
 
-			return eastLocation;
+            return eastLocation;
 		}
 
 		/// <summary>
@@ -175,16 +141,14 @@ namespace Elarya.Models
 		{
 			Location southLocation = null;
 
-			if (_currentLocationCoords.Row < _maxRows - 1)
-			{
-				Location nextSouthLocation = _locations[_currentLocationCoords.Row + 1, _currentLocationCoords.Column];
-				if (nextSouthLocation != null)
-				{
-					southLocation = nextSouthLocation;
-				}
-			}
+            if (CurrentLocationCoords.Row >= _maxRows - 1) return null;
+            var nextSouthLocation = Locations[CurrentLocationCoords.Row + 1, CurrentLocationCoords.Column];
+            if (nextSouthLocation != null)
+            {
+                southLocation = nextSouthLocation;
+            }
 
-			return southLocation;
+            return southLocation;
 		}
 
 		/// <summary>
@@ -195,16 +159,14 @@ namespace Elarya.Models
 		{
 			Location westLocation = null;
 
-			if (_currentLocationCoords.Column > 0)
-			{
-				Location nextWestLocation = _locations[_currentLocationCoords.Row, _currentLocationCoords.Column - 1];
-				if (nextWestLocation != null)
-				{
-					westLocation = nextWestLocation;
-				}
-			}
+            if (CurrentLocationCoords.Column <= 0) return null;
+            var nextWestLocation = Locations[CurrentLocationCoords.Row, CurrentLocationCoords.Column - 1];
+            if (nextWestLocation != null)
+            {
+                westLocation = nextWestLocation;
+            }
 
-			return westLocation;
+            return westLocation;
 		}
 
 
@@ -215,21 +177,18 @@ namespace Elarya.Models
 		/// <returns>Returns a message of success or not</returns>
 		public string OpenLocationsByItem(int itemId)
 		{
-			string message = "The Item did nothing.";
-			Location mapLocation = new Location();
+			var message = "The Item did nothing.";
 
-			for (int row = 0; row < _maxRows; row++)
+            for (var row = 0; row < _maxRows; row++)
 			{
-				for (int column = 0; column < _maxColumns; column++)
+				for (var column = 0; column < _maxColumns; column++)
 				{
-					mapLocation = _locations[row, column];
+					var mapLocation = Locations[row, column];
 
-					if (mapLocation != null && mapLocation.RequiredItem == itemId)
-					{
-						mapLocation.Accessible = true;
-						message = $"{mapLocation.Name} is now accessible.";
-					}
-				}
+                    if (mapLocation == null || mapLocation.RequiredItem != itemId) continue;
+                    mapLocation.Accessible = true;
+                    message = $"{mapLocation.Name} is now accessible.";
+                }
 			}
 			return message;
 		}
