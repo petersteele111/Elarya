@@ -1,209 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Elarya.Models
 {
     public class Location
     {
 
-        #region Fields
+        #region Properties
 
-        private int _id;
-		private string _name;
-		private string _description;
-		private string _messages;
-		private bool _accessible;
-        private int _MageSkill;
-        private int _HealerSkill;
-        private int _modifyLives;
-        private int _modifyHealth;
-        private int _requiredExperience;
-        private int _requiredItem;
-        private int _experienceGain;
-        private ObservableCollection<GameItemQuantity> _gameItems;
-        private ObservableCollection<NPC> _npcs;
+        /// <summary>
+        /// Gets and Sets Location ID
+        /// </summary>
+        public int Id { get; set; }
 
-
-		#endregion
-
-		#region Properties
-
-		/// <summary>
-		/// Gets and Sets Location ID
-		/// </summary>
-		public int ID
-		{
-			get => _id;
-			set
-			{
-				_id = value;
-			}
-		}
-
-		/// <summary>
+        /// <summary>
 		/// Gets and Sets Location Name
 		/// </summary>
-		public string Name
-		{
-			get => _name;
-			set 
-			{
-				_name = value;
-			}
-		}
+		public string Name { get; set; }
 
-		/// <summary>
+        /// <summary>
 		/// Gets and Sets Location Description
 		/// </summary>
-		public string Description
-		{
-			get => _description;
-			set
-			{
-				_description = value;
-			}
-		}
+		public string Description { get; set; }
 
         /// <summary>
         /// Gets and Sets Messages for the location
         /// </summary>
-		public string Messages 
-		{ get => _messages;
-			set 
-			{
-				_messages = value;
-			}
-		}
+		public string Messages { get; set; }
 
-		/// <summary>
+        /// <summary>
 		/// Gets and Sets if the location is accessible
 		/// </summary>
-		public bool Accessible
-		{
-			get => _accessible;
-			set
-			{
-				_accessible = value;
-			}
-		}
+		public bool Accessible { get; set; }
 
         /// <summary>
         /// Gets and Sets Mage Skill for the location
         /// </summary>
-        public int MageSkill
-        {
-            get => _MageSkill;
-            set
-            {
-                _MageSkill = value;
-            }
-        }
+        public int MageSkill { get; set; }
 
         /// <summary>
         /// Gets and Sets Healer Skill for the location
         /// </summary>
-        public int HealerSkill
-        {
-            get => _HealerSkill;
-            set
-            {
-                _HealerSkill = value;
-            }
-        }
+        public int HealerSkill { get; set; }
 
         /// <summary>
-        /// Gets and Sets life modifcation for location
+        /// Gets and Sets life modification for location
         /// </summary>
-        public int ModifyLives
-        {
-            get => _modifyLives;
-            set
-            {
-                _modifyLives = value;
-            }
-        }
+        public int ModifyLives { get; set; }
 
         /// <summary>
         /// Gets and Sets health modification for location
         /// </summary>
-        public int ModifyHealth
-        {
-            get => _modifyHealth;
-            set
-            {
-                _modifyHealth = value;
-            }
-        }
+        public int ModifyHealth { get; set; }
 
         /// <summary>
         /// Gets and Sets required item to unlock location
         /// </summary>
-        public int RequiredItem
-        {
-            get => _requiredItem;
-            set
-            {
-                _requiredItem = value;
-            }
-        }
+        public int RequiredItem { get; set; }
 
         /// <summary>
         /// Gets and Sets Game Items for a location
         /// </summary>
-        public ObservableCollection<GameItemQuantity> GameItems
-        {
-            get => _gameItems;
-            set
-            {
-                _gameItems = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> GameItems { get; set; }
 
-        public ObservableCollection<NPC> Npcs
-        {
-            get => _npcs;
-            set
-            {
-                _npcs = value;
-            }
-        }
+        public ObservableCollection<Npc> Npcs { get; set; }
 
         /// <summary>
         /// Gets and Sets the required experience to access a location
         /// </summary>
-        public int RequiredExperience
-        {
-            get => _requiredExperience;
-            set
-            {
-                _requiredExperience = value;
-            }
-        }
+        public int RequiredExperience { get; set; }
 
         /// <summary>
-        /// Gets and Sets the experience gained for travelling to a location
+        /// Gets and Sets the experience gained for traveling to a location
         /// </summary>
-        public int ExperienceGain
-        {
-            get => _experienceGain;
-            set
-            {
-                _experienceGain = value;
-            }
-        }
+        public int ExperienceGain { get; set; }
 
-		#endregion
+        #endregion
 
         #region Constructors
 
         public Location()
         {
-			_gameItems = new ObservableCollection<GameItemQuantity>();
+            GameItems = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
@@ -211,23 +89,22 @@ namespace Elarya.Models
         #region Methods
 
         /// <summary>
-        /// Checks if location is accessbile by experience points
+        /// Checks if location is accessible by experience points
         /// </summary>
         /// <param name="experience">player experience points</param>
         /// <returns>Returns true or false if player can access location</returns>
         public bool IsAccessibleByExperience(int experience)
         {
-            if (_requiredExperience == 0)
+            if (RequiredExperience == 0)
             {
                 return false;
-            } 
-            else if (experience >= _requiredExperience)
+            }
+            else if (experience >= RequiredExperience)
             {
                 return true;
             }
 
             return false;
-            //return experience >= _requiredExperience ? true : false;
         }
 
         /// <summary>
@@ -235,16 +112,16 @@ namespace Elarya.Models
         /// </summary>
         public void UpdateLocationGameItems()
         {
-            ObservableCollection<GameItemQuantity> updatedLocationGameItems = new ObservableCollection<GameItemQuantity>();
+            var updatedLocationGameItems = new ObservableCollection<GameItemQuantity>();
 
-            foreach (GameItemQuantity gameItemQuantity in _gameItems)
+            foreach (var gameItemQuantity in GameItems)
             {
                 updatedLocationGameItems.Add(gameItemQuantity);
             }
 
             GameItems.Clear();
 
-            foreach (GameItemQuantity gameItemQuantity in updatedLocationGameItems)
+            foreach (var gameItemQuantity in updatedLocationGameItems)
             {
                 GameItems.Add(gameItemQuantity);
             }
@@ -256,15 +133,17 @@ namespace Elarya.Models
         /// <param name="selectedGameItemQuantity">Selected Item</param>
         public void AddGameItemQuantityToLocation(GameItemQuantity selectedGameItemQuantity)
         {
-            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+            var gameItemQuantity = GameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity == null)
             {
-                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
-                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
-                newGameItemQuantity.Quantity = 1;
+                var newGameItemQuantity = new GameItemQuantity
+                {
+                    GameItem = selectedGameItemQuantity.GameItem,
+                    Quantity = 1
+                };
 
-                _gameItems.Add(newGameItemQuantity);
+                GameItems.Add(newGameItemQuantity);
             }
             else
             {
@@ -281,13 +160,13 @@ namespace Elarya.Models
         /// <param name="quantity">Quantity of Item</param>
         public void RemoveGameItemQuantityFromLocation(GameItemQuantity selectedGameItemQuantity, int quantity)
         {
-            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+            var gameItemQuantity = GameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity != null)
             {
                 if (selectedGameItemQuantity.Quantity == quantity)
                 {
-                    _gameItems.Remove(gameItemQuantity);
+                    GameItems.Remove(gameItemQuantity);
                 }
             }
 

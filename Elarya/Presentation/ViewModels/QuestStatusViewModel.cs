@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Elarya.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Elarya.Models;
 
 namespace Elarya.Presentation.ViewModels
 {
@@ -13,7 +9,6 @@ namespace Elarya.Presentation.ViewModels
         #region Fields
 
         private string _questInformation;
-        private List<Quest> _quests;
 
         #endregion
 
@@ -22,11 +17,7 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Gets and Sets the List of Quests
         /// </summary>
-        public List<Quest> Quests
-        {
-            get => _quests;
-            set => _quests = value;
-        }
+        public List<Quest> Quests { get; set; }
 
         /// <summary>
         /// Gets and Sets the Quest Information

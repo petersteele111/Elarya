@@ -1,18 +1,9 @@
-﻿using System;
+﻿using Elarya.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Elarya.Models;
 
 namespace Elarya.Presentation.Views
 {
@@ -28,7 +19,7 @@ namespace Elarya.Presentation.Views
             playerCreate.Load();
             playerCreate.PlayLooping();
         }
-        
+
 
         #region Fields
 
@@ -85,7 +76,7 @@ namespace Elarya.Presentation.Views
             else if (!PlayerName.Text.All(chr => char.IsLetter(chr)))
             {
                 errorMessage += "No numbers, spaces, or special characters!";
-            } 
+            }
             else
             {
                 _player.Name = PlayerName.Text;

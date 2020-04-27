@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
@@ -25,41 +23,22 @@ namespace Elarya.Models
 
         #region Fields
 
-        protected JobTitleName _jobTitle;
         private int _health;
         private int _mana;
         private int _life;
         private int _mageSkill;
         private int _healerSkill;
         private int _experience;
-        private List<Location> _locationsVisited;
-        private List<NPC> _npcsTalkedTo;
         private int _wealth;
-        private List<NPC> _npcsEngaged;
-
-        private ObservableCollection<GameItemQuantity> _inventory;
-        private ObservableCollection<GameItemQuantity> _potions;
-        private ObservableCollection<GameItemQuantity> _clothes;
-        private ObservableCollection<GameItemQuantity> _food;
-        private ObservableCollection<GameItemQuantity> _treasure;
-        private ObservableCollection<GameItemQuantity> _spell;
-        private ObservableCollection<Quest> _quests;
 
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Gets and Sets the JobTitle Enumerator
         /// </summary>
-        public JobTitleName JobTitle
-        {
-            get => _jobTitle;
-            set
-            {
-                _jobTitle = value;
-            }
-        }
+        public JobTitleName JobTitle { get; set; }
 
         /// <summary>
         /// Sets and Gets the Health of the Player
@@ -149,14 +128,7 @@ namespace Elarya.Models
         /// <summary>
         /// Sets and Gets the Spell for the Player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Spell
-        {
-            get => _spell;
-            set
-            {
-                _spell = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Spell { get; set; }
 
         /// <summary>
         /// Gets and Sets Player Experience
@@ -187,104 +159,47 @@ namespace Elarya.Models
         /// <summary>
         /// Gets and Sets a list of locations the player has visited
         /// </summary>
-        public List<Location> LocationsVisited
-        {
-            get => _locationsVisited;
-            set
-            {
-                _locationsVisited = value;
-            }
-        }
+        public List<Location> LocationsVisited { get; set; }
 
         /// <summary>
         /// Lis of NPC's talked too
         /// </summary>
-        public List<NPC> NpcsTalkedTo
-        {
-            get => _npcsTalkedTo;
-            set
-            {
-                _npcsTalkedTo = value;
-            }
-        }
+        public List<Npc> NpcsTalkedTo { get; set; }
 
         /// <summary>
         /// Lis of NPC's talked too
         /// </summary>
-        public List<NPC> NpcsEngaged
-        {
-            get => _npcsEngaged;
-            set => _npcsEngaged = value;
-        }
+        public List<Npc> NpcsEngaged { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory for the player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Inventory
-        {
-            get => _inventory;
-            set
-            {
-                _inventory = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Inventory { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory of potions for the player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Potions
-        {
-            get => _potions;
-            set
-            {
-                _potions = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Potions { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory of Clothes for the player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Clothes
-        {
-            get => _clothes;
-            set
-            {
-                _clothes = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Clothes { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory of food for the player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Food
-        {
-            get => _food;
-            set
-            {
-                _food = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Food { get; set; }
 
         /// <summary>
         /// Gets and Sets a new inventory of treasure for the player
         /// </summary>
-        public ObservableCollection<GameItemQuantity> Treasure
-        {
-            get => _treasure;
-            set
-            {
-                _treasure = value;
-            }
-        }
+        public ObservableCollection<GameItemQuantity> Treasure { get; set; }
 
-        public ObservableCollection<Quest> Quests
-        {
-            get => _quests;
-            set => _quests = value;
-        }
+        public ObservableCollection<Quest> Quests { get; set; }
 
         #endregion
-        
+
         #region Constructor
 
         /// <summary>
@@ -292,18 +207,18 @@ namespace Elarya.Models
         /// </summary>
         public Player()
         {
-            _locationsVisited = new List<Location>();
-            _npcsTalkedTo = new List<NPC>();
-            _npcsEngaged = new List<NPC>();
-            _potions = new ObservableCollection<GameItemQuantity>();
-            _clothes = new ObservableCollection<GameItemQuantity>();
-            _food = new ObservableCollection<GameItemQuantity>();
-            _treasure = new ObservableCollection<GameItemQuantity>();
-            _inventory = new ObservableCollection<GameItemQuantity>();
-            _spell = new ObservableCollection<GameItemQuantity>();
-            _quests = new ObservableCollection<Quest>();
+            LocationsVisited = new List<Location>();
+            NpcsTalkedTo = new List<Npc>();
+            NpcsEngaged = new List<Npc>();
+            Potions = new ObservableCollection<GameItemQuantity>();
+            Clothes = new ObservableCollection<GameItemQuantity>();
+            Food = new ObservableCollection<GameItemQuantity>();
+            Treasure = new ObservableCollection<GameItemQuantity>();
+            Inventory = new ObservableCollection<GameItemQuantity>();
+            Spell = new ObservableCollection<GameItemQuantity>();
+            Quests = new ObservableCollection<Quest>();
         }
-        
+
         #endregion
 
         #region Methods
@@ -313,7 +228,7 @@ namespace Elarya.Models
         /// </summary>
         public void CalcWealth()
         {
-            Wealth = _inventory.Sum(i => i.GameItem.Value * i.Quantity);
+            Wealth = Inventory.Sum(i => i.GameItem.Value * i.Quantity);
         }
 
         /// <summary>
@@ -327,51 +242,47 @@ namespace Elarya.Models
             Treasure.Clear();
             Spell.Clear();
 
-            foreach (var gameItemQuantity in _inventory)
+            foreach (var gameItemQuantity in Inventory)
             {
-                if (gameItemQuantity.GameItem is Potion)
+                switch (gameItemQuantity.GameItem)
                 {
-                    Potions.Add(gameItemQuantity);
-                }
-
-                if (gameItemQuantity.GameItem is Clothes)
-                {
-                    Clothes.Add(gameItemQuantity);
-                }
-
-                if (gameItemQuantity.GameItem is Food)
-                {
-                    Food.Add(gameItemQuantity);
-                }
-
-                if (gameItemQuantity.GameItem is Treasure)
-                {
-                    Treasure.Add(gameItemQuantity);
-                }
-
-                if (gameItemQuantity.GameItem is Spell)
-                {
-                    Spell.Add(gameItemQuantity);
+                    case Potion _:
+                        Potions.Add(gameItemQuantity);
+                        break;
+                    case Clothes _:
+                        Clothes.Add(gameItemQuantity);
+                        break;
+                    case Food _:
+                        Food.Add(gameItemQuantity);
+                        break;
+                    case Treasure _:
+                        Treasure.Add(gameItemQuantity);
+                        break;
+                    case Spell _:
+                        Spell.Add(gameItemQuantity);
+                        break;
                 }
             }
         }
 
         /// <summary>
-        /// Add's an item to the players inventory
+        /// Adds an item to the players inventory
         /// </summary>
         /// <param name="selectedGameItemQuantity">Selected Item</param>
         /// <param name="quantity">Quantity of Item</param>
         public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity, int quantity)
         {
-            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+            var gameItemQuantity = Inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity == null)
             {
-                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
-                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
-                newGameItemQuantity.Quantity = quantity;
+                var newGameItemQuantity = new GameItemQuantity
+                {
+                    GameItem = selectedGameItemQuantity.GameItem,
+                    Quantity = quantity
+                };
 
-                _inventory.Add(newGameItemQuantity);
+                Inventory.Add(newGameItemQuantity);
             }
             else
             {
@@ -388,7 +299,7 @@ namespace Elarya.Models
         /// <returns>Returns true or false if the payment went through</returns>
         public bool PayMerchant(int quantity)
         {
-            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            var gameItemQuantity = Inventory.FirstOrDefault(i => i.GameItem.Id == 131);
             if (gameItemQuantity != null)
             {
                 if (gameItemQuantity.Quantity < quantity)
@@ -397,7 +308,7 @@ namespace Elarya.Models
                 }
                 else if (gameItemQuantity.Quantity == quantity)
                 {
-                    _inventory.Remove(gameItemQuantity);
+                    Inventory.Remove(gameItemQuantity);
                     UpdateInventory();
                     return true;
                 }
@@ -420,14 +331,16 @@ namespace Elarya.Models
         /// <param name="quantity">Price for Merchant to pay Player</param>
         public void SellToMerchant(int quantity)
         {
-            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == 131);
+            var gameItemQuantity = Inventory.FirstOrDefault(i => i.GameItem.Id == 131);
             if (gameItemQuantity == null)
             {
-                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
-                newGameItemQuantity.GameItem = gameItemQuantity.GameItem;
-                newGameItemQuantity.Quantity = quantity;
+                var newGameItemQuantity = new GameItemQuantity
+                {
+                    GameItem = gameItemQuantity.GameItem,
+                    Quantity = quantity
+                };
 
-                _inventory.Add(newGameItemQuantity);
+                Inventory.Add(newGameItemQuantity);
             }
             else
             {
@@ -443,13 +356,13 @@ namespace Elarya.Models
         /// <param name="selectedGameItemQuantity">selected item</param>
         public void RemoveGameItemQuantityFromInventory(GameItemQuantity selectedGameItemQuantity)
         {
-            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+            var gameItemQuantity = Inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
 
             if (gameItemQuantity != null)
             {
                 if (selectedGameItemQuantity.Quantity == 1)
                 {
-                    _inventory.Remove(gameItemQuantity);
+                    Inventory.Remove(gameItemQuantity);
                 }
                 else
                 {
@@ -461,13 +374,13 @@ namespace Elarya.Models
         }
 
         /// <summary>
-        /// Checks if Player has visted location or not
+        /// Checks if Player has visited location or not
         /// </summary>
         /// <param name="location">location</param>
-        /// <returns>Returns true or false if player has visted or not</returns>
+        /// <returns>Returns true or false if player has visited or not</returns>
         public bool HasVisited(Location location)
         {
-            return _locationsVisited.Contains(location);
+            return LocationsVisited.Contains(location);
         }
 
         /// <summary>
@@ -475,9 +388,9 @@ namespace Elarya.Models
         /// </summary>
         /// <param name="npc">NPC player talked too</param>
         /// <returns>Returns if the player has talked to an NPC or not</returns>
-        public bool HasTalkedTo(NPC npc)
+        public bool HasTalkedTo(Npc npc)
         {
-            return _npcsTalkedTo.Contains(npc);
+            return NpcsTalkedTo.Contains(npc);
         }
 
         /// <summary>
@@ -486,7 +399,7 @@ namespace Elarya.Models
         /// <returns>Returns the Default Greeting</returns>
         public override string Greeting()
         {
-            return $"Hello, my name is {_name}, and I am {_age} years old. I am setting off on my journey in hopes to become a {_jobTitle}, and am excited to get started!";
+            return $"Hello, my name is {Name}, and I am {Age} years old. I am setting off on my journey in hopes to become a {JobTitle}, and am excited to get started!";
         }
 
         /// <summary>
@@ -503,35 +416,42 @@ namespace Elarya.Models
         /// </summary>
         public void UpdateQuestStatus()
         {
-            foreach (Quest quest in _quests.Where(q=>q.Status == Quest.QuestStatus.Incomplete))
+            foreach (var quest in Quests.Where(q => q.Status == Quest.QuestStatus.Incomplete))
             {
-                if (quest is QuestTravel)
+                switch (quest)
                 {
-                    if (((QuestTravel)quest).LocationsNotCompleted(_locationsVisited).Count == 0)
-                    {
-                        quest.Status = Quest.QuestStatus.Complete;
-                        Experience += quest.ExperienceGain;
-                    }
-                } 
-                else if (quest is QuestGather)
-                {
-                    if (((QuestGather)quest).GameItemQuantitiesNotCompleted(_inventory.ToList()).Count == 0)
-                    {
-                        quest.Status = Quest.QuestStatus.Complete;
-                        Experience += quest.ExperienceGain;
-                    }
-                }
-                else if (quest is QuestEngage)
-                {
-                    if (((QuestEngage)quest).NpcsNotEngaged(_npcsEngaged).Count == 0)
-                    {
-                        quest.Status = Quest.QuestStatus.Complete;
-                        Experience += quest.ExperienceGain;
-                    }
-                }
-                else
-                {
-                    throw new Exception("Unknown Mission Child Class");
+                    case QuestTravel travel:
+                        {
+                            if (travel.LocationsNotCompleted(LocationsVisited).Count == 0)
+                            {
+                                travel.Status = Quest.QuestStatus.Complete;
+                                Experience += travel.ExperienceGain;
+                            }
+
+                            break;
+                        }
+                    case QuestGather gather:
+                        {
+                            if (gather.GameItemQuantitiesNotCompleted(Inventory.ToList()).Count == 0)
+                            {
+                                gather.Status = Quest.QuestStatus.Complete;
+                                Experience += gather.ExperienceGain;
+                            }
+
+                            break;
+                        }
+                    case QuestEngage engage:
+                        {
+                            if (engage.NpcsNotEngaged(NpcsEngaged).Count == 0)
+                            {
+                                engage.Status = Quest.QuestStatus.Complete;
+                                Experience += engage.ExperienceGain;
+                            }
+
+                            break;
+                        }
+                    default:
+                        throw new Exception("Unknown Mission Child Class");
                 }
             }
         }

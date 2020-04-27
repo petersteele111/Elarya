@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Elarya.Models
+﻿namespace Elarya.Models
 {
-    class Clothes : GameItem
+    internal class Clothes : GameItem
     {
-       
+
         #region Enums
-        
+
         /// <summary>
         /// Enum for type of clothes
         /// </summary>
@@ -71,6 +65,7 @@ namespace Elarya.Models
         /// <param name="healerSkillChange">healer skill change for clothes item</param>
         /// <param name="experienceGain">experience gain for clothes item</param>
         /// <param name="description">description of clothes item</param>
+        /// <param name="onUseMessage">Message for on use of clothes</param>
         public Clothes(int id, string name, int value, ClothesType type, int healthChange, int manaChange, int mageSkillChange,
           int healerSkillChange, int experienceGain, string description, string onUseMessage) : base(id, name, value, description, onUseMessage)
         {

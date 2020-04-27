@@ -1,93 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Elarya.Models
+﻿namespace Elarya.Models
 {
     public class GameItem
     {
-
-        #region Fields
-
-        private int _id;
-        private string _name;
-        private int _value;
-        private string _description;
-        private string _useMessage;
-
-        #endregion
 
         #region Properties
 
         /// <summary>
         /// Gets and sets item id
         /// </summary>
-        public int Id 
-        { 
-            get => _id;
-            set
-            {
-                _id = value;
-            }
-        }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets and sets item name
         /// </summary>
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets and sets item value
         /// </summary>
-        public int Value
-        {
-            get => _value;
-            set
-            {
-                _value = value;
-            }
-        }
+        public int Value { get; set; }
 
         /// <summary>
         /// Gets and sets item description
         /// </summary>
-        public string Description
-        {
-            get => _description;
-            set
-            {
-                _description = value;
-            }
-        }
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets and sets item use message
         /// </summary>
-        public string UseMessage
-        {
-            get => _useMessage;
-            set
-            {
-                _useMessage = value;
-            }
-        }
+        public string UseMessage { get; set; }
 
         /// <summary>
         /// Gets overridden information string for items
         /// </summary>
-        public string Information
-        {
-            get => InformationString();
-        }
+        public string Information => InformationString();
 
         #endregion
 

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
-    public class Merchant : NPC, ISpeak
+    public class Merchant : Npc, ISpeak
     {
 
         #region Properties
@@ -23,26 +19,7 @@ namespace Elarya.Models
         /// <returns></returns>
         public string Speak()
         {
-            if (this.Messages != null)
-            {
-                return GetMessage();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public Merchant()
-        {
-
+            return this.Messages != null ? GetMessage() : "";
         }
 
         #endregion
@@ -55,8 +32,8 @@ namespace Elarya.Models
         /// <returns>Returns random message for NPC</returns>
         private string GetMessage()
         {
-            Random random = new Random();
-            int index = random.Next(0, Messages.Count());
+            var random = new Random();
+            var index = random.Next(0, Messages.Count);
             return Messages[index];
         }
 
@@ -66,7 +43,7 @@ namespace Elarya.Models
         /// <returns>Returns the NPC Information String</returns>
         protected override string InformationText()
         {
-            return $"{Name} - {Description}";
+            return $"{Name} - {Age} - {Race} - {Gender} - {Description}";
         }
 
         #endregion

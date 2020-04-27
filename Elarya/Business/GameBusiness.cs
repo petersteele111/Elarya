@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Elarya.Presentation.ViewModels;
+﻿using Elarya.Data;
 using Elarya.Models;
-using Elarya.Data;
+using Elarya.Presentation.ViewModels;
 using Elarya.Presentation.Views;
+using System.Collections.ObjectModel;
 
 namespace Elarya.Business
 {
@@ -79,7 +74,10 @@ namespace Elarya.Business
                 {
                     _player.MageSkill = 5;
                 }
-                else
+                else if (_player.JobTitle == Player.JobTitleName.Healer)
+                {
+
+                }
                 {
                     _player.HealerSkill = 5;
                 }
