@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Elarya.Models
+﻿namespace Elarya.Models
 {
-    class Spell : GameItem
+    internal class Spell : GameItem
     {
 
         #region Enums
@@ -55,8 +49,11 @@ namespace Elarya.Models
         /// <param name="name">name of treasure item</param>
         /// <param name="value">value of treasure item</param>
         /// <param name="type">type of treasure item</param>
+        /// <param name="healerSkillGain">Healer Skill Gain from using spell</param>
         /// <param name="description">description of treasure item</param>
         /// <param name="useMessage">on use message of treasure item</param>
+        /// <param name="manaCost">Cost of mana to use this spell</param>
+        /// <param name="mageSkillGain">Mage Skill Gain from using Spell</param>
         public Spell(int id, string name, int value, SpellType type, int manaCost, int mageSkillGain, int healerSkillGain, string description, string useMessage = "")
             : base(id, name, value, description, useMessage)
         {
