@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Elarya.Presentation.Views"
         mc:Ignorable="d"
         Title="HelpWindow" Height="450" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
@@ -35,15 +34,12 @@
                 </TextBlock.Effect>
             </TextBlock>
 
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="6" Margin="10 10">
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0" Margin="10 10">
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="I'm Stuck: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed" />
+                        Text="I'm Stuck: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed" />
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                        FontFamily="Papyrus" FontSize="18"
                 >
                     If you are stuck, try gaining some experience or talking to some NPCs for helpful clues.
                     </TextBlock>
@@ -51,12 +47,9 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="I'm out of money and cant get experience to move on: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed" />
+                        Text="I'm out of money and cant get experience to move on: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed" />
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                 >
                     If your unable to move forward at this point, go to file->restart
                     </TextBlock>
@@ -64,12 +57,9 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="I can't find unlocked area:  " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
+                        Text="I can't find unlocked area:  " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                 >
                     Try going back to areas you've been to already. Sometimes the unlocked area is there
                     </TextBlock>
@@ -77,12 +67,9 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="Whats the objective?: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
+                        Text="Whats the objective?: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                 >
                     The objective is to complete Quests and tasks that grant Healer or Mage Skill Points.
                     </TextBlock>
@@ -90,24 +77,18 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="How do I win: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
+                        Text="How do I win: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                 >
                     To win, complete all the quests, and whichever Skill Point is higher, is what Role you have in society!
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                        Grid.Row="1"
                         Text="Why did I die: " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
                     <TextBlock
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                     >
                         If you run out of Mana, you die. If you go to an area that kills you, you die. Run out of health, you die
                     </TextBlock>
@@ -115,12 +96,9 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 10">
                     <TextBlock
-                    Grid.Row="1"
-                    Text="How do I make more Nocti Quarks (Money): " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
+                        Text="How do I make more Nocti Quarks (Money): " FontFamily="Papyrus" FontWeight="Bold" FontSize="18" Foreground="DarkRed"/>
                     <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="5" FontFamily="Papyrus" FontSize="18"
+                    FontFamily="Papyrus" FontSize="18"
                 >
                     To make more money, simply find treasures and sell them to vendors!
                     </TextBlock>

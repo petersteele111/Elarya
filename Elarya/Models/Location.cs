@@ -10,12 +10,12 @@ namespace Elarya.Models
 
         #endregion
 
-		#region Properties
+        #region Properties
 
-		/// <summary>
-		/// Gets and Sets Location ID
-		/// </summary>
-		public int Id { get; set; }
+        /// <summary>
+        /// Gets and Sets Location ID
+        /// </summary>
+        public int Id { get; set; }
 
         /// <summary>
 		/// Gets and Sets Location Name
@@ -85,7 +85,7 @@ namespace Elarya.Models
 
         public Location()
         {
-			GameItems = new ObservableCollection<GameItemQuantity>();
+            GameItems = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
@@ -102,7 +102,7 @@ namespace Elarya.Models
             if (RequiredExperience == 0)
             {
                 return false;
-            } 
+            }
             else if (experience >= RequiredExperience)
             {
                 return true;
@@ -143,7 +143,8 @@ namespace Elarya.Models
             {
                 var newGameItemQuantity = new GameItemQuantity
                 {
-                    GameItem = selectedGameItemQuantity.GameItem, Quantity = 1
+                    GameItem = selectedGameItemQuantity.GameItem,
+                    Quantity = 1
                 };
 
                 GameItems.Add(newGameItemQuantity);

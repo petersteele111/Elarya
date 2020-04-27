@@ -34,7 +34,7 @@ namespace Elarya.Models
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Gets and Sets the JobTitle Enumerator
         /// </summary>
@@ -199,7 +199,7 @@ namespace Elarya.Models
         public ObservableCollection<Quest> Quests { get; set; }
 
         #endregion
-        
+
         #region Constructor
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Elarya.Models
             Spell = new ObservableCollection<GameItemQuantity>();
             Quests = new ObservableCollection<Quest>();
         }
-        
+
         #endregion
 
         #region Methods
@@ -278,7 +278,8 @@ namespace Elarya.Models
             {
                 var newGameItemQuantity = new GameItemQuantity
                 {
-                    GameItem = selectedGameItemQuantity.GameItem, Quantity = quantity
+                    GameItem = selectedGameItemQuantity.GameItem,
+                    Quantity = quantity
                 };
 
                 Inventory.Add(newGameItemQuantity);
@@ -335,7 +336,8 @@ namespace Elarya.Models
             {
                 var newGameItemQuantity = new GameItemQuantity
                 {
-                    GameItem = gameItemQuantity.GameItem, Quantity = quantity
+                    GameItem = gameItemQuantity.GameItem,
+                    Quantity = quantity
                 };
 
                 Inventory.Add(newGameItemQuantity);
@@ -414,40 +416,40 @@ namespace Elarya.Models
         /// </summary>
         public void UpdateQuestStatus()
         {
-            foreach (var quest in Quests.Where(q=>q.Status == Quest.QuestStatus.Incomplete))
+            foreach (var quest in Quests.Where(q => q.Status == Quest.QuestStatus.Incomplete))
             {
                 switch (quest)
                 {
                     case QuestTravel travel:
-                    {
-                        if (travel.LocationsNotCompleted(LocationsVisited).Count == 0)
                         {
-                            travel.Status = Quest.QuestStatus.Complete;
-                            Experience += travel.ExperienceGain;
-                        }
+                            if (travel.LocationsNotCompleted(LocationsVisited).Count == 0)
+                            {
+                                travel.Status = Quest.QuestStatus.Complete;
+                                Experience += travel.ExperienceGain;
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     case QuestGather gather:
-                    {
-                        if (gather.GameItemQuantitiesNotCompleted(Inventory.ToList()).Count == 0)
                         {
-                            gather.Status = Quest.QuestStatus.Complete;
-                            Experience += gather.ExperienceGain;
-                        }
+                            if (gather.GameItemQuantitiesNotCompleted(Inventory.ToList()).Count == 0)
+                            {
+                                gather.Status = Quest.QuestStatus.Complete;
+                                Experience += gather.ExperienceGain;
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     case QuestEngage engage:
-                    {
-                        if (engage.NpcsNotEngaged(NpcsEngaged).Count == 0)
                         {
-                            engage.Status = Quest.QuestStatus.Complete;
-                            Experience += engage.ExperienceGain;
-                        }
+                            if (engage.NpcsNotEngaged(NpcsEngaged).Count == 0)
+                            {
+                                engage.Status = Quest.QuestStatus.Complete;
+                                Experience += engage.ExperienceGain;
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     default:
                         throw new Exception("Unknown Mission Child Class");
                 }

@@ -2,9 +2,9 @@
 {
     internal class Clothes : GameItem
     {
-       
+
         #region Enums
-        
+
         /// <summary>
         /// Enum for type of clothes
         /// </summary>

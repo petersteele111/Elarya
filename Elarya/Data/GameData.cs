@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Elarya.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Navigation;
-using Elarya.Models;
 
 namespace Elarya.Data
 {
@@ -95,7 +94,7 @@ namespace Elarya.Data
         /// <returns>Returns the Location</returns>
         public static Location LocationById(int id)
         {
-            List<Location> locations =new List<Location>();
+            List<Location> locations = new List<Location>();
 
             foreach (Location location in GameMap().Locations)
             {
@@ -137,7 +136,7 @@ namespace Elarya.Data
                 "You only have 3 months to discover your true talents, or you risk being exiled from Nocti and banished to the Northern Tundra.",
 
                 Accessible = true,
-                
+
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(101), 2),
@@ -332,7 +331,7 @@ namespace Elarya.Data
 
                 Name = "Ferlion Fields",
 
-                Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!" ,
+                Description = "The fields of Ferlion! Filled with copious amounts of flowers that are so beautiful to look at!",
 
                 Messages = "Too bad they are deadly! You died! Lucky your Amulet given to you by your mother brought you back! Lucky for you, there appears to be a valuable item here you need, at the cost of your life though",
 
@@ -348,7 +347,7 @@ namespace Elarya.Data
                 }
             };
 
-                gameMap.Locations[6, 7] = new Location()
+            gameMap.Locations[6, 7] = new Location()
             {
                 Id = 10,
 
@@ -420,7 +419,7 @@ namespace Elarya.Data
 
                 Description = "The fishing shop seems old and run down. A haggard old fisherman stands behind the counter. He doesn't look well. ",
 
-                Messages = "This old man may be in some serious need of a healer and stat! " ,
+                Messages = "This old man may be in some serious need of a healer and stat! ",
 
                 Accessible = false,
 
@@ -564,7 +563,7 @@ namespace Elarya.Data
                 Description = "A large bonfire roars with such ferocity. On the other side sits an old mage contemplating god knows what.",
 
                 Messages = "The mage surely can teach you some magic. Do you have what it takes to learn from a master? ",
-                
+
                 Accessible = false,
 
                 RequiredItem = 142,
@@ -605,7 +604,7 @@ namespace Elarya.Data
                 new Potion(106, "Greater Healer Potion", 250, 0, 0, 0, 0, 25, 10, "Greater Healer Potion grants 25 Healer Skill Points", "You gained 25 Healer Skill Points"),
                 new Potion(107, "Mana Potion", 50, 0, 0, 25, 0, 0, 10, "Mana Potions restore 25 Mana", "You restored 25 Mana"),
                 new Potion(108, "Life Potion", 500, 100, 1, 100, 0, 0, 10, "Life Potions grant 1 life, Full Health, and Full Mana", "You gained 1 life, Full Health, and Full Mana"),
-                
+
 
                 new Potion(109, "Free Mage Potion", 0, 0, 0, 0, 25, 0, 25, "Increase your Mage Skill points", "You gained 25 Mage Skill Points"),
                 new Potion(110, "Free Healer Potion", 0, 0, 0, 0, 0, 25, 0, "Grants 25 Healer Skill", "You gained 25 Healer Skill Points!"),

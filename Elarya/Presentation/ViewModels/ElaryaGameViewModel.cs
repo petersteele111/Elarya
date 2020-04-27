@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Elarya.Models;
+using Elarya.Presentation.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
-using Elarya.Models;
-using Elarya.Presentation.Views;
 
 namespace Elarya.Presentation.ViewModels
 {
@@ -366,7 +366,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void GameTimer()
         {
-            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(1000)};
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
             timer.Tick += OnGameTimerTick;
             timer.Start();
         }
@@ -505,7 +505,7 @@ namespace Elarya.Presentation.ViewModels
                     Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
                     Player.Wealth -= treasure.Value;
                 }
-                
+
             }
         }
 
@@ -767,7 +767,8 @@ namespace Elarya.Presentation.ViewModels
         {
             var questStatusViewModel = new QuestStatusViewModel
             {
-                QuestInformation = GenerateQuestStatusInformation(), Quests = new List<Quest>(Player.Quests)
+                QuestInformation = GenerateQuestStatusInformation(),
+                Quests = new List<Quest>(Player.Quests)
             };
 
 

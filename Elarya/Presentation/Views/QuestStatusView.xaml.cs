@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Elarya.Presentation.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Elarya.Presentation.ViewModels;
 
 namespace Elarya.Presentation.Views
 {
@@ -21,7 +9,7 @@ namespace Elarya.Presentation.Views
     public partial class QuestStatusView : Window
     {
         private QuestStatusViewModel _questStatusViewModel;
-        
+
         public QuestStatusView(QuestStatusViewModel questStatusViewModel)
         {
             _questStatusViewModel = questStatusViewModel;

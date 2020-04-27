@@ -9,7 +9,7 @@
         /// Gets and Sets Game Item
         /// </summary>
         public GameItem GameItem { get; set; }
-        
+
         /// <summary>
         /// Gets and Sets Quantity
         /// </summary>

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Elarya.Models;
+﻿using Elarya.Models;
+using System.Collections.Generic;
 
 namespace Elarya.Presentation.ViewModels
 {

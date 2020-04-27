@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Elarya"
-        xmlns:Models="clr-namespace:Elarya.Models" x:Class="Elarya.ElaryaGameView"
+        x:Class="Elarya.ElaryaGameView"
         mc:Ignorable="d"
         Title="Elarya" Height="800" Width="1400"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
@@ -63,7 +62,7 @@
         </DockPanel>
 
         <!-- Information Bar-->
-        <Border BorderBrush="black" BorderThickness="0 0 0 1" Grid.ColumnSpan="12">
+        <Border BorderBrush="black" BorderThickness="0 0 0 1" Grid.Row="0" Grid.ColumnSpan="12" Grid.Column="0">
             <StackPanel Orientation="Horizontal" Margin="28,10,32,-10">
                 <TextBlock Text="Name: " FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" FontFamily="Papyrus" />
                 <TextBlock Text="{Binding Player.Name}" FontSize="20px" VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" FontFamily="Papyrus"/>
@@ -86,19 +85,21 @@
         </Border>
 
         <!-- General Info Panel-->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="12" Height="516" VerticalAlignment="Bottom" />
+        <Border BorderBrush="Black" BorderThickness="0 0 1 1" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                Grid.RowSpan="12" Height="516" VerticalAlignment="Bottom" />
 
-        <TextBlock Text="Current Location" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="center" FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus">
+        <TextBlock Text="Current Location" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="center" FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="DarkRed" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Papyrus"/>
+        <TextBlock Text="{Binding CurrentLocation.Name, Mode=OneWay}" FontWeight="Bold" Foreground="DarkRed" FontSize="20px" Grid.Row="2" Grid.ColumnSpan="2"
+                   Grid.Column="0" HorizontalAlignment="Center" FontFamily="Papyrus"/>
 
         <TextBlock 
             Text="Travel"
             Grid.Row="3"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="2" Grid.Column="0"
             FontSize="20"
             VerticalAlignment="center"
             HorizontalAlignment="Center"
@@ -108,7 +109,7 @@
             </TextBlock.Effect>
         </TextBlock>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Margin="10 0 0 0">
             <Button Content="North" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="NorthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -117,7 +118,7 @@
             <TextBlock Text="{Binding NorthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="10 0 0 0">
             <Button Content="East" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="EastButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -126,7 +127,7 @@
             <TextBlock Text="{Binding EastLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" Margin="10 0 0 0">
             <Button Content="South" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="SouthButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -135,7 +136,7 @@
             <TextBlock Text="{Binding SouthLocation.Name, Mode=OneWay}" FontSize="14px" Padding="10 0" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Papyrus"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="2" Margin="10 0 0 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" Margin="10 0 0 0">
             <Button Content="West" FontSize="16px" FontWeight="Bold" Width="60px" Margin="0 0 0 10" Click="WestButton_Click" FontFamily="Papyrus" Background="CadetBlue" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -145,7 +146,7 @@
         </StackPanel>
 
         <Button 
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="2" Grid.Column="0"
             Grid.Row="10"
             Content="Quest Information"
             FontSize="20"
@@ -625,9 +626,11 @@
 
 
         <!-- Player Info Panel Border-->
-        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
+        <Border BorderBrush="Black" BorderThickness="0 0 1 0" Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="0"
+                Grid.RowSpan="5"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Margin="10 0" HorizontalAlignment="Center" Grid.ColumnSpan="2"
+                    Grid.Column="0">
             <TextBlock Text="Player Info" FontSize="28px" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Papyrus" >
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
@@ -637,7 +640,7 @@
         </StackPanel>
 
 
-        <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+        <TextBlock Text="Race: " FontSize="20px" Padding="10 0" Grid.Row="14" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
@@ -650,7 +653,7 @@
 
 
 
-        <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+        <TextBlock Text="Gender: " FontSize="20px" Padding="10 0" Grid.Row="15" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
@@ -663,7 +666,7 @@
 
 
 
-        <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+        <TextBlock Text="Role: " FontSize="20px" Padding="10 0" Grid.Row="16" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>
@@ -675,7 +678,7 @@
         </TextBox>
 
 
-        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
+        <TextBlock Text="Age: " FontSize="20px" Padding="10 0" Grid.Row="17" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Papyrus">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.5"/>
             </TextBlock.Effect>

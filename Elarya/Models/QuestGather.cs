@@ -38,7 +38,7 @@ namespace Elarya.Models
                 {
                     if (inventoryItemMatch.Quantity < questGameItem.Quantity)
                     {
-                        gameItemQuantitiesToComplete.Add(questGameItem);                        
+                        gameItemQuantitiesToComplete.Add(questGameItem);
                     }
                 }
             }
