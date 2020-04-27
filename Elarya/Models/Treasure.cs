@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Elarya.Models
+﻿namespace Elarya.Models
 {
-    class Treasure : GameItem
+    internal class Treasure : GameItem
     {
 
         #region Enums
@@ -17,8 +11,7 @@ namespace Elarya.Models
         public enum TreasureType
         {
             Coin,
-            Gem,
-            Scroll
+            Gem
         }
 
         #endregion
