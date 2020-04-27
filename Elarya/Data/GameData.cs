@@ -632,12 +632,12 @@ namespace Elarya.Data
                 new Treasure(133, "Qui'lash Star", 500, Treasure.TreasureType.Gem, "The rarest gem of Qui'lash! Worth a sizeable sum"),
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
 
-                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, "Great for descending bluffs . . .", "You opened up access to the Dragon Clutch!"),
-                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, " Removes Mist often blocking Fisherman, like Tornul!"),
-                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, "If someone needs healing, use this spell", "You have healed the Fishing Shop owner! Go Speak with him!"),
-                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, "Grants a massive amount of Mage Skill.", "You have gained 200 Mage Skill Points"),
-                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, "Grants a massive amount of Healer Skill.", "You have gained 200 Healer Skill Points"),
-                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, "Removes illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
+                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, 10, 0, "Great for descending bluffs . . .", "You opened up access to the Dragon Clutch!"),
+                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, 10, 0 , " Removes Mist often blocking Fisherman, like Tornul!"),
+                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, 0, 10, "If someone needs healing, use this spell", "You have healed the Fishing Shop owner! Go Speak with him!"),
+                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, 10, 0, "Grants a massive amount of Mage Skill.", "You have gained 200 Mage Skill Points"),
+                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, 0, 10, "Grants a massive amount of Healer Skill.", "You have gained 200 Healer Skill Points"),
+                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, 10, 0, "Removes illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
             };
         }
 

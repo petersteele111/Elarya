@@ -34,6 +34,16 @@ namespace Elarya.Models
         /// </summary>
         public int ManaCost { get; set; }
 
+        /// <summary>
+        /// Mage Skill Gain
+        /// </summary>
+        public int MageSkillGain { get; set; }
+
+        /// <summary>
+        /// Healer Skill Gain
+        /// </summary>
+        public int HealerSkillGain { get; set; }
+
         #endregion
 
         #region Constructor
@@ -47,11 +57,13 @@ namespace Elarya.Models
         /// <param name="type">type of treasure item</param>
         /// <param name="description">description of treasure item</param>
         /// <param name="useMessage">on use message of treasure item</param>
-        public Spell(int id, string name, int value, SpellType type, int manaCost, string description, string useMessage = "")
+        public Spell(int id, string name, int value, SpellType type, int manaCost, int mageSkillGain, int healerSkillGain, string description, string useMessage = "")
             : base(id, name, value, description, useMessage)
         {
             Type = type;
             ManaCost = manaCost;
+            MageSkillGain = mageSkillGain;
+            HealerSkillGain = healerSkillGain;
         }
 
         #endregion

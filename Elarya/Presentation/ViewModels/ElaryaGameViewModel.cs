@@ -594,6 +594,8 @@ namespace Elarya.Presentation.ViewModels
                 CurrentMessage = message;
                 _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
                 _player.Mana -= spell.ManaCost;
+                _player.MageSkill += spell.MageSkillGain;
+                _player.HealerSkill += spell.HealerSkillGain;
                 _player.Wealth -= spell.Value;
             }
         }
