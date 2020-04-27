@@ -13,10 +13,7 @@ namespace Elarya.Models
 
         private int _id;
         private string _name;
-        private string _description;
         private QuestStatus _status;
-        private string _statusDetail;
-        private int _experienceGain;
         private List<GameItemQuantity> _requiredGameItemQuantities;
 
         #endregion
@@ -26,7 +23,7 @@ namespace Elarya.Models
         /// <summary>
         /// Gets and Sets the Required Game Items
         /// </summary>
-        public List<GameItemQuantity> RequiredGameItemQuantites
+        public List<GameItemQuantity> RequiredGameItemQuantities
         {
             get => _requiredGameItemQuantities;
             set => _requiredGameItemQuantities = value;

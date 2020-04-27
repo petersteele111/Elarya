@@ -984,7 +984,7 @@ namespace Elarya.Data
 
                     Status = Quest.QuestStatus.Incomplete,
 
-                    RequiredGameItemQuantites = new List<GameItemQuantity>()
+                    RequiredGameItemQuantities = new List<GameItemQuantity>()
                     {
                         new GameItemQuantity(GameItemById(132), 1),
                         new GameItemQuantity(GameItemById(133), 1),

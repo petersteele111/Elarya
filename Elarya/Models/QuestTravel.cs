@@ -14,10 +14,7 @@ namespace Elarya.Models
 
         private int _id;
         private string _name;
-        private string _description;
         private Quest.QuestStatus _status;
-        private string _statusDetail;
-        private int _experienceGain;
         private List<Location> _requiredLocations;
 
         #endregion
