@@ -9,6 +9,7 @@ namespace Elarya.Presentation.ViewModels
 {
     public class QuestStatusViewModel : ObservableObject
     {
+
         #region Fields
 
         private string _questInformation;
