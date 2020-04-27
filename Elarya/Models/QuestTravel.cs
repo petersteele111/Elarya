@@ -72,7 +72,7 @@ namespace Elarya.Models
 
             foreach (var requiredLocation in _requiredLocations)
             {
-                if (!locationsTraveled.Any(x=>x.ID == requiredLocation.ID))
+                if (!locationsTraveled.Any(x=>x.Id == requiredLocation.Id))
                 {
                     locationsToComplete.Add(requiredLocation);
                 }

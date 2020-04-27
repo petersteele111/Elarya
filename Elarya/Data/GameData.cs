@@ -105,7 +105,7 @@ namespace Elarya.Data
                 }
             }
 
-            return locations.FirstOrDefault(x => x.ID == id);
+            return locations.FirstOrDefault(x => x.Id == id);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Elarya.Data
 
             gameMap.Locations[4, 6] = new Location()
             {
-                ID = 1,
+                Id = 1,
 
                 Name = "Home (Nocti)",
 
@@ -149,7 +149,7 @@ namespace Elarya.Data
 
             gameMap.Locations[3, 6] = new Location()
             {
-                ID = 2,
+                Id = 2,
 
                 Name = "Market Square (Nocti)",
 
@@ -173,7 +173,7 @@ namespace Elarya.Data
 
             gameMap.Locations[3, 5] = new Location()
             {
-                ID = 3,
+                Id = 3,
 
                 Name = "Merchant (Nocti)",
 
@@ -196,7 +196,7 @@ namespace Elarya.Data
 
             gameMap.Locations[3, 7] = new Location()
             {
-                ID = 4,
+                Id = 4,
 
                 Name = "Stables (Nocti)",
 
@@ -218,7 +218,7 @@ namespace Elarya.Data
 
             gameMap.Locations[4, 7] = new Location()
             {
-                ID = 5,
+                Id = 5,
 
                 Name = "Front Gate (Nocti)",
 
@@ -241,7 +241,7 @@ namespace Elarya.Data
 
             gameMap.Locations[2, 5] = new Location()
             {
-                ID = 6,
+                Id = 6,
 
                 Name = "Food Shop (Nocti)",
 
@@ -265,7 +265,7 @@ namespace Elarya.Data
 
             gameMap.Locations[2, 6] = new Location()
             {
-                ID = 7,
+                Id = 7,
 
                 Name = "Tailor (Nocti)",
 
@@ -290,7 +290,7 @@ namespace Elarya.Data
 
             gameMap.Locations[2, 7] = new Location()
             {
-                ID = 8,
+                Id = 8,
 
                 Name = "Potions Shop (Nocti)",
 
@@ -312,7 +312,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 7] = new Location()
             {
-                ID = 9,
+                Id = 9,
 
                 Name = "Southern Road 1",
 
@@ -328,7 +328,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 6] = new Location()
             {
-                ID = 20,
+                Id = 20,
 
                 Name = "Ferlion Fields",
 
@@ -350,7 +350,7 @@ namespace Elarya.Data
 
                 gameMap.Locations[6, 7] = new Location()
             {
-                ID = 10,
+                Id = 10,
 
                 Name = "Southern Road 2",
 
@@ -363,7 +363,7 @@ namespace Elarya.Data
 
             gameMap.Locations[6, 6] = new Location()
             {
-                ID = 19,
+                Id = 19,
 
                 Name = "Magic Swamp",
 
@@ -392,7 +392,7 @@ namespace Elarya.Data
 
             gameMap.Locations[7, 7] = new Location()
             {
-                ID = 11,
+                Id = 11,
 
                 Name = "Sra'Lik Sea",
 
@@ -414,7 +414,7 @@ namespace Elarya.Data
 
             gameMap.Locations[7, 8] = new Location()
             {
-                ID = 12,
+                Id = 12,
 
                 Name = "Fishing Shop",
 
@@ -444,7 +444,7 @@ namespace Elarya.Data
 
             gameMap.Locations[7, 6] = new Location()
             {
-                ID = 13,
+                Id = 13,
 
                 Name = "Tornul (Fishing Master)",
 
@@ -476,7 +476,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 8] = new Location()
             {
-                ID = 14,
+                Id = 14,
 
                 Name = "Eastern Road 1",
 
@@ -489,7 +489,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 9] = new Location()
             {
-                ID = 15,
+                Id = 15,
 
                 Name = "Eastern Road 2",
 
@@ -507,7 +507,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 10] = new Location()
             {
-                ID = 16,
+                Id = 16,
 
                 Name = "Juit Bluffs",
 
@@ -530,7 +530,7 @@ namespace Elarya.Data
 
             gameMap.Locations[5, 11] = new Location()
             {
-                ID = 17,
+                Id = 17,
 
                 Name = "Dragon Clutch",
 
@@ -557,7 +557,7 @@ namespace Elarya.Data
 
             gameMap.Locations[6, 10] = new Location()
             {
-                ID = 18,
+                Id = 18,
 
                 Name = "Campfire",
 
