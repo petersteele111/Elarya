@@ -118,6 +118,12 @@ namespace Elarya.Business
                 {
                     new GameItemQuantity(GameData.GameItemById(131), 1000)
                 };
+                _player.Quests = new ObservableCollection<Quest>()
+                {
+                    GameData.QuestById(1),
+                    GameData.QuestById(2),
+                    GameData.QuestById(3)
+                };
             }
             else
             {
