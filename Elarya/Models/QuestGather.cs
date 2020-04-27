@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     public class QuestGather : Quest
     {
+
         #region Fields
 
         private int _id;
@@ -93,5 +94,6 @@ namespace Elarya.Models
         }
 
         #endregion
+
     }
 }

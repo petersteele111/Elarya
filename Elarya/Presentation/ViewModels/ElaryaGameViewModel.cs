@@ -239,6 +239,8 @@ namespace Elarya.Presentation.ViewModels
 
         #region Methods
 
+        #region Music
+
         /// <summary>
         /// Creates the Sound player for background music and loops it
         /// </summary>
@@ -248,6 +250,8 @@ namespace Elarya.Presentation.ViewModels
             backgroundMusic.Load();
             backgroundMusic.PlayLooping();
         }
+
+        #endregion
 
         /// <summary>
         /// Initializes the timer and locations available
@@ -683,124 +687,9 @@ namespace Elarya.Presentation.ViewModels
             }
         }
 
-        private string GenerateQuestTravelDetail(QuestTravel quest)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-
-            if (quest.Status == Quest.QuestStatus.Incomplete)
-            {
-                sb.AppendLine("Locations yet to visit");
-                foreach (var location in quest.LocationsNotCompleted(_player.LocationsVisited))
-                {
-                    sb.Append(location.Name + ", ");
-                }
-            }
-
-            return sb.ToString();
-        }
-
-        private string GenerateQuestEngageDetail(QuestEngage quest)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-
-            if (quest.Status == Quest.QuestStatus.Incomplete)
-            {
-                sb.AppendLine("NPC's yet to Engage");
-                foreach (var npc in quest.NpcsNotEngaged(_player.NpcsEngaged))
-                {
-                    sb.Append(npc.Name + ", ");
-                }
-            }
-
-
-            return sb.ToString();
-        }
-
-        private string GenerateQuestGatherDetail(QuestGather quest)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-
-            if (quest.Status == Quest.QuestStatus.Incomplete)
-            {
-                sb.AppendLine("Treasures yet to be found");
-                foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(_player.Inventory.ToList()))
-                {
-                    int quantityInInventory = 0;
-                    GameItemQuantity gameItemQuantityGathered =
-                        _player.Inventory.FirstOrDefault(x => x.GameItem.Id == gameItemQuantity.GameItem.Id);
-                    if (gameItemQuantityGathered != null)
-                    {
-                        quantityInInventory = gameItemQuantityGathered.Quantity;
-                    }
-
-                    sb.Append(Tab + gameItemQuantity.GameItem.Name);
-                    sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
-                }
-            }
-
-            return sb.ToString();
-        }
-
-        private string GenerateQuestStatusInformation()
-        {
-            string questStatusInformation;
-
-            double totalQuests = _player.Quests.Count;
-            double questsCompleted = _player.Quests.Count(q => q.Status == Quest.QuestStatus.Complete);
-
-            int percentQuestsCompleted = (int) ((questsCompleted / totalQuests) * 100);
-            questStatusInformation = $"Quests Complete: {percentQuestsCompleted}%" + New_Line;
-
-            if (percentQuestsCompleted == 0)
-            {
-                questStatusInformation +=
-                    "Looks like you are just starting on your journey of self discovery! Best of luck.";
-            }
-            else if (percentQuestsCompleted <= 33)
-            {
-                questStatusInformation += "Looks like you completed at least one of your quests! Congrats. Keep at it though, there are more things to be discovered";
-            }
-            else if (percentQuestsCompleted <= 66)
-            {
-                questStatusInformation += "Great job so far! Only one more quest to go. Keep at it!";
-            }
-            else if (percentQuestsCompleted == 100)
-            {
-                questStatusInformation +=
-                    "Congratulations! You have completed all the quests. Whichever Skill rank is higher, is the skill that you have in society!";
-            }
-
-            return questStatusInformation;
-        }
-
         #endregion
 
-        /// <summary>
-        /// Handles Player Death
-        /// </summary>
-        /// <param name="message">Message to display on death!</param>
-        private void OnPlayerDies(string message)
-        {
-            string messagetext = message +
-                                 "\n\nWould you like to play again?";
-
-            string titleText = "Death";
-            MessageBoxButton button = MessageBoxButton.YesNo;
-            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
-
-            switch (result)
-            {
-                case MessageBoxResult.Yes:
-                    ResetPlayer();
-                    break;
-                case MessageBoxResult.No:
-                    QuitApplication();
-                    break;
-            }
-        }
+        #region FileMenuActions
 
         /// <summary>
         /// Resets the game
@@ -828,6 +717,124 @@ namespace Elarya.Presentation.ViewModels
             Environment.Exit(0);
         }
 
+        #endregion
+
+        #region Quests
+
+        /// <summary>
+        /// Creates the Quest Travel Details Information
+        /// </summary>
+        /// <param name="quest">Quest</param>
+        /// <returns>Returns Quest Travel Information</returns>
+        private string GenerateQuestTravelDetail(QuestTravel quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("Locations yet to visit");
+                foreach (var location in quest.LocationsNotCompleted(_player.LocationsVisited))
+                {
+                    sb.Append(location.Name + ", ");
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Creates the Quest Engage Details Information
+        /// </summary>
+        /// <param name="quest">Quest</param>
+        /// <returns>Returns Quest Engage Information</returns>
+        private string GenerateQuestEngageDetail(QuestEngage quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("NPC's yet to Engage");
+                foreach (var npc in quest.NpcsNotEngaged(_player.NpcsEngaged))
+                {
+                    sb.Append(npc.Name + ", ");
+                }
+            }
+
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Creates the Quest Gather Details Information
+        /// </summary>
+        /// <param name="quest">Quest</param>
+        /// <returns>Returns Quest Gather Information</returns>
+        private string GenerateQuestGatherDetail(QuestGather quest)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            if (quest.Status == Quest.QuestStatus.Incomplete)
+            {
+                sb.AppendLine("Treasures yet to be found");
+                foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(_player.Inventory.ToList()))
+                {
+                    int quantityInInventory = 0;
+                    GameItemQuantity gameItemQuantityGathered =
+                        _player.Inventory.FirstOrDefault(x => x.GameItem.Id == gameItemQuantity.GameItem.Id);
+                    if (gameItemQuantityGathered != null)
+                    {
+                        quantityInInventory = gameItemQuantityGathered.Quantity;
+                    }
+
+                    sb.Append(Tab + gameItemQuantity.GameItem.Name);
+                    sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Create the Quest Status Information
+        /// </summary>
+        /// <returns>Returns Quest Status Information</returns>
+        private string GenerateQuestStatusInformation()
+        {
+            double totalQuests = _player.Quests.Count;
+            double questsCompleted = _player.Quests.Count(q => q.Status == Quest.QuestStatus.Complete);
+
+            int percentQuestsCompleted = (int)((questsCompleted / totalQuests) * 100);
+            string questStatusInformation = $"Quests Complete: {percentQuestsCompleted}%" + New_Line;
+
+            if (percentQuestsCompleted == 0)
+            {
+                questStatusInformation +=
+                    "Looks like you are just starting on your journey of self discovery! Best of luck.";
+            }
+            else if (percentQuestsCompleted <= 33)
+            {
+                questStatusInformation += "Looks like you completed at least one of your quests! Congrats. Keep at it though, there are more things to be discovered";
+            }
+            else if (percentQuestsCompleted <= 66)
+            {
+                questStatusInformation += "Great job so far! Only one more quest to go. Keep at it!";
+            }
+            else if (percentQuestsCompleted == 100)
+            {
+                questStatusInformation +=
+                    "Congratulations! You have completed all the quests. Whichever Skill rank is higher, is the skill that you have in society!";
+            }
+
+            return questStatusInformation;
+        }
+
+        /// <summary>
+        /// Initializes Quest Status View Model
+        /// </summary>
+        /// <returns>Returns Quest Status View Model</returns>
         private QuestStatusViewModel InitializeQuestStatusViewModel()
         {
             QuestStatusViewModel questStatusViewModel = new QuestStatusViewModel();
@@ -839,35 +846,69 @@ namespace Elarya.Presentation.ViewModels
             {
                 if (quest is QuestTravel)
                 {
-                    quest.StatusDetail = GenerateQuestTravelDetail((QuestTravel) quest);
+                    quest.StatusDetail = GenerateQuestTravelDetail((QuestTravel)quest);
                 }
 
                 if (quest is QuestEngage)
                 {
-                    quest.StatusDetail = GenerateQuestEngageDetail((QuestEngage) quest);
+                    quest.StatusDetail = GenerateQuestEngageDetail((QuestEngage)quest);
                 }
 
                 if (quest is QuestGather)
                 {
-                    quest.StatusDetail = GenerateQuestGatherDetail((QuestGather) quest);
+                    quest.StatusDetail = GenerateQuestGatherDetail((QuestGather)quest);
                 }
             }
 
             return questStatusViewModel;
         }
 
+        /// <summary>
+        /// Opens the Quest Status Window
+        /// </summary>
         public void QuestWindow()
         {
             QuestStatusView questStatus = new QuestStatusView(InitializeQuestStatusViewModel());
             questStatus.Show();
         }
 
-        #endregion
-
         #region Constants
 
         private const string Tab = "\t";
         private const string New_Line = "\n";
+
+        #endregion
+
+
+        #endregion
+
+        #region Player Win/Lose
+
+        /// <summary>
+        /// Handles Player Death
+        /// </summary>
+        /// <param name="message">Message to display on death!</param>
+        private void OnPlayerDies(string message)
+        {
+            string messagetext = message +
+                                 "\n\nWould you like to play again?";
+
+            string titleText = "Death";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ResetPlayer();
+                    break;
+                case MessageBoxResult.No:
+                    QuitApplication();
+                    break;
+            }
+        }
+
+        #endregion
 
         #endregion
 

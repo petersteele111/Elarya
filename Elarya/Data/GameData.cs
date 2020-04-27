@@ -88,6 +88,11 @@ namespace Elarya.Data
             return Quests().FirstOrDefault(q => q.Id == id);
         }
 
+        /// <summary>
+        /// Gets a location by id
+        /// </summary>
+        /// <param name="id">ID of Location</param>
+        /// <returns>Returns the Location</returns>
         public static Location LocationById(int id)
         {
             List<Location> locations =new List<Location>();
@@ -894,6 +899,10 @@ namespace Elarya.Data
 
         #region Quests
 
+        /// <summary>
+        /// Creates a list of quests
+        /// </summary>
+        /// <returns>Returns the list of quests</returns>
         public static List<Quest> Quests()
         {
             return new List<Quest>()

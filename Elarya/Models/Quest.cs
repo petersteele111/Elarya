@@ -92,14 +92,22 @@ namespace Elarya.Models
 
         #endregion
 
-
         #region Constructor
 
+        /// <summary>
+        /// Public Constructor
+        /// </summary>
         public Quest()
         {
 
         }
 
+        /// <summary>
+        /// Public Constructor
+        /// </summary>
+        /// <param name="id">id of Quest</param>
+        /// <param name="name">Name of Quest</param>
+        /// <param name="status">Status of Quest</param>
         public Quest(int id, string name, QuestStatus status)
         {
             _id = id;
@@ -109,11 +117,5 @@ namespace Elarya.Models
 
         #endregion
 
-
-        #region Methods
-
-
-
-        #endregion
     }
 }

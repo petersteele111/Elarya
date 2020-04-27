@@ -8,6 +8,7 @@ namespace Elarya.Models
 {
     public class QuestEngage : Quest
     {
+
         #region Fields
 
         private int _id;

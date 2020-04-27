@@ -498,6 +498,9 @@ namespace Elarya.Models
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Updates the Quest Status
+        /// </summary>
         public void UpdateQuestStatus()
         {
             foreach (Quest quest in _quests.Where(q=>q.Status == Quest.QuestStatus.Incomplete))
@@ -532,9 +535,6 @@ namespace Elarya.Models
                 }
             }
         }
-
-
-
 
         #endregion
 
