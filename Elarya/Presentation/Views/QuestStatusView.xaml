@@ -59,7 +59,7 @@
             Grid.ColumnSpan="10"
             Grid.Column="1"
             Grid.Row="2"
-            Grid.RowSpan="2" />
+            Grid.RowSpan="2" FontFamily="Papyrus" FontSize="16" />
 
         <DataGrid
             x:Name="Quests"
@@ -69,7 +69,7 @@
             Grid.RowSpan="5"
             ItemsSource="{Binding Quests}"
             AutoGenerateColumns="False"
-            HeadersVisibility="Column" FontSize="16">
+            HeadersVisibility="Column" FontSize="16" FontFamily="Papyrus">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Name"

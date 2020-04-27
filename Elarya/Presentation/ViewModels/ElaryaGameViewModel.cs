@@ -688,22 +688,14 @@ namespace Elarya.Presentation.ViewModels
             StringBuilder sb = new StringBuilder();
             sb.Clear();
 
-            sb.Append("All Required Locations");
-            foreach (var location in quest.RequiredLocations)
-            {
-                sb.AppendLine(Tab + location.Name);
-            }
-
             if (quest.Status == Quest.QuestStatus.Incomplete)
             {
                 sb.AppendLine("Locations yet to visit");
                 foreach (var location in quest.LocationsNotCompleted(_player.LocationsVisited))
                 {
-                    sb.AppendLine(Tab + location.Name);
+                    sb.Append(location.Name + ", ");
                 }
             }
-
-            sb.Remove(sb.Length - 2, 2);
 
             return sb.ToString();
         }
@@ -713,22 +705,15 @@ namespace Elarya.Presentation.ViewModels
             StringBuilder sb = new StringBuilder();
             sb.Clear();
 
-            sb.Append("All Required NPC's");
-            foreach (var location in quest.RequiredNpcs)
-            {
-                sb.AppendLine(Tab + location.Name);
-            }
-
             if (quest.Status == Quest.QuestStatus.Incomplete)
             {
                 sb.AppendLine("NPC's yet to Engage");
-                foreach (var location in quest.NpcsNotEngaged(_player.NpcsEngaged))
+                foreach (var npc in quest.NpcsNotEngaged(_player.NpcsEngaged))
                 {
-                    sb.AppendLine(Tab + location.Name);
+                    sb.Append(npc.Name + ", ");
                 }
             }
 
-            sb.Remove(sb.Length - 2, 2);
 
             return sb.ToString();
         }
@@ -738,16 +723,9 @@ namespace Elarya.Presentation.ViewModels
             StringBuilder sb = new StringBuilder();
             sb.Clear();
 
-            sb.Append("All Required Game Items");
-            foreach (var gameItemQuantity in quest.RequiredGameItemQuantites)
-            {
-                sb.AppendLine(Tab + gameItemQuantity.GameItem.Name);
-                sb.AppendLine($" ({gameItemQuantity.Quantity})");
-            }
-
             if (quest.Status == Quest.QuestStatus.Incomplete)
             {
-                sb.AppendLine("Game Items yet to Gather");
+                sb.AppendLine("Treasures yet to be found");
                 foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(_player.Inventory.ToList()))
                 {
                     int quantityInInventory = 0;
@@ -762,8 +740,6 @@ namespace Elarya.Presentation.ViewModels
                     sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
                 }
             }
-
-            sb.Remove(sb.Length - 2, 2);
 
             return sb.ToString();
         }

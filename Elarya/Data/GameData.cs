@@ -309,7 +309,7 @@ namespace Elarya.Data
             {
                 ID = 9,
 
-                Name = "Southern Road",
+                Name = "Southern Road 1",
 
                 Description = "The road is long and dusty. The sun bearing down overhead, you feel a slight breeze moving in " +
                 "from the North.",
@@ -347,7 +347,7 @@ namespace Elarya.Data
             {
                 ID = 10,
 
-                Name = "Southern Road",
+                Name = "Southern Road 2",
 
                 Description = "The road is long, but the breeze grows stronger. The smell of salt lingers in the air, you must be nearing Sra'lik Sea!",
 
@@ -459,7 +459,8 @@ namespace Elarya.Data
 
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(GameItemById(131), 2)
+                    new GameItemQuantity(GameItemById(131), 2),
+                    new GameItemQuantity(GameItemById(134), 2)
                 },
 
                 Npcs = new ObservableCollection<NPC>()
@@ -472,7 +473,7 @@ namespace Elarya.Data
             {
                 ID = 14,
 
-                Name = "Eastern Road",
+                Name = "Eastern Road 1",
 
                 Description = "Yet another long road leading to the east. The path is covered in grass, and looks to be less traveled than the southern road!",
 
@@ -485,13 +486,18 @@ namespace Elarya.Data
             {
                 ID = 15,
 
-                Name = "Eastern Road",
+                Name = "Eastern Road 2",
 
                 Description = "The road seems to be inclining as you near the end. The path becomes much more difficult to traverse! No wonder no one came up here.",
 
                 Accessible = true,
 
-                ExperienceGain = 25
+                ExperienceGain = 25,
+
+                Npcs = new ObservableCollection<NPC>()
+                {
+                    GetNpcById(1012)
+                }
             };
 
             gameMap.Locations[5, 10] = new Location()
@@ -539,7 +545,8 @@ namespace Elarya.Data
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(101), 2),
-                    new GameItemQuantity(GameItemById(141), 1)
+                    new GameItemQuantity(GameItemById(141), 1),
+                    new GameItemQuantity(GameItemById(133), 2)
                 }
             };
 
@@ -619,15 +626,13 @@ namespace Elarya.Data
                 new Treasure(132, "Gem of Odal", 100, Treasure.TreasureType.Gem, "A rather sizeable gem, might be worth something"),
                 new Treasure(133, "Qui'lash Star", 500, Treasure.TreasureType.Gem, "The rarest gem of Qui'lash! Worth a sizeable sum"),
                 new Treasure(134, "Black Diamond", 250, Treasure.TreasureType.Gem, "Special gem found only in Nocti. Worth an average amount"),
-                new Treasure(135, "Scoll of Mages", 50, Treasure.TreasureType.Scroll, "Scroll of Mages may be tradeable for some mage potions"),
-                new Treasure(136, "Scroll of Healing", 50, Treasure.TreasureType.Scroll, "Scroll of Healing may be tradeable for some healer potions"),
-               
-                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, "Spell of Nocti calls forth a magical rope", "You opened up access to the Dragon Clutch!"),
-                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, "This spell can be used to remove the mist surrounding Tornul!"),
-                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, "Spell of Revival can be used to heal nearby people!", "You have healed the Fishing Shop owner! Go Speak with him!"),
-                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, "This spell grants a massive amount of Mage Skill. Take only if you wish to be a mage!", "You have gained 200 Mage Skill Points"),
-                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, "This spell grants a massive amount of Healer Skill. Take only if you wish to be a Healer!", "You have gained 200 Healer Skill Points"),
-                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, "This spell will remove illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
+
+                new Spell(137, "Spell of Descent", 100, Spell.SpellType.Mage, 50, "Great for descending bluffs . . .", "You opened up access to the Dragon Clutch!"),
+                new Spell(138, "Spell of Thanks", 0, Spell.SpellType.Mage, 25, " Removes Mist often blocking Fisherman, like Tornul!"),
+                new Spell(139, "Spell of Revival", 250, Spell.SpellType.Healing, 75, "If someone needs healing, use this spell", "You have healed the Fishing Shop owner! Go Speak with him!"),
+                new Spell(140, "Great Mage Spell", 0, Spell.SpellType.Mage, 95, "Grants a massive amount of Mage Skill.", "You have gained 200 Mage Skill Points"),
+                new Spell(141, "Great Healer Spell", 0, Spell.SpellType.Healing, 95, "Grants a massive amount of Healer Skill.", "You have gained 200 Healer Skill Points"),
+                new Spell(142, "Spell of Disallusion", 250, Spell.SpellType.Mage, 50, "Removes illusions opening up areas otherwise closed!", "You opened access to the CampFire!")
             };
         }
 
@@ -866,6 +871,21 @@ namespace Elarya.Data
                         "Best of luck on your journey",
                         "If you don't have at least 100 experience, I cannot let you leave"
                     }
+                },
+                new Citizen()
+                {
+                    Id = 1012,
+                    Name = "Hozw'ier",
+                    Age = 28,
+                    Gender = Character.GenderType.Male,
+                    Race = Character.RaceType.Plenskolt,
+                    Description = "A fit traveler, happily hiking the ascent on the Eastern Road",
+                    Messages = new List<string>()
+                    {
+                        "I hear there are dragons up ahead at the bluffs! You might want a rope if you plan to access it . . . ",
+                        "Greetings Traveler! I hope you are doing well on your journey up to the bluffs!",
+                        "They say a great mage makes his home at the bluffs, but you can't see it because he has it hidden with an allusion!"
+                    }
                 }
             };
         }
@@ -901,7 +921,8 @@ namespace Elarya.Data
                         GetNpcById(1008),
                         GetNpcById(1009),
                         GetNpcById(1010),
-                        GetNpcById(1011)
+                        GetNpcById(1011),
+                        GetNpcById(1012)
                     },
 
                     ExperienceGain = 100
@@ -920,7 +941,6 @@ namespace Elarya.Data
 
                     RequiredLocations = new List<Location>()
                     {
-                        LocationById(1),
                         LocationById(2),
                         LocationById(3),
                         LocationById(4),
@@ -949,7 +969,7 @@ namespace Elarya.Data
                 {
                     Id = 3,
 
-                    Name = "Trasure Hunter",
+                    Name = "Treasure Hunter",
 
                     Description = "Find all the treasures in the land!",
 
@@ -959,10 +979,7 @@ namespace Elarya.Data
                     {
                         new GameItemQuantity(GameItemById(132), 1),
                         new GameItemQuantity(GameItemById(133), 1),
-                        new GameItemQuantity(GameItemById(134), 1),
-                        new GameItemQuantity(GameItemById(135), 1),
-                        new GameItemQuantity(GameItemById(136), 1),
-
+                        new GameItemQuantity(GameItemById(134), 1)
                     }
                 }
             };

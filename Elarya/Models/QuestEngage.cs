@@ -73,7 +73,7 @@ namespace Elarya.Models
 
             foreach (var requiredNpc in _requiredNpcs)
             {
-                if (Equals(NpcsEngaged.All(x => x.Id != requiredNpc.Id)))
+                if (!NpcsEngaged.Any(x => x.Id == requiredNpc.Id))
                 {
                     npcsToComplete.Add(requiredNpc);
                 }
