@@ -397,7 +397,7 @@ namespace Elarya.Models
         /// <returns>Returns the Default Greeting</returns>
         public override string Greeting()
         {
-            return $"Hello, my name is {_name}, and I am {_age} years old. I am setting off on my journey in hopes to become a {JobTitle}, and am excited to get started!";
+            return $"Hello, my name is {Name}, and I am {Age} years old. I am setting off on my journey in hopes to become a {JobTitle}, and am excited to get started!";
         }
 
         /// <summary>
