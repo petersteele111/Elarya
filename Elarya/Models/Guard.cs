@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
@@ -34,18 +32,6 @@ namespace Elarya.Models
 
         #endregion
 
-        #region Constructor
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public Guard()
-        {
-
-        }
-
-        #endregion
-
         #region Methods
 
         /// <summary>
@@ -54,8 +40,8 @@ namespace Elarya.Models
         /// <returns>Returns a Random Message</returns>
         private string GetMessage()
         {
-            Random random = new Random();
-            int index = random.Next(0, Messages.Count());
+            var random = new Random();
+            var index = random.Next(0, Messages.Count);
             return Messages[index];
         }
 
