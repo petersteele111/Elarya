@@ -1,60 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Elarya.Models
 {
     public class QuestEngage : Quest
     {
 
-        #region Fields
-
-        private int _id;
-        private string _name;
-        private QuestStatus _status;
-        private List<Npc> _requiredNpcs;
-
-        #endregion
-
         #region Properties
 
         /// <summary>
         /// Gets and Sets the Required Npcs for Quest
         /// </summary>
-        public List<Npc> RequiredNpcs
-        {
-            get => _requiredNpcs;
-            set => _requiredNpcs = value;
-        }
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public QuestEngage()
-        {
-
-        }
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        /// <param name="id">Id of QuestEngagement</param>
-        /// <param name="name">Name of QuestEngagement</param>
-        /// <param name="status">Status of QuestEngagement</param>
-        /// <param name="requiredNpcs">Required NPC's to Engage</param>
-        public QuestEngage(int id, string name, QuestStatus status, List<Npc> requiredNpcs) : base(id, name, status)
-        {
-            _id = id;
-            _name = name;
-            _status = status;
-            _requiredNpcs = requiredNpcs;
-        }
+        public List<Npc> RequiredNpcs { get; set; }
 
         #endregion
 
@@ -63,21 +20,11 @@ namespace Elarya.Models
         /// <summary>
         /// Creates a list of NPC's that have not been engaged yet
         /// </summary>
-        /// <param name="NpcsEngaged">Engaged NPC's</param>
+        /// <param name="npcsEngaged">Engaged NPC's</param>
         /// <returns>Returns NPC's to complete</returns>
-        public List<Npc> NpcsNotEngaged(List<Npc> NpcsEngaged)
+        public List<Npc> NpcsNotEngaged(List<Npc> npcsEngaged)
         {
-            List<Npc> npcsToComplete = new List<Npc>();
-
-            foreach (var requiredNpc in _requiredNpcs)
-            {
-                if (!NpcsEngaged.Any(x => x.Id == requiredNpc.Id))
-                {
-                    npcsToComplete.Add(requiredNpc);
-                }
-            }
-
-            return npcsToComplete;
+            return RequiredNpcs.Where(requiredNpc => npcsEngaged.All(x => x.Id != requiredNpc.Id)).ToList();
         }
 
         #endregion
