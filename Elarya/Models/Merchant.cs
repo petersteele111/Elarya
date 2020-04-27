@@ -66,7 +66,7 @@ namespace Elarya.Models
         /// <returns>Returns the NPC Information String</returns>
         protected override string InformationText()
         {
-            return $"{Name} - {Description}";
+            return $"{Name} - {Age} - {Race} - {Gender} - {Description}";
         }
 
         #endregion

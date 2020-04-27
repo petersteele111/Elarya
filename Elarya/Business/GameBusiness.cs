@@ -79,7 +79,10 @@ namespace Elarya.Business
                 {
                     _player.MageSkill = 5;
                 }
-                else
+                else if (_player.JobTitle == Player.JobTitleName.Healer)
+                {
+                    
+                }
                 {
                     _player.HealerSkill = 5;
                 }
