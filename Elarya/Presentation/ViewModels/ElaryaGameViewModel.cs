@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Media;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Threading;
-using Elarya.Business;
 using Elarya.Models;
 using Elarya.Presentation.Views;
 
@@ -20,8 +15,6 @@ namespace Elarya.Presentation.ViewModels
 
         #region Fields
 
-        private Player _player;
-        private Map _gameMap;
         private Location _currentLocation, _northLocation, _eastLocation, _southLocation, _westLocation;
         private TimeSpan _gameTime;
         private DateTime _gameStartTime;
@@ -29,7 +22,6 @@ namespace Elarya.Presentation.ViewModels
         private string _currentMessage;
 
         private Npc _currentNpc;
-        private GameItemQuantity _currentGameItem;
 
         #endregion
 
@@ -38,20 +30,12 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Gets and sets the player
         /// </summary>
-        public Player Player
-        {
-            get => _player;
-            set { _player = value; }
-        }
+        public Player Player { get; set; }
 
         /// <summary>
         /// Gets and sets the gamemap
         /// </summary>
-        public Map GameMap
-        {
-            get => _gameMap;
-            set { _gameMap = value; }
-        }
+        public Map GameMap { get; set; }
 
         /// <summary>
         /// Gets and Sets the Current Message
@@ -84,10 +68,7 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Gets the Message to Display
         /// </summary>
-        public string MessageDisplay
-        {
-            get => _currentLocation.Messages;
-        }
+        public string MessageDisplay => _currentLocation.Messages;
 
         /// <summary>
         /// Gets and sets the north location (relative)
@@ -148,41 +129,29 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Checks if a north location exists
         /// </summary>
-        public bool HasNorthLocation
-        {
-            get { return NorthLocation != null; }
-        }
+        public bool HasNorthLocation => NorthLocation != null;
 
         /// <summary>
         /// Checks if an east location exists
         /// </summary>
-        public bool HasEastLocation
-        {
-            get { return EastLocation != null; }
-        }
+        public bool HasEastLocation => EastLocation != null;
 
         /// <summary>
         /// Checks if a south location exists
         /// </summary>
-        public bool HasSouthLocation
-        {
-            get { return SouthLocation != null; }
-        }
+        public bool HasSouthLocation => SouthLocation != null;
 
         /// <summary>
         /// Checks if a west location exists
         /// </summary>
-        public bool HasWestLocation
-        {
-            get { return WestLocation != null; }
-        }
+        public bool HasWestLocation => WestLocation != null;
 
         /// <summary>
         /// Gets and sets the GameTime Display ticker
         /// </summary>
         public string GameTimeDisplay
         {
-            get { return _gameTimeDisplay; }
+            get => _gameTimeDisplay;
             set
             {
                 _gameTimeDisplay = value;
@@ -193,11 +162,7 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Gets and Sets the Current Game Item
         /// </summary>
-        public GameItemQuantity CurrentGameItem
-        {
-            get => _currentGameItem;
-            set { _currentGameItem = value; }
-        }
+        public GameItemQuantity CurrentGameItem { get; set; }
 
         /// <summary>
         /// Gets and Sets the Current NPC
@@ -224,10 +189,10 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="mapCoordinates"></param>
         public ElaryaGameViewModel(Player player, Map gameMap, MapCoordinates mapCoordinates)
         {
-            _player = player;
-            _gameMap = gameMap;
-            _gameMap.CurrentLocationCoords = mapCoordinates;
-            _currentLocation = _gameMap.CurrentLocation;
+            Player = player;
+            GameMap = gameMap;
+            GameMap.CurrentLocationCoords = mapCoordinates;
+            _currentLocation = GameMap.CurrentLocation;
             _currentMessage = _currentLocation.Description;
             InitializeView();
             BackgroundMusic();
@@ -244,9 +209,9 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Creates the Sound player for background music and loops it
         /// </summary>
-        private void BackgroundMusic()
+        private static void BackgroundMusic()
         {
-            SoundPlayer backgroundMusic = new SoundPlayer("Presentation/Resources/Assets/Sounds/background.wav");
+            var backgroundMusic = new SoundPlayer("Presentation/Resources/Assets/Sounds/background.wav");
             backgroundMusic.Load();
             backgroundMusic.PlayLooping();
         }
@@ -260,8 +225,8 @@ namespace Elarya.Presentation.ViewModels
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
-            _player.UpdateInventory();
-            _player.CalcWealth();
+            Player.UpdateInventory();
+            Player.CalcWealth();
         }
 
         #region Move Methods
@@ -277,40 +242,38 @@ namespace Elarya.Presentation.ViewModels
             SouthLocation = null;
             WestLocation = null;
 
-            if (_gameMap.NorthLocation() != null)
+            if (GameMap.NorthLocation() != null)
             {
-                Location nextNorthLocation = _gameMap.NorthLocation();
-                if (nextNorthLocation.Accessible == true || PlayerCanAccessLocation(nextNorthLocation))
+                var nextNorthLocation = GameMap.NorthLocation();
+                if (nextNorthLocation.Accessible || PlayerCanAccessLocation(nextNorthLocation))
                 {
                     NorthLocation = nextNorthLocation;
                 }
             }
 
-            if (_gameMap.EastLocation() != null)
+            if (GameMap.EastLocation() != null)
             {
-                Location nextEastLocation = _gameMap.EastLocation();
-                if (nextEastLocation.Accessible == true || PlayerCanAccessLocation(nextEastLocation))
+                var nextEastLocation = GameMap.EastLocation();
+                if (nextEastLocation.Accessible || PlayerCanAccessLocation(nextEastLocation))
                 {
                     EastLocation = nextEastLocation;
                 }
             }
 
-            if (_gameMap.SouthLocation() != null)
+            if (GameMap.SouthLocation() != null)
             {
-                Location nextSouthLocation = _gameMap.SouthLocation();
-                if (nextSouthLocation.Accessible == true || PlayerCanAccessLocation(nextSouthLocation))
+                var nextSouthLocation = GameMap.SouthLocation();
+                if (nextSouthLocation.Accessible || PlayerCanAccessLocation(nextSouthLocation))
                 {
                     SouthLocation = nextSouthLocation;
                 }
             }
 
-            if (_gameMap.WestLocation() != null)
+            if (GameMap.WestLocation() == null) return;
+            var nextWestLocation = GameMap.WestLocation();
+            if (nextWestLocation.Accessible || PlayerCanAccessLocation(nextWestLocation))
             {
-                Location nextWestLocation = _gameMap.WestLocation();
-                if (nextWestLocation.Accessible == true || PlayerCanAccessLocation(nextWestLocation))
-                {
-                    WestLocation = nextWestLocation;
-                }
+                WestLocation = nextWestLocation;
             }
         }
 
@@ -319,14 +282,12 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void MoveNorth()
         {
-            if (HasNorthLocation)
-            {
-                _gameMap.CanMoveNorth();
-                CurrentLocation = _gameMap.CurrentLocation;
-                UpdateAvailableTravelPoints();
-                PlayerMove();
-                _player.UpdateQuestStatus();
-            }
+            if (!HasNorthLocation) return;
+            GameMap.CanMoveNorth();
+            CurrentLocation = GameMap.CurrentLocation;
+            UpdateAvailableTravelPoints();
+            PlayerMove();
+            Player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -334,14 +295,12 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void MoveEast()
         {
-            if (HasEastLocation)
-            {
-                _gameMap.CanMoveEast();
-                CurrentLocation = _gameMap.CurrentLocation;
-                UpdateAvailableTravelPoints();
-                PlayerMove();
-                _player.UpdateQuestStatus();
-            }
+            if (!HasEastLocation) return;
+            GameMap.CanMoveEast();
+            CurrentLocation = GameMap.CurrentLocation;
+            UpdateAvailableTravelPoints();
+            PlayerMove();
+            Player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -349,14 +308,12 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void MoveSouth()
         {
-            if (HasSouthLocation)
-            {
-                _gameMap.CanMoveSouth();
-                CurrentLocation = _gameMap.CurrentLocation;
-                UpdateAvailableTravelPoints();
-                PlayerMove();
-                _player.UpdateQuestStatus();
-            }
+            if (!HasSouthLocation) return;
+            GameMap.CanMoveSouth();
+            CurrentLocation = GameMap.CurrentLocation;
+            UpdateAvailableTravelPoints();
+            PlayerMove();
+            Player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -364,14 +321,12 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void MoveWest()
         {
-            if (HasWestLocation)
-            {
-                _gameMap.CanMoveWest();
-                CurrentLocation = _gameMap.CurrentLocation;
-                UpdateAvailableTravelPoints();
-                PlayerMove();
-                _player.UpdateQuestStatus();
-            }
+            if (!HasWestLocation) return;
+            GameMap.CanMoveWest();
+            CurrentLocation = GameMap.CurrentLocation;
+            UpdateAvailableTravelPoints();
+            PlayerMove();
+            Player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -381,14 +336,7 @@ namespace Elarya.Presentation.ViewModels
         /// <returns></returns>
         private bool PlayerCanAccessLocation(Location nextLocation)
         {
-            if (nextLocation.IsAccessibleByExperience(_player.Experience))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return nextLocation.IsAccessibleByExperience(Player.Experience);
         }
 
         /// <summary>
@@ -396,20 +344,18 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         private void PlayerMove()
         {
-            if (!_player.HasVisited(_currentLocation))
+            if (Player.HasVisited(_currentLocation)) return;
+            Player.LocationsVisited.Add(_currentLocation);
+            Player.Health += _currentLocation.ModifyHealth;
+            Player.Life += _currentLocation.ModifyLives;
+            Player.MageSkill += _currentLocation.MageSkill;
+            Player.HealerSkill += _currentLocation.HealerSkill;
+            Player.Experience += _currentLocation.ExperienceGain;
+            if (Player.Life == 0)
             {
-                _player.LocationsVisited.Add(_currentLocation);
-                _player.Health += _currentLocation.ModifyHealth;
-                _player.Life += _currentLocation.ModifyLives;
-                _player.MageSkill += _currentLocation.MageSkill;
-                _player.HealerSkill += _currentLocation.HealerSkill;
-                _player.Experience += _currentLocation.ExperienceGain;
-                if (_player.Life == 0)
-                {
-                    OnPlayerDies("Oh no, you have run out of lives!");
-                }
-                OnPropertyChanged(nameof(MessageDisplay));
+                OnPlayerDies("Oh no, you have run out of lives!");
             }
+            OnPropertyChanged(nameof(MessageDisplay));
         }
 
         #endregion
@@ -420,8 +366,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void GameTimer()
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(1000)};
             timer.Tick += OnGameTimerTick;
             timer.Start();
         }
@@ -431,7 +376,7 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnGameTimerTick(object sender, EventArgs e)
+        private void OnGameTimerTick(object sender, EventArgs e)
         {
             _gameTime = DateTime.Now - _gameStartTime;
             GameTimeDisplay = _gameTime.ToString(@"hh\:mm\:ss");
@@ -444,35 +389,29 @@ namespace Elarya.Presentation.ViewModels
         /// <summary>
         /// Add a new item to the players inventory
         /// </summary>
-        /// <param name="selectedItem"></param>
         public void AddItemToInventory()
         {
-            if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
-            {
-                GameItemQuantity selectedGameItemQuantity = _currentGameItem;
+            if (CurrentGameItem == null || !_currentLocation.GameItems.Contains(CurrentGameItem)) return;
+            var selectedGameItemQuantity = CurrentGameItem;
 
-                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
-                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
+            _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
+            Player.AddGameItemQuantityToInventory(selectedGameItemQuantity, selectedGameItemQuantity.Quantity);
 
-                OnPlayerPickUp(selectedGameItemQuantity);
-            }
+            OnPlayerPickUp(selectedGameItemQuantity);
         }
 
         /// <summary>
         /// Remove item from the players inventory
         /// </summary>
-        /// <param name="selectedItem"></param>
         public void RemoveItemFromInventory()
         {
-            if (_currentGameItem != null)
-            {
-                GameItemQuantity selectedGameItemQuantity = _currentGameItem;
+            if (CurrentGameItem == null) return;
+            var selectedGameItemQuantity = CurrentGameItem;
 
-                _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
-                _player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
+            _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
+            Player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
 
-                OnPlayerPutDown(selectedGameItemQuantity);
-            }
+            OnPlayerPutDown(selectedGameItemQuantity);
         }
 
         /// <summary>
@@ -481,8 +420,8 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="gameItemQuantity">new game item</param>
         private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
         {
-            _player.Wealth += gameItemQuantity.GameItem.Value;
-            _player.UpdateQuestStatus();
+            Player.Wealth += gameItemQuantity.GameItem.Value;
+            Player.UpdateQuestStatus();
         }
 
         /// <summary>
@@ -491,7 +430,7 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="gameItemQuantity">new game item</param>
         private void OnPlayerPutDown(GameItemQuantity gameItemQuantity)
         {
-            _player.Wealth -= gameItemQuantity.GameItem.Value;
+            Player.Wealth -= gameItemQuantity.GameItem.Value;
         }
 
         /// <summary>
@@ -501,7 +440,7 @@ namespace Elarya.Presentation.ViewModels
         {
             try
             {
-                switch (_currentGameItem.GameItem)
+                switch (CurrentGameItem.GameItem)
                 {
                     case Potion potion:
                         ProcessPotionUse(potion);
@@ -517,8 +456,6 @@ namespace Elarya.Presentation.ViewModels
                         break;
                     case Spell spell:
                         ProcessSpell(spell);
-                        break;
-                    default:
                         break;
                 }
             }
@@ -536,14 +473,14 @@ namespace Elarya.Presentation.ViewModels
         {
             CurrentMessage = potion.UseMessage;
 
-            _player.Health += potion.HealthChange;
-            _player.Life += potion.LivesChange;
-            _player.MageSkill += potion.MageSkillChange;
-            _player.HealerSkill += potion.HealerSkillChange;
-            _player.Experience += potion.ExperienceGain;
-            _player.Mana += potion.ManaChange;
-            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-            _player.Wealth -= potion.Value;
+            Player.Health += potion.HealthChange;
+            Player.Life += potion.LivesChange;
+            Player.MageSkill += potion.MageSkillChange;
+            Player.HealerSkill += potion.HealerSkillChange;
+            Player.Experience += potion.ExperienceGain;
+            Player.Mana += potion.ManaChange;
+            Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+            Player.Wealth -= potion.Value;
 
         }
 
@@ -556,17 +493,17 @@ namespace Elarya.Presentation.ViewModels
             if (treasure.Type == Treasure.TreasureType.Coin)
             {
                 CurrentMessage = "You threw a coin to your Witcher!";
-                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-                _player.Wealth -= treasure.Value;
+                Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+                Player.Wealth -= treasure.Value;
             }
             else
             {
-                string message = _gameMap.OpenLocationsByItem(treasure.Id);
+                string message = GameMap.OpenLocationsByItem(treasure.Id);
                 CurrentMessage = message;
                 if (message != "The Item did nothing.")
                 {
-                    _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-                    _player.Wealth -= treasure.Value;
+                    Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+                    Player.Wealth -= treasure.Value;
                 }
                 
             }
@@ -578,25 +515,25 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="spell">Selected Spell</param>
         private void ProcessSpell(Spell spell)
         {
-            if (_player.Mana <= spell.ManaCost)
+            if (Player.Mana <= spell.ManaCost)
             {
                 CurrentMessage = "You used too much magic and have died. Be more careful next time!";
-                _player.Mana += 100;
-                _player.Life--;
-                if (_player.Life == 0)
+                Player.Mana += 100;
+                Player.Life--;
+                if (Player.Life == 0)
                 {
                     OnPlayerDies("Oh no, you have run out of lives!");
                 }
             }
             else
             {
-                string message = _gameMap.OpenLocationsByItem(spell.Id);
+                string message = GameMap.OpenLocationsByItem(spell.Id);
                 CurrentMessage = message;
-                _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-                _player.Mana -= spell.ManaCost;
-                _player.MageSkill += spell.MageSkillGain;
-                _player.HealerSkill += spell.HealerSkillGain;
-                _player.Wealth -= spell.Value;
+                Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+                Player.Mana -= spell.ManaCost;
+                Player.MageSkill += spell.MageSkillGain;
+                Player.HealerSkill += spell.HealerSkillGain;
+                Player.Wealth -= spell.Value;
             }
         }
 
@@ -607,10 +544,10 @@ namespace Elarya.Presentation.ViewModels
         private void ProcessFood(Food food)
         {
             CurrentMessage = food.UseMessage;
-            _player.Health += food.HealthChange;
-            _player.Mana += food.ManaChange;
-            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-            _player.Wealth -= food.Value;
+            Player.Health += food.HealthChange;
+            Player.Mana += food.ManaChange;
+            Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+            Player.Wealth -= food.Value;
         }
 
         /// <summary>
@@ -620,11 +557,11 @@ namespace Elarya.Presentation.ViewModels
         private void ProcessClothes(Clothes clothes)
         {
             CurrentMessage = clothes.UseMessage;
-            _player.Experience += clothes.ExperienceGain;
-            _player.MageSkill += clothes.MageSkillChange;
-            _player.HealerSkill += clothes.HealerSkillChange;
-            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
-            _player.Wealth -= clothes.Value;
+            Player.Experience += clothes.ExperienceGain;
+            Player.MageSkill += clothes.MageSkillChange;
+            Player.HealerSkill += clothes.HealerSkillChange;
+            Player.RemoveGameItemQuantityFromInventory(CurrentGameItem);
+            Player.Wealth -= clothes.Value;
         }
 
         #endregion
@@ -636,21 +573,16 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void OnPlayerTalkTo()
         {
-            if (CurrentNpc != null && CurrentNpc is ISpeak)
-            {
-                ISpeak speakingNpc = CurrentNpc as ISpeak;
-                CurrentMessage = speakingNpc.Speak();
-                if (!_player.HasTalkedTo(_currentNpc))
-                {
-                    _player.NpcsTalkedTo.Add(_currentNpc);
-                    _player.NpcsEngaged.Add(_currentNpc);
-                    _player.MageSkill += _currentNpc.MageSkillGain;
-                    _player.HealerSkill += _currentNpc.HealerSkillGain;
-                    _player.UpdateQuestStatus();
-                    OnPropertyChanged(nameof(MessageDisplay));
-                }
-                
-            }
+            if (!(CurrentNpc is ISpeak)) return;
+            var speakingNpc = CurrentNpc as ISpeak;
+            CurrentMessage = speakingNpc.Speak();
+            if (Player.HasTalkedTo(_currentNpc)) return;
+            Player.NpcsTalkedTo.Add(_currentNpc);
+            Player.NpcsEngaged.Add(_currentNpc);
+            Player.MageSkill += _currentNpc.MageSkillGain;
+            Player.HealerSkill += _currentNpc.HealerSkillGain;
+            Player.UpdateQuestStatus();
+            OnPropertyChanged(nameof(MessageDisplay));
         }
 
         /// <summary>
@@ -658,12 +590,12 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void BuyItem()
         {
-            if (_currentGameItem != null && _currentNpc.GameItems.Contains(_currentGameItem))
+            if (CurrentGameItem != null && _currentNpc.GameItems.Contains(CurrentGameItem))
             {
-                GameItemQuantity selectGameItemQuantity = _currentGameItem;
-                if (_player.PayMerchant(selectGameItemQuantity.GameItem.Value))
+                GameItemQuantity selectGameItemQuantity = CurrentGameItem;
+                if (Player.PayMerchant(selectGameItemQuantity.GameItem.Value))
                 {
-                    _player.AddGameItemQuantityToInventory(selectGameItemQuantity, 1);
+                    Player.AddGameItemQuantityToInventory(selectGameItemQuantity, 1);
                     _currentNpc.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
                     OnPlayerPutDown(selectGameItemQuantity);
                 }
@@ -680,11 +612,11 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void SellItem()
         {
-            if (_currentGameItem != null && _currentNpc is Merchant && _player.Inventory.Contains(_currentGameItem))
+            if (CurrentGameItem != null && _currentNpc is Merchant && Player.Inventory.Contains(CurrentGameItem))
             {
-                GameItemQuantity selectGameItemQuantity = _currentGameItem;
-                _player.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
-                _player.SellToMerchant(selectGameItemQuantity.GameItem.Value);
+                GameItemQuantity selectGameItemQuantity = CurrentGameItem;
+                Player.RemoveGameItemQuantityFromInventory(selectGameItemQuantity);
+                Player.SellToMerchant(selectGameItemQuantity.GameItem.Value);
                 OnPlayerPickUp(selectGameItemQuantity);
             }
         }
@@ -703,11 +635,11 @@ namespace Elarya.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Diaplyes the Help Window
+        /// Displays the Help Window
         /// </summary>
         public void Help()
         {
-            HelpWindow helpWindow = new HelpWindow();
+            var helpWindow = new HelpWindow();
             helpWindow.ShowDialog();
         }
 
@@ -730,16 +662,14 @@ namespace Elarya.Presentation.ViewModels
         /// <returns>Returns Quest Travel Information</returns>
         private string GenerateQuestTravelDetail(QuestTravel quest)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Clear();
 
-            if (quest.Status == Quest.QuestStatus.Incomplete)
+            if (quest.Status != Quest.QuestStatus.Incomplete) return sb.ToString();
+            sb.AppendLine("Locations yet to visit");
+            foreach (var location in quest.LocationsNotCompleted(Player.LocationsVisited))
             {
-                sb.AppendLine("Locations yet to visit");
-                foreach (var location in quest.LocationsNotCompleted(_player.LocationsVisited))
-                {
-                    sb.Append(location.Name + ", ");
-                }
+                sb.Append(location.Name + ", ");
             }
 
             return sb.ToString();
@@ -752,16 +682,14 @@ namespace Elarya.Presentation.ViewModels
         /// <returns>Returns Quest Engage Information</returns>
         private string GenerateQuestEngageDetail(QuestEngage quest)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Clear();
 
-            if (quest.Status == Quest.QuestStatus.Incomplete)
+            if (quest.Status != Quest.QuestStatus.Incomplete) return sb.ToString();
+            sb.AppendLine("NPC's yet to Engage");
+            foreach (var npc in quest.NpcsNotEngaged(Player.NpcsEngaged))
             {
-                sb.AppendLine("NPC's yet to Engage");
-                foreach (var npc in quest.NpcsNotEngaged(_player.NpcsEngaged))
-                {
-                    sb.Append(npc.Name + ", ");
-                }
+                sb.Append(npc.Name + ", ");
             }
 
 
@@ -775,25 +703,23 @@ namespace Elarya.Presentation.ViewModels
         /// <returns>Returns Quest Gather Information</returns>
         private string GenerateQuestGatherDetail(QuestGather quest)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Clear();
 
-            if (quest.Status == Quest.QuestStatus.Incomplete)
+            if (quest.Status != Quest.QuestStatus.Incomplete) return sb.ToString();
+            sb.AppendLine("Treasures yet to be found");
+            foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(Player.Inventory.ToList()))
             {
-                sb.AppendLine("Treasures yet to be found");
-                foreach (var gameItemQuantity in quest.GameItemQuantitiesNotCompleted(_player.Inventory.ToList()))
+                var quantityInInventory = 0;
+                var gameItemQuantityGathered =
+                    Player.Inventory.FirstOrDefault(x => x.GameItem.Id == gameItemQuantity.GameItem.Id);
+                if (gameItemQuantityGathered != null)
                 {
-                    int quantityInInventory = 0;
-                    GameItemQuantity gameItemQuantityGathered =
-                        _player.Inventory.FirstOrDefault(x => x.GameItem.Id == gameItemQuantity.GameItem.Id);
-                    if (gameItemQuantityGathered != null)
-                    {
-                        quantityInInventory = gameItemQuantityGathered.Quantity;
-                    }
-
-                    sb.Append(Tab + gameItemQuantity.GameItem.Name);
-                    sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
+                    quantityInInventory = gameItemQuantityGathered.Quantity;
                 }
+
+                sb.Append(Tab + gameItemQuantity.GameItem.Name);
+                sb.AppendLine($" ({gameItemQuantity.Quantity - quantityInInventory})");
             }
 
             return sb.ToString();
@@ -805,11 +731,11 @@ namespace Elarya.Presentation.ViewModels
         /// <returns>Returns Quest Status Information</returns>
         private string GenerateQuestStatusInformation()
         {
-            double totalQuests = _player.Quests.Count;
-            double questsCompleted = _player.Quests.Count(q => q.Status == Quest.QuestStatus.Complete);
+            double totalQuests = Player.Quests.Count;
+            double questsCompleted = Player.Quests.Count(q => q.Status == Quest.QuestStatus.Complete);
 
-            int percentQuestsCompleted = (int)((questsCompleted / totalQuests) * 100);
-            string questStatusInformation = $"Quests Complete: {percentQuestsCompleted}%" + New_Line;
+            var percentQuestsCompleted = (int)((questsCompleted / totalQuests) * 100);
+            var questStatusInformation = $"Quests Complete: {percentQuestsCompleted}%" + NewLine;
 
             if (percentQuestsCompleted == 0)
             {
@@ -839,26 +765,25 @@ namespace Elarya.Presentation.ViewModels
         /// <returns>Returns Quest Status View Model</returns>
         private QuestStatusViewModel InitializeQuestStatusViewModel()
         {
-            QuestStatusViewModel questStatusViewModel = new QuestStatusViewModel();
-
-            questStatusViewModel.QuestInformation = GenerateQuestStatusInformation();
-
-            questStatusViewModel.Quests = new List<Quest>(_player.Quests);
-            foreach (Quest quest in questStatusViewModel.Quests)
+            var questStatusViewModel = new QuestStatusViewModel
             {
-                if (quest is QuestTravel)
-                {
-                    quest.StatusDetail = GenerateQuestTravelDetail((QuestTravel)quest);
-                }
+                QuestInformation = GenerateQuestStatusInformation(), Quests = new List<Quest>(Player.Quests)
+            };
 
-                if (quest is QuestEngage)
-                {
-                    quest.StatusDetail = GenerateQuestEngageDetail((QuestEngage)quest);
-                }
 
-                if (quest is QuestGather)
+            foreach (var quest in questStatusViewModel.Quests)
+            {
+                switch (quest)
                 {
-                    quest.StatusDetail = GenerateQuestGatherDetail((QuestGather)quest);
+                    case QuestTravel travel:
+                        travel.StatusDetail = GenerateQuestTravelDetail(travel);
+                        break;
+                    case QuestEngage engage:
+                        engage.StatusDetail = GenerateQuestEngageDetail(engage);
+                        break;
+                    case QuestGather gather:
+                        gather.StatusDetail = GenerateQuestGatherDetail(gather);
+                        break;
                 }
             }
 
@@ -870,14 +795,14 @@ namespace Elarya.Presentation.ViewModels
         /// </summary>
         public void QuestWindow()
         {
-            QuestStatusView questStatus = new QuestStatusView(InitializeQuestStatusViewModel());
+            var questStatus = new QuestStatusView(InitializeQuestStatusViewModel());
             questStatus.Show();
         }
 
         #region Constants
 
         private const string Tab = "\t";
-        private const string New_Line = "\n";
+        private const string NewLine = "\n";
 
         #endregion
 
@@ -892,11 +817,11 @@ namespace Elarya.Presentation.ViewModels
         /// <param name="message">Message to display on death!</param>
         private void OnPlayerDies(string message)
         {
-            string messagetext = message +
-                                 "\n\nWould you like to play again?";
+            var messagetext = message +
+                              "\n\nWould you like to play again?";
 
-            string titleText = "Death";
-            MessageBoxButton button = MessageBoxButton.YesNo;
+            var titleText = "Death";
+            const MessageBoxButton button = MessageBoxButton.YesNo;
             MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
 
             switch (result)
